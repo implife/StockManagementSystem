@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace StockManagement
+namespace StockManagement.SystemBackEnd.Search
 {
-    public partial class Main : System.Web.UI.MasterPage
+    public partial class StockSearch : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
