@@ -11,6 +11,7 @@
     
 </head>
  <body>
+
         <div id="Sidenav" class="sidenav">
             <div id="titleDiv">
                 <a id="Title" href="#">薛丁格<br>庫存管理系統</a>
