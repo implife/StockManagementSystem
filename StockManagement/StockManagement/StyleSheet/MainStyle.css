@@ -1,4 +1,13 @@
-﻿.sidenav {
+﻿.containerDiv {
+    height: 100%;
+    width: 86%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #fafffd;
+}
+
+.sidenav {
     height: 100%;
     width: 14%;
     position: fixed;
@@ -18,13 +27,15 @@
     color: #818181;
     display: block;
     transition: 0.3s;
- }
+}
 
 .sidenav a:hover {
     color: #1e0631;
-        }
+}
 
 #Title {
     font-size: 22px;
     margin-bottom: 3%;
 }
+
+

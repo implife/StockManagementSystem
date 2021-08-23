@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace StockManagement
+namespace StockManagement.SystemBackEnd.UserInfo
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class UserInfo : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -1,12 +1,20 @@
 ﻿/*Login頁面的 CSS 及 Animation */
-section {
-    width: 100%;
-    height: auto;
+html {
+    /*width: 100%;
+    height: 100%;
     color: #fff;
+    background-size: cover;*/
     background: linear-gradient(-45deg, #dd6945, #cb3ce7, #3bb7e4, #7ef5d9, #ccfaf0);
     background-size: 400% 400%;
     position: relative;
     animation: change 15s ease-in-out infinite;
+}
+body{
+    background-color: transparent;
+}
+
+section {
+    
 }
 
 @keyframes change {
