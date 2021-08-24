@@ -9,7 +9,7 @@
 
 .sidenav {
     height: 100%;
-    width: 14%;
+    width: 10%;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -23,7 +23,7 @@
     padding: 8px 8px 8px 8px;
     text-decoration: none;
     text-align: center;
-    font-size: 18px;
+    font-size: 1.8vmin;
     color: #818181;
     display: block;
     transition: 0.3s;
@@ -34,7 +34,7 @@
 }
 
 #Title {
-    font-size: 22px;
+    font-size: 2vmin;
     margin-bottom: 3%;
 }
 

@@ -5,8 +5,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, height=device-width, initial-scale=1.0"/>
     <link href="StyleSheet/boostrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="StyleSheet/LoginStyle.css" />
+
 
     <title>Login</title>
 </head>
@@ -16,7 +18,7 @@
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card bg-white text-black" style="border-radius: 1rem;">
+                        <div class="card text-black cardlogin" style="border-radius: 1rem; background-color: #f4fcf9;">
                             <div class="card-body p-5 text-center">
 
                                 <div class="mb-md-5 mt-md-4 pb-5">
@@ -41,6 +43,8 @@
                                     <asp:Button ID="btnLogin" runat="server" Text="登入" CssClass="btn btn-outline-primary btn-lg px-5" OnClick="btnLogin_Click" />
                                     <br />
                                     <asp:Literal ID="ltlMsg" runat="server"></asp:Literal>
+                                    <!--<button class="btn btn-outline-primary btn-lg px-5 ","btn-primary active"" type="submit">登入</button>-->
+                                   
                                 </div>
 
                                 <div>
