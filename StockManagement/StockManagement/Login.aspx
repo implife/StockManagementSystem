@@ -27,21 +27,24 @@
                                     </p>
 
                                     <div class="form-outline form-white mb-4">
-                                        <input type="email" placeholder="請輸入帳號/員工編號" id="typeEmailX" class="form-control form-control-lg" />
-
+                                        <%--<input type="email" placeholder="請輸入帳號/員工編號" id="typeEmailX" class="form-control form-control-lg" />--%>
+                                        <asp:TextBox ID="txtAccount" runat="server" CssClass="form-control form-control-lg" placeholder="請輸入帳號/員工編號"></asp:TextBox>
                                     </div>
 
                                     <div class="form-outline form-white mb-4">
-                                        <input type="password" placeholder="請輸入密碼" ="typePasswordX" class="form-control form-control-lg" />
+                                        <%--<input type="password" placeholder="請輸入密碼" ="typePasswordX" class="form-control form-control-lg" />--%>
+                                        <asp:TextBox ID="txtPWD" runat="server" TextMode="Password" CssClass="form-control form-control-lg" placeholder="請輸入密碼"></asp:TextBox>
                                     </div>
 
                                     <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
 
-                                    <button class="btn btn-outline-primary btn-lg px-5","btn-primary active"" type="submit">登入</button>
+                                    <asp:Button ID="btnLogin" runat="server" Text="登入" CssClass="btn btn-outline-primary btn-lg px-5" OnClick="btnLogin_Click" />
+                                    <br />
+                                    <asp:Literal ID="ltlMsg" runat="server"></asp:Literal>
                                 </div>
 
                                 <div>
-
+                                    
                                     <p class="mb-0">2021/08/21 23:59:40 </p>
                                 </div>
 
