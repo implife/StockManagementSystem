@@ -10,25 +10,27 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <div class="sidenav">
+    <div id="mySidenav" class="sidenav">
         <div id="titleDiv">
             <a id="Title" href="#">薛丁格<br>
-                庫存管理系統
-            </a>
+                庫存管理系統</a>
         </div>
-        <a href="#">庫存查詢</a>
-        <a href="#">單據查詢</a>
-        <a href="#">訂單管理</a>
-        <a href="#">銷貨管理</a>
-        <a href="#">報銷管理</a>
-        <a href="#">核銷待審</a>
-        <a href="#">員工資訊</a>
-        <a href="#">使用者資訊</a>
+        <div class="DefDiv1"><a href="#">庫存查詢</a></div>
+        <div class="DefDiv2"><a href="#">單據查詢</a></div>
+        <div class="DefDiv3"><a href="/SystemBackEnd/Order/OrderList.aspx">訂單管理</a></div>
+        <div class="DefDiv4"><a href="#">銷貨管理</a></div>
+        <div class="DefDiv5"><a href="#">報銷管理</a></div>
+        <div class="DefDiv6"><a href="#">核銷待審</a></div>
+        <div class="DefDiv7"><a href="#">員工資訊</a></div>
+        <div class="DefDiv8"><a href="#">使用者資訊</a></div>
+        <div class="DefDiv9"><a href="#">單據查詢</a></div>
         <a href="#">登出</a>
     </div>
     <div class="containerDiv">
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
+        <form runat="server">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </form>
     </div>
 
 </body>
