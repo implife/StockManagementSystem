@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="StyleSheet/LoginStyle.css" />
 
 
+
     <title>Login</title>
 </head>
 <body>
+
     <section>
         <form id="form1" runat="server">
             <div class="container py-5 h-100">
@@ -39,7 +41,7 @@
 
                                     <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
 
-                                    <button class="btn btn-outline-primary btn-lg px-5 ","btn-primary active"" type="submit">登入</button>
+                                    <button class="btn btn-outline-primary btn-lg px-5 " type="submit">登入</button>
                                    
                                 </div>
 
