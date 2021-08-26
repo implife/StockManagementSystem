@@ -52,6 +52,9 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -93,6 +96,8 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
+    <Content Include="Scripts\customize\fuse.js" />
+    <Content Include="Scripts\customize\jquery-3.6.0.min.js" />
     <Content Include="StyleSheet\boostrap.min.css" />
     <Content Include="StyleSheet\LoginStyle.css" />
     <Content Include="StyleSheet\MainStyle.css" />
@@ -102,8 +107,11 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="SystemBackEnd\Order\NewOrder.aspx" />
+    <Content Include="SystemBackEnd\Order\OrderList.aspx" />
     <Content Include="SystemBackEnd\Search\StockSearch.aspx" />
     <Content Include="SystemBackEnd\UserInfo\UserInfo.aspx" />
+    <Content Include="UserControls\ucPager.ascx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
@@ -133,6 +141,20 @@
     <Compile Include="SystemBackEnd\Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
+    <Compile Include="SystemBackEnd\Order\NewOrder.aspx.cs">
+      <DependentUpon>NewOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Order\NewOrder.aspx.designer.cs">
+      <DependentUpon>NewOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Order\OrderList.aspx.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Order\OrderList.aspx.designer.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SystemBackEnd\Search\StockSearch.aspx.cs">
       <DependentUpon>StockSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -146,6 +168,13 @@
     </Compile>
     <Compile Include="SystemBackEnd\UserInfo\UserInfo.aspx.designer.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucPager.ascx.cs">
+      <DependentUpon>ucPager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPager.ascx.designer.cs">
+      <DependentUpon>ucPager.ascx</DependentUpon>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

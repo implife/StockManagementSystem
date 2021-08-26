@@ -12,10 +12,29 @@ namespace StockManagement.ORM.DBModels
         {
         }
 
+        public virtual DbSet<CompactDisc> CompactDiscs { get; set; }
+        public virtual DbSet<OrderSalesDetail> OrderSalesDetails { get; set; }
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<CompactDisc>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CompactDisc>()
+                .Property(e => e.Brand)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CompactDisc>()
+                .Property(e => e.Artist)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CompactDisc>()
+                .Property(e => e.Region)
+                .IsUnicode(false);
+
             modelBuilder.Entity<UserInfo>()
                 .Property(e => e.Account)
                 .IsUnicode(false);
@@ -42,6 +61,14 @@ namespace StockManagement.ORM.DBModels
 
             modelBuilder.Entity<UserInfo>()
                 .Property(e => e.BloodType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Order>()
+                .Property(e => e.Seller)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Order>()
+                .Property(e => e.Reason)
                 .IsUnicode(false);
         }
     }

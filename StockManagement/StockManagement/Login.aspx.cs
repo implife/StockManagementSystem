@@ -52,6 +52,7 @@ namespace StockManagement
 
                 // 建立Principal並放進HttpContext.Current.User
                 string[] roles = { "Admin" };
+
                 FormsIdentity identity = new FormsIdentity(ticket);
                 GenericPrincipal myPrincipal = new GenericPrincipal(identity, roles);
                 HttpContext.Current.User = myPrincipal;

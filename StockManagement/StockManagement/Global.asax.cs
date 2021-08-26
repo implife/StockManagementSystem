@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockManagement.DBSource;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,6 +28,10 @@ namespace StockManagement
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
+            // 某些特定頁面須檢查是否為Manager
+            string[] pages = {
+                "/SystemBackEnd/Order/NewOrder.aspx"};
+
             var request = HttpContext.Current.Request;
             var response = HttpContext.Current.Response;
             string path = request.Url.PathAndQuery;
@@ -40,6 +45,23 @@ namespace StockManagement
                     response.StatusCode = 403;
                     response.End();
                     return;
+                }
+
+                // request是否為須檢查Manager權限的頁面
+                foreach (string item in pages)
+                {
+                    if (path.StartsWith(item))
+                    {
+                        string id = (HttpContext.Current.User.Identity as FormsIdentity).Ticket.UserData;
+                        Guid gid = Guid.Parse(id);
+                        if (!UserInfoManager.isManager(gid))
+                        {
+                            response.StatusCode = 403;
+                            response.End();
+                            return;
+                        }
+
+                    }
                 }
 
                 FormsIdentity identity = user.Identity as FormsIdentity;
@@ -58,7 +80,7 @@ namespace StockManagement
 
         protected void Session_End(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void Application_End(object sender, EventArgs e)

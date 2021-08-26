@@ -5,14 +5,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, height=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, height=device-width, initial-scale=1.0" />
     <link href="StyleSheet/boostrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="StyleSheet/LoginStyle.css" />
+    <script>
+        function startTime() {
+            const today = new Date();
+            let mon = today.getMonth();
+            let d = today.getDay();
+            let h = today.getHours();
+            let m = today.getMinutes();
+            let s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('login_Clock').innerHTML = mon + "月" + d + "日 " + h + ":" + m + ":" + s;
+            setTimeout(startTime, 1000);
+        }
 
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
 
     <title>Login</title>
 </head>
-<body>
+<body onload="startTime()">
     <section>
         <form id="form1" runat="server">
             <div class="container py-5 h-100">
@@ -44,14 +62,12 @@
                                     <br />
                                     <asp:Literal ID="ltlMsg" runat="server"></asp:Literal>
                                     <!--<button class="btn btn-outline-primary btn-lg px-5 ","btn-primary active"" type="submit">登入</button>-->
-                                   
+
                                 </div>
 
                                 <div>
-                                    
-                                    <p class="mb-0">2021/08/21 23:59:40 </p>
+                                    <p class="mb-0" id="login_Clock">--</p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
