@@ -11,14 +11,14 @@
     <script>
         function startTime() {
             const today = new Date();
-            let mon = today.getMonth();
-            let d = today.getDay();
+            let mon = today.getMonth() + 1;
+            let d = today.getDate();
             let h = today.getHours();
             let m = today.getMinutes();
             let s = today.getSeconds();
             m = checkTime(m);
             s = checkTime(s);
-            document.getElementById('login_Clock').innerHTML = mon + "月" + d + "日 " + h + ":" + m + ":" + s;
+            document.getElementById('login_Clock').innerHTML = mon + " 月 " + d + " 日 " + h + ":" + m + ":" + s;
             setTimeout(startTime, 1000);
         }
 
