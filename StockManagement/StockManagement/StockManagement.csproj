@@ -109,6 +109,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="SystemBackEnd\Approve\ApproveList.aspx" />
     <Content Include="SystemBackEnd\Order\NewOrder.aspx" />
+    <Content Include="SystemBackEnd\Order\NewProduct.aspx" />
     <Content Include="SystemBackEnd\Order\OrderDetail.aspx" />
     <Content Include="SystemBackEnd\Order\OrderList.aspx" />
     <Content Include="SystemBackEnd\Resimbursment\NewReimbursment.aspx" />
@@ -149,6 +150,9 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemBackEnd\Handler\CDDataHandler.ashx.cs">
+      <DependentUpon>CDDataHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="SystemBackEnd\Approve\ApproveList.aspx.cs">
       <DependentUpon>ApproveList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -169,6 +173,13 @@
     </Compile>
     <Compile Include="SystemBackEnd\Order\NewOrder.aspx.designer.cs">
       <DependentUpon>NewOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Order\NewProduct.aspx.cs">
+      <DependentUpon>NewProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Order\NewProduct.aspx.designer.cs">
+      <DependentUpon>NewProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemBackEnd\Order\OrderDetail.aspx.cs">
       <DependentUpon>OrderDetail.aspx</DependentUpon>
@@ -329,6 +340,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="SystemBackEnd\Main.Master" />
+    <Content Include="SystemBackEnd\Handler\CDDataHandler.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

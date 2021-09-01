@@ -34,6 +34,8 @@ namespace StockManagement.UserControls
             {
                 if(isSearch)
                     this.HLPre.Attributes.Add("href", this.Url + $"?Action=Search&Page={CurrentPage - 1}");
+                else
+                    this.HLPre.Attributes.Add("href", this.Url + $"?Page={CurrentPage - 1}");
             }
             else
             {
@@ -46,6 +48,8 @@ namespace StockManagement.UserControls
             {
                 if(isSearch)
                     this.HLNext.Attributes.Add("href", this.Url + $"?Action=Search&Page={CurrentPage + 1}");
+                else
+                    this.HLNext.Attributes.Add("href", this.Url + $"?Page={CurrentPage + 1}");
             }
             else
             {
