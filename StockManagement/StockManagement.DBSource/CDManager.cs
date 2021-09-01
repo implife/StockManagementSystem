@@ -64,5 +64,30 @@ namespace StockManagement.DBSource
             }
 
         }
+
+        /// <summary>
+        /// 建立一張新專輯資料
+        /// </summary>
+        /// <param name="cd"></param>
+        /// <returns></returns>
+        public static CompactDisc CreateCompactDisc(CompactDisc cd)
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    cd.SerialCode = Guid.NewGuid();
+
+                    CompactDisc cdResult = context.CompactDiscs.Add(cd);
+                    context.SaveChanges();
+                    return cdResult;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
     }
 }

@@ -27,7 +27,7 @@
         <a href="#">登出</a>
     </div>
     <div class="containerDiv">
-        <form runat="server">
+        <form runat="server" novalidate>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </form>
