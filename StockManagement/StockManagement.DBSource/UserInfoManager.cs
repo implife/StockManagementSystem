@@ -35,6 +35,11 @@ namespace StockManagement.DBSource
             }
         }
 
+        public static bool isManager(object guid)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// 根據UserID取得該使用者資料
         /// </summary>
