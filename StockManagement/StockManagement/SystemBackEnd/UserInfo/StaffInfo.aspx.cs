@@ -72,7 +72,8 @@ namespace StockManagement.SystemBackEnd.UserInfo
 
         protected void btnNewStaff_Click(object sender, EventArgs e)
         {
-            this.Response.Redirect("/SystemBackEdn/UserInfo/StaffEditor.aspx");
+
+            this.Response.Redirect("/SystemBackEnd/UserInfo/NewStaff.aspx");
         }
     }
 }

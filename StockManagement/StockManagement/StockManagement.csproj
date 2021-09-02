@@ -98,6 +98,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Scripts\customize\fuse.js" />
     <Content Include="Scripts\customize\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\customize\popper.min.js" />
     <Content Include="StyleSheet\boostrap.min.css" />
     <Content Include="StyleSheet\LoginStyle.css" />
     <Content Include="StyleSheet\MainStyle.css" />
@@ -122,6 +123,7 @@
     <Content Include="SystemBackEnd\Search\RecordSearch.aspx" />
     <Content Include="SystemBackEnd\Search\StockDetail.aspx" />
     <Content Include="SystemBackEnd\Search\StockSearch.aspx" />
+    <Content Include="SystemBackEnd\UserInfo\NewStaff.aspx" />
     <Content Include="SystemBackEnd\UserInfo\StaffEditor.aspx" />
     <Content Include="SystemBackEnd\UserInfo\StaffInfo.aspx" />
     <Content Include="SystemBackEnd\UserInfo\StaffPassword.aspx" />
@@ -264,6 +266,13 @@
     </Compile>
     <Compile Include="SystemBackEnd\Search\StockSearch.aspx.designer.cs">
       <DependentUpon>StockSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\NewStaff.aspx.cs">
+      <DependentUpon>NewStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\NewStaff.aspx.designer.cs">
+      <DependentUpon>NewStaff.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemBackEnd\UserInfo\StaffEditor.aspx.cs">
       <DependentUpon>StaffEditor.aspx</DependentUpon>

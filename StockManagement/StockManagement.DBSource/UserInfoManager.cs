@@ -68,5 +68,29 @@ namespace StockManagement.DBSource
                 return true;
         }
 
+
+        public static bool UpdateStaffInfo(int level,int status,string UserID)
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    var dbObject = context.UserInfoes.Where(obj => obj.UserID.ToString() == UserID).FirstOrDefault();
+
+                    if (dbObject != null)
+                    {
+                        dbObject.UserLevel = level;
+                        dbObject.Status = status;
+
+                        context.SaveChanges();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
