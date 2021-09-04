@@ -66,6 +66,26 @@ namespace StockManagement.DBSource
         }
 
         /// <summary>
+        /// 利用條碼號(GUID)取得CD
+        /// </summary>
+        /// <param name="guid">條碼號</param>
+        /// <returns></returns>
+        public static CompactDisc GetCDBySerialCode(Guid guid)
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    return context.CompactDiscs.Where(item => item.SerialCode.Equals(guid)).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// 建立一張新專輯資料
         /// </summary>
         /// <param name="cd"></param>

@@ -15,6 +15,24 @@ namespace StockManagement.SystemBackEnd.Order
     {
 
         /// <summary>
+        /// ltlOrderListItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlOrderListItem;
+
+        /// <summary>
+        /// ltlOrderListTabPane control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlOrderListTabPane;
+
+        /// <summary>
         /// btnNewOrder control.
         /// </summary>
         /// <remarks>
@@ -22,5 +40,14 @@ namespace StockManagement.SystemBackEnd.Order
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNewOrder;
+
+        /// <summary>
+        /// btnPastOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPastOrder;
     }
 }

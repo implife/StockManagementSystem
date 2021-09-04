@@ -79,7 +79,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-sm-10 col-md-6 offset-sm-1 offset-md-3" id="CDForm_Container">
+    <div class="col-sm-10 col-md-6 offset-md-3" id="CDForm_Container">
 
         <div class="row">
             <div class="col-sm-12 col-md-6 form-item form-floating">

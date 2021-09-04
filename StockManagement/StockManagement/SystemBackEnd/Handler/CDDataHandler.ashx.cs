@@ -7,7 +7,7 @@ using System.Web.SessionState;
 namespace StockManagement.SystemBackEnd.Handler
 {
     /// <summary>
-    /// Summary description for CDDataHandler
+    /// 主要用在NewOrder.aspx中，每次更動TempList就會用Ajax將更新資料傳進來
     /// </summary>
     public class CDDataHandler : IHttpHandler, IRequiresSessionState
     {
@@ -16,6 +16,7 @@ namespace StockManagement.SystemBackEnd.Handler
         {
             string action = context.Request.QueryString["Action"];
 
+            //Action為NewOrder頁面的TempList更新
             if (string.Compare(action, "NewOrderTempList") == 0)
             {
                 string type = context.Request.Form["TempListType"];
@@ -28,6 +29,7 @@ namespace StockManagement.SystemBackEnd.Handler
 
 
                 TempListCD[] result = null;
+                // 新增暫存資料
                 if (type == "Add")
                 {
                     string tempListJson = context.Request.Form["TempListJSON"];
@@ -40,6 +42,7 @@ namespace StockManagement.SystemBackEnd.Handler
                     
 
                 }
+                // 變更數量
                 else if (type == "ChangeQuantity")
                 {
                     string tempListJson = context.Request.Form["TempListJSON"];
@@ -55,6 +58,7 @@ namespace StockManagement.SystemBackEnd.Handler
                     }).ToArray();
                     
                 }
+                // 刪除暫存資料
                 else if (type == "Delete")
                 {
                     string tempListJson = context.Request.Form["TempListJSON"];
@@ -93,7 +97,6 @@ namespace StockManagement.SystemBackEnd.Handler
                 return false;
             }
         }
-
 
         public class TempListCD
         {

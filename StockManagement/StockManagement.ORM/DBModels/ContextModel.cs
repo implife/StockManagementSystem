@@ -13,7 +13,9 @@ namespace StockManagement.ORM.DBModels
         }
 
         public virtual DbSet<CompactDisc> CompactDiscs { get; set; }
+        public virtual DbSet<OrderError> OrderErrors { get; set; }
         public virtual DbSet<OrderSalesDetail> OrderSalesDetails { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
 

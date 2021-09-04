@@ -233,6 +233,9 @@ namespace StockManagement.SystemBackEnd.Order
             bool isSuccess = OrderManager.CreateOrder(newOrder, orderDetailList);
             if (isSuccess)
             {
+                this.Session["SearchObject"] = null;
+                this.Session["SearchWord"] = null;
+                this.Session["TempList"] = null;
                 this.Response.Redirect("OrderList.aspx");
             }
             else
