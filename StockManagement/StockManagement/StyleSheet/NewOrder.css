@@ -1,0 +1,154 @@
+﻿#search_List_Group {
+    border: 1px solid #ced4da;
+    height: 400px;
+    overflow-x: visible;
+    overflow-y: auto;
+}
+
+    #search_List_Group::-webkit-scrollbar {
+        position: absolute;
+        right: 0;
+        visibility: hidden;
+    }
+
+#search_List_Group {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.popup-container {
+    position: relative;
+    border: 1px solid #ced4da;
+    height: 250px;
+    overflow-x: visible;
+    overflow-y: auto;
+    padding-top: 14px;
+}
+
+    .popup-container::-webkit-scrollbar {
+        position: absolute;
+        right: 0;
+        visibility: hidden;
+    }
+
+.popup-container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.list-group-item-cus {
+    padding: 0;
+}
+
+div.text-div {
+    width: 100%;
+    padding: .5rem 1rem;
+}
+
+    div.text-div > span.badge {
+        height: 21px;
+    }
+
+.QuaPopup-closebtn {
+    visibility: hidden;
+    font-size: 15px;
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    background-color: #adb5bd;
+}
+
+.myActive {
+    z-index: 2;
+    color: #000;
+    background-color: #e9ecef;
+    border-color: #e9ecef;
+}
+
+.QuaPopup {
+    visibility: hidden;
+    width: 100px;
+    background-color: #0dcaf0;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    left: calc(100% + 10px);
+}
+
+    /* Popup arrow */
+    .QuaPopup::after {
+        content: "";
+        position: absolute;
+        right: 100%;
+        top: 45%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent #0dcaf0 transparent transparent;
+    }
+
+
+
+.myClosebtnShow {
+    visibility: visible;
+    -webkit-animation: closebtnFadeIn 0.5s;
+    animation: closebtnFadeIn 0.5s;
+}
+
+.btnTempListDel {
+    visibility: hidden;
+    position: absolute;
+    left: calc(100% + 110px);
+    width: 70px;
+    margin-left: 5px;
+}
+
+.myShow {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes closebtnFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: .5;
+    }
+}
+
+@keyframes closebtnFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: .5;
+    }
+}

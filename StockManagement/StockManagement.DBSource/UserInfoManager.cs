@@ -35,17 +35,42 @@ namespace StockManagement.DBSource
             }
         }
 
-        public static UserInfo GetUserInfoByUserID(Guid guid)
+        public static bool isManager(object guid)
         {
-            using (ContextModel context = new ContextModel())
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 根據UserID取得該使用者資料
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        public static UserInfo GetUserInfoByUserID(Guid? guid)
+        {
+            
+            try
             {
-                return context.UserInfoes.Where(user => user.UserID == guid).FirstOrDefault();
+                if (guid == null)
+                    throw new ArgumentNullException("Guid can't be null.");
+                using (ContextModel context = new ContextModel())
+                {
+                    return context.UserInfoes.Where(user => user.UserID == guid).FirstOrDefault();
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
             }
         }
 
-        public static bool isManager(Guid gid)
+        /// <summary>
+        /// 判斷該id的使用者是否為主管
+        /// </summary>
+        /// <param name="gid"></param>
+        /// <returns>是主管回傳true，反之false</returns>
+        public static bool isManager(Guid guid)
         {
-            UserInfo user = GetUserInfoByUserID(gid);
+            UserInfo user = GetUserInfoByUserID(guid);
 
             if (user.UserLevel != 0)
                 return false;
@@ -53,48 +78,29 @@ namespace StockManagement.DBSource
                 return true;
         }
 
-        public static void CreateOrder(Order order, List<OrderSalesDetail> details)
+
+        public static bool UpdateStaffInfo(int level,int status,string UserID)
         {
-            // 檢查傳入值
-            if (details == null)
-                throw new ArgumentNullException("Order or Sales Detail can't be null.");
-            if (details.Count == 0)
-                throw new ArgumentException("Shound have at least one Order or Sales Detail.");
-            if(details.Any(d => d.UnitPrice <= 0))
-                throw new ArgumentException("Unit Price must larger than 0.");
-            if(details.Any(d => d.Quantity <= 0))
-                throw new ArgumentException("Quanyiyt must larger than 0.");
-
-
             try
             {
                 using (ContextModel context = new ContextModel())
                 {
-                    order.OrderID = Guid.NewGuid();
-                    order.OrderDate = DateTime.Now;
-                    order.Status = 0;
+                    var dbObject = context.UserInfoes.Where(obj => obj.UserID.ToString() == UserID).FirstOrDefault();
 
-                    var result = details.Select(d => new OrderSalesDetail(){ 
-                        OrderID = order.OrderID,
-                        SerialCode = d.SerialCode,
-                        UnitPrice = d.UnitPrice,
-                        Quantity = d.Quantity,
-                        Type = 0
-                    });
+                    if (dbObject != null)
+                    {
+                        dbObject.UserLevel = level;
+                        dbObject.Status = status;
 
-                    context.Orders.Add(order);
-                    context.OrderSalesDetails.AddRange(result);
-
-                    context.SaveChanges();
+                        context.SaveChanges();
+                    }
+                    return true;
                 }
             }
             catch (Exception ex)
             {
-
+                return false;
             }
-           
         }
-
-
     }
 }

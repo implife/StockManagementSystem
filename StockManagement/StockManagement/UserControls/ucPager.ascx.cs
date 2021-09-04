@@ -9,11 +9,12 @@ namespace StockManagement.UserControls
 {
     public partial class ucPager : System.Web.UI.UserControl
     {
-        public string Url { get; set; }
-        public int TotalItemSize { get; set; }
+        public string Url { get; set; } = String.Empty;
+        public int TotalItemSize { get; set; } = -1;
         public int ItemSizeInPage { get; set; } = 10;
-        public int CurrentPage { get; set; } = 1;
+        public int CurrentPage { get; set; } = -1;
         public int AllowPageCount { get; set; } = 9;
+        public bool isSearch { get; set; } = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,12 +23,20 @@ namespace StockManagement.UserControls
 
         public void Bind()
         {
+            if (this.Url == string.Empty)
+                throw new Exception("URL haven't set yet");
+
             this.CurrentPage = this.GetCurrentPage();
             int totalPages = this.GetTotalPage();
 
             // 設定HLPre
             if (this.CurrentPage > 1)
-                this.HLPre.Attributes.Add("href", this.Url + $"?Page={CurrentPage - 1}");
+            {
+                if(isSearch)
+                    this.HLPre.Attributes.Add("href", this.Url + $"?Action=Search&Page={CurrentPage - 1}");
+                else
+                    this.HLPre.Attributes.Add("href", this.Url + $"?Page={CurrentPage - 1}");
+            }
             else
             {
                 this.HLPre.Attributes.Add("href", "#");
@@ -36,7 +45,12 @@ namespace StockManagement.UserControls
 
             // 設定HLNext
             if (this.CurrentPage < totalPages)
-                this.HLNext.Attributes.Add("href", this.Url + $"?Page={CurrentPage + 1}");
+            {
+                if(isSearch)
+                    this.HLNext.Attributes.Add("href", this.Url + $"?Action=Search&Page={CurrentPage + 1}");
+                else
+                    this.HLNext.Attributes.Add("href", this.Url + $"?Page={CurrentPage + 1}");
+            }
             else
             {
                 this.HLNext.Attributes.Add("href", "#");
@@ -60,7 +74,7 @@ namespace StockManagement.UserControls
                     startPage = 1;
                     endPage = this.AllowPageCount;
                 }
-                else if(this.CurrentPage + allowBack >= totalPages)
+                else if (this.CurrentPage + allowBack >= totalPages)
                 {
                     startPage = totalPages - this.AllowPageCount + 1;
                     endPage = totalPages;
@@ -75,10 +89,15 @@ namespace StockManagement.UserControls
             // 建立 Pager
             for (int i = startPage; i <= endPage; i++)
             {
-                if(i == this.CurrentPage)
+                if (i == this.CurrentPage)
                     this.ltlPages.Text += $"<li class='page-item active'><a class='page-link' href='#'>{i}</a></li>";
                 else
-                    this.ltlPages.Text += $"<li class='page-item'><a class='page-link' href='{this.Url}?Page={i}'>{i}</a></li>";
+                {
+                    if (isSearch)
+                        this.ltlPages.Text += $"<li class='page-item'><a class='page-link' href='{this.Url}?Action=Search&Page={i}'>{i}</a></li>";
+                    else
+                        this.ltlPages.Text += $"<li class='page-item'><a class='page-link' href='{this.Url}?Page={i}'>{i}</a></li>";
+                }
             }
         }
 
@@ -92,19 +111,30 @@ namespace StockManagement.UserControls
 
         public int GetCurrentPage()
         {
-            string pageText = Request.QueryString["Page"];
+            // 使用GetCurrentPage知欠必須設定TotalItemSize
+            if (this.TotalItemSize == -1)
+                throw new Exception("TotalItemSize haven't set yet");
 
-            if (string.IsNullOrWhiteSpace(pageText))
-                return 1;
+            if (this.CurrentPage == -1)
+            {
+                string pageText = Request.QueryString["Page"];
 
-            int intPage;
-            if (!int.TryParse(pageText, out intPage))
-                return 1;
+                if (string.IsNullOrWhiteSpace(pageText))
+                    return 1;
 
-            if (intPage <= 0)
-                return 1;
+                int intPage;
+                if (!int.TryParse(pageText, out intPage))
+                    return 1;
 
-            return intPage;
+                if (intPage <= 0 || intPage > this.GetTotalPage())
+                    return 1;
+
+                return intPage;
+            }
+            else
+            {
+                return this.CurrentPage;
+            }
         }
     }
 }
