@@ -98,6 +98,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Scripts\customize\fuse.js" />
     <Content Include="Scripts\customize\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\customize\popper.min.js" />
     <Content Include="Scripts\customize\NewOrder.js" />
     <Content Include="Scripts\customize\OrderList.js" />
     <Content Include="StyleSheet\boostrap.min.css" />
@@ -109,14 +110,30 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="SystemBackEnd\Approve\ApproveList.aspx" />
     <Content Include="StyleSheet\NewOrder.css" />
     <Content Include="StyleSheet\OrderList.css" />
     <Content Include="SystemBackEnd\Order\CheckGoods.aspx" />
     <Content Include="SystemBackEnd\Order\NewOrder.aspx" />
     <Content Include="SystemBackEnd\Order\NewProduct.aspx" />
+    <Content Include="SystemBackEnd\Order\OrderDetail.aspx" />
     <Content Include="SystemBackEnd\Order\OrderList.aspx" />
+    <Content Include="SystemBackEnd\Resimbursment\NewReimbursment.aspx" />
+    <Content Include="SystemBackEnd\Resimbursment\ReimbursmentDetail.aspx" />
+    <Content Include="SystemBackEnd\Resimbursment\ReimbursmentList.aspx" />
+    <Content Include="SystemBackEnd\Sales\NewSales.aspx" />
+    <Content Include="SystemBackEnd\Sales\SalesDetail.aspx" />
+    <Content Include="SystemBackEnd\Sales\SalesList.aspx" />
+    <Content Include="SystemBackEnd\Search\RecordDetail.aspx" />
+    <Content Include="SystemBackEnd\Search\RecordSearch.aspx" />
+    <Content Include="SystemBackEnd\Search\StockDetail.aspx" />
     <Content Include="SystemBackEnd\Search\StockSearch.aspx" />
+    <Content Include="SystemBackEnd\UserInfo\NewStaff.aspx" />
+    <Content Include="SystemBackEnd\UserInfo\StaffEditor.aspx" />
+    <Content Include="SystemBackEnd\UserInfo\StaffInfo.aspx" />
+    <Content Include="SystemBackEnd\UserInfo\StaffPassword.aspx" />
     <Content Include="SystemBackEnd\UserInfo\UserInfo.aspx" />
+    <Content Include="SystemBackEnd\UserInfo\UserEditor.aspx" />
     <Content Include="UserControls\ucPager.ascx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
@@ -142,6 +159,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemBackEnd\Handler\CDDataHandler.ashx.cs">
       <DependentUpon>CDDataHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Approve\ApproveList.aspx.cs">
+      <DependentUpon>ApproveList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Approve\ApproveList.aspx.designer.cs">
+      <DependentUpon>ApproveList.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemBackEnd\Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
@@ -171,12 +195,82 @@
     <Compile Include="SystemBackEnd\Order\NewProduct.aspx.designer.cs">
       <DependentUpon>NewProduct.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SystemBackEnd\Order\OrderDetail.aspx.cs">
+      <DependentUpon>OrderDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Order\OrderDetail.aspx.designer.cs">
+      <DependentUpon>OrderDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SystemBackEnd\Order\OrderList.aspx.cs">
       <DependentUpon>OrderList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SystemBackEnd\Order\OrderList.aspx.designer.cs">
       <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Resimbursment\NewReimbursment.aspx.cs">
+      <DependentUpon>NewReimbursment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Resimbursment\NewReimbursment.aspx.designer.cs">
+      <DependentUpon>NewReimbursment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Resimbursment\ReimbursmentDetail.aspx.cs">
+      <DependentUpon>ReimbursmentDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Resimbursment\ReimbursmentDetail.aspx.designer.cs">
+      <DependentUpon>ReimbursmentDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Resimbursment\ReimbursmentList.aspx.cs">
+      <DependentUpon>ReimbursmentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Resimbursment\ReimbursmentList.aspx.designer.cs">
+      <DependentUpon>ReimbursmentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Sales\NewSales.aspx.cs">
+      <DependentUpon>NewSales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Sales\NewSales.aspx.designer.cs">
+      <DependentUpon>NewSales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Sales\SalesDetail.aspx.cs">
+      <DependentUpon>SalesDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Sales\SalesDetail.aspx.designer.cs">
+      <DependentUpon>SalesDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Sales\SalesList.aspx.cs">
+      <DependentUpon>SalesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Sales\SalesList.aspx.designer.cs">
+      <DependentUpon>SalesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Search\RecordDetail.aspx.cs">
+      <DependentUpon>RecordDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Search\RecordDetail.aspx.designer.cs">
+      <DependentUpon>RecordDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Search\RecordSearch.aspx.cs">
+      <DependentUpon>RecordSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Search\RecordSearch.aspx.designer.cs">
+      <DependentUpon>RecordSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Search\StockDetail.aspx.cs">
+      <DependentUpon>StockDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Search\StockDetail.aspx.designer.cs">
+      <DependentUpon>StockDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemBackEnd\Search\StockSearch.aspx.cs">
       <DependentUpon>StockSearch.aspx</DependentUpon>
@@ -185,12 +279,47 @@
     <Compile Include="SystemBackEnd\Search\StockSearch.aspx.designer.cs">
       <DependentUpon>StockSearch.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\NewStaff.aspx.cs">
+      <DependentUpon>NewStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\NewStaff.aspx.designer.cs">
+      <DependentUpon>NewStaff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\StaffEditor.aspx.cs">
+      <DependentUpon>StaffEditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\StaffEditor.aspx.designer.cs">
+      <DependentUpon>StaffEditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\StaffInfo.aspx.cs">
+      <DependentUpon>StaffInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\StaffInfo.aspx.designer.cs">
+      <DependentUpon>StaffInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\StaffPassword.aspx.cs">
+      <DependentUpon>StaffPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\StaffPassword.aspx.designer.cs">
+      <DependentUpon>StaffPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SystemBackEnd\UserInfo\UserInfo.aspx.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SystemBackEnd\UserInfo\UserInfo.aspx.designer.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\UserEditor.aspx.cs">
+      <DependentUpon>UserEditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\UserEditor.aspx.designer.cs">
+      <DependentUpon>UserEditor.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ucPager.ascx.cs">
       <DependentUpon>ucPager.ascx</DependentUpon>

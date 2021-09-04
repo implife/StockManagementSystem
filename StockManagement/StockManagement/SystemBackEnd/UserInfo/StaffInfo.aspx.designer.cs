@@ -7,38 +7,29 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace StockManagement.SystemBackEnd
+namespace StockManagement.SystemBackEnd.UserInfo
 {
 
 
-    public partial class Main
+    public partial class StuffInfo
     {
 
         /// <summary>
-        /// head 控制項。
+        /// ltlUserList 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.Literal ltlUserList;
 
         /// <summary>
-        /// ltlMainList 控制項。
+        /// btnNewStaff 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlMainList;
-
-        /// <summary>
-        /// ContentPlaceHolder1 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.Button btnNewStaff;
     }
 }

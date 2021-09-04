@@ -11,7 +11,7 @@ namespace StockManagement.SystemBackEnd.UserInfo
 {
 
 
-    public partial class UserInfo
+    public partial class WebForm1
     {
     }
 }
