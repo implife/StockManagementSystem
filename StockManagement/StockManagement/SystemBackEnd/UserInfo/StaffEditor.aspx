@@ -12,7 +12,7 @@
                 $(this).parent().siblings("button").text($(this).text());
             })
 
-            $('input[ID$="Button1"]').click(function () {
+            $('input[ID$="btnUpdate"]').click(function () {
                 var Level = $('#btnLevel').text()
                 var Status = $('#btnStatus').text()
                 var level;
@@ -103,5 +103,5 @@
         </tbody>
     </table>
     <asp:HiddenField ID="HDField" runat="server" />
-    <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click"/>
+    <asp:Button ID="btnUpdate" runat="server" Text="更改" OnClick="Button1_Click"/>
 </asp:Content>

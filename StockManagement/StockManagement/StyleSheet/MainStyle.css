@@ -1,10 +1,10 @@
 ﻿.containerDiv {
     height: 100%;
-    width: 86%;
+    width: 89%;
     position: absolute;
     right: 0;
     top: 0;
-    background-color: #fafffd;
+    background: rgb(255 255 255 / 0.00)
 }
 
 .sidenav {
@@ -19,23 +19,21 @@
     padding-top: 28px;
 }
 
-.sidenav a {
-    padding: 8px 8px 8px 8px;
-    text-decoration: none;
-    text-align: center;
-    font-size: 1.8vmin;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
+    .sidenav a {
+        padding: 8px 8px 8px 8px;
+        text-decoration: none;
+        text-align: center;
+        font-size: 1.8vmin;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
 
-.sidenav a:hover {
-    color: #1e0631;
-}
+        .sidenav a:hover {
+            color: #1e0631;
+        }
 
 #Title {
     font-size: 2vmin;
     margin-bottom: 3%;
 }
-
-

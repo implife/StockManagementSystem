@@ -108,6 +108,7 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="StyleSheet\NewStaffStyle.css" />
     <Content Include="SystemBackEnd\Approve\ApproveList.aspx" />
     <Content Include="SystemBackEnd\Order\NewOrder.aspx" />
     <Content Include="SystemBackEnd\Order\NewProduct.aspx" />
