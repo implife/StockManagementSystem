@@ -4,6 +4,12 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        div h6
+        {
+            font-weight:900;
+        }
+		</style>
     <link href="../../Content/bootstrap.css" rel="stylesheet" />
     <script src="../../Scripts/bootstrap.js"></script>
     <script src="../../Scripts/bootstrap.bundle.min.js"></script>
@@ -38,6 +44,8 @@
             }
             return result;
         }
+
+		
 
         function dropitemClick(ele) {
             $(".txtSearchClass").val($(ele).html());
@@ -92,8 +100,8 @@
                 }
             });
         });
-    </script>
-
+	</script>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
