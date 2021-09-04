@@ -35,6 +35,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="containerDiv2">
     <table class="table table-hover">
         <thead>
             <tr class="tHeadTr">
@@ -69,4 +70,5 @@
         </tbody>
     </table>
     <asp:Button ID="btnNewStaff" CssClass="btn btn-outline-success btnNewStaff" runat="server" Text="新增員工" OnClick="btnNewStaff_Click"/>
+        </div>
 </asp:Content>

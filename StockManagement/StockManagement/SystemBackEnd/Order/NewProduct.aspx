@@ -39,7 +39,7 @@
                             let dateStr = $("#PubDate").val();
                             let datetime = new Date(dateStr);
                             let now = new Date(Date.now());
-                            let strict = new Date("1900-01-01");
+                            let strict = new Date("1940-01-01");
                             if (datetime > now) {
                                 $("#spanMsg").html("日期不可大於今天");
                                 event.preventDefault();

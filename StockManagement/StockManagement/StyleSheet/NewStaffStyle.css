@@ -1,0 +1,137 @@
+﻿.form-item {
+    margin-bottom: 5px;
+}
+
+div.row label {
+    padding: 1rem 1.5rem;
+}
+
+.form__input {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    font-family: "Roboto";
+    -webkit-appearance: none;
+    outline: 1px;
+    transition: 0.3s;
+}
+
+    .form__input:focus {
+        background: #f7f7f7;
+    }
+
+.form-control {
+    border-radius: 0;
+    border: none;
+}
+
+.form-control1 {
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+}
+
+.form-control2 {
+    border-bottom-left-radius: 0.8rem;
+    border-bottom-right-radius: 0.8rem;
+}
+
+.user__title {
+    font-size: 24px;
+    text-align: center;
+    font-family: "Roboto";
+    font-weight: 500;
+    color: rgb(207, 207, 207);
+    margin-top: 5rem;
+    text-shadow: 0 0 2px rgb(0, 0, 0);
+}
+
+.btn-success {
+    color: #c19065;
+    background-color: #f1fff9;
+    border-color: white;
+    width: 100%;
+    border-radius: 0;
+    height: 3rem;
+}
+
+    .btn-success:hover {
+        color: #c19065;
+        background-color: #B6E9C4;
+        border-color: #b6b4b4;
+    }
+
+.btn-check:focus + .btn-danger, .btn-danger:focus {
+    color: #fff;
+    background-color: #CBEEE1;
+    border-color: #CBEEE1;
+    box-shadow: 0 0 0 0.25rem rgb(219 239 232 / 100%);
+}
+
+body {
+    font-family: "Roboto";
+    font-size: 14px;
+    background-size: 200% 100% !important;
+    -webkit-animation: Move 16s ease infinite;
+    animation: Move 10s ease infinite;
+    transform: translate3d(0, 0, 0);
+    background: linear-gradient(-45deg, #dd6945, #d660ee, #3bb7e4, #7ef5d9, #ccfaf0);
+    height: 100vh;
+}
+
+.containerDiv {
+    height: 100%;
+    width: 89%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: rgb(255 255 255 / 0.00)
+}
+
+.containerDiv2 {
+    height: 28.25rem;
+    width: 25rem;
+    ;
+    background-color: #fafffd;
+    border-radius: 0.8rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+@-webkit-keyframes Move {
+    0% {
+        background-position: 160% 40%;
+    }
+
+    50% {
+        background-position: 120% 10%;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+@keyframes Move {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.form-control:focus {
+    border-color: lightgreen;
+    border: 1px solid #CBEEE1;
+    box-shadow: none;
+}
+
+.dropdown-toggle:focus {
+    box-shadow: none;
+}

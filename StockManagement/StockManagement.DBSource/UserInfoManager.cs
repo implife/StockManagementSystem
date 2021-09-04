@@ -102,5 +102,26 @@ namespace StockManagement.DBSource
                 return false;
             }
         }
+
+        public static bool CreateNewStaff(UserInfo userInfo)
+        {
+             try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                  
+                    userInfo.UserID = Guid.NewGuid();
+
+                    context.UserInfoes.Add(userInfo);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+        }
     }
 }
