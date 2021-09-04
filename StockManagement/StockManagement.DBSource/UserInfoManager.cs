@@ -45,11 +45,21 @@ namespace StockManagement.DBSource
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        public static UserInfo GetUserInfoByUserID(Guid guid)
+        public static UserInfo GetUserInfoByUserID(Guid? guid)
         {
-            using (ContextModel context = new ContextModel())
+            
+            try
             {
-                return context.UserInfoes.Where(user => user.UserID == guid).FirstOrDefault();
+                if (guid == null)
+                    throw new ArgumentNullException("Guid can't be null.");
+                using (ContextModel context = new ContextModel())
+                {
+                    return context.UserInfoes.Where(user => user.UserID == guid).FirstOrDefault();
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
             }
         }
 

@@ -55,5 +55,64 @@ namespace StockManagement.DBSource
             }
 
         }
+
+        /// <summary>
+        /// 取得所有訂單的List
+        /// </summary>
+        /// <returns></returns>
+        public static List<Order> GetOrderList()
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    return context.Orders.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 取得訂單的商品細目(OrderSalesDetail)
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public static List<OrderSalesDetail> GetDetailByOrder(Order order)
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    return context.OrderSalesDetails.Where(od => od.OrderID == order.OrderID).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 利用OrderID取得ErrorList
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        public static List<OrderError> GetOrderErrorListByOrderID(Guid? guid)
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    return context.OrderErrors.Where(item => item.OrderID.ToString() == guid.ToString()).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
