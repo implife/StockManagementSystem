@@ -111,6 +111,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="StyleSheet\NewStaffStyle.css" />
+    <Content Include="StyleSheet\UserEditorStyle.css" />
+    <Content Include="StyleSheet\UserInfoStyle.css" />
     <Content Include="SystemBackEnd\Approve\ApproveList.aspx" />
     <Content Include="StyleSheet\NewOrder.css" />
     <Content Include="StyleSheet\OrderList.css" />
