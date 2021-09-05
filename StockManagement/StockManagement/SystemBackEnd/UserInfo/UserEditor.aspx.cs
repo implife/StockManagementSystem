@@ -13,5 +13,10 @@ namespace StockManagement.SystemBackEnd.UserInfo
         {
 
         }
+
+        protected void btnNewStaff_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

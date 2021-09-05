@@ -1,0 +1,139 @@
+﻿
+.containerDiv {
+    height: 100%;
+    width: 90%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: rgb(255 255 255 / 0.00)
+}
+
+body {
+    margin: 0 auto;
+    padding: 0;
+    background: #69a08b;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.left {
+    left: 25px;
+}
+
+.right {
+    right: 25px;
+}
+
+.center {
+    text-align: center;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 25px;
+}
+
+#gradient {
+    background: #999955;
+    background-image: linear-gradient(#DBEFE8 20%, #CBEEE1 20%, #B9E7D6 40%, #B6E9C4 50%, #FBD9C5 50%, #FBC9AD 60%, #F9B48D 80%, #ECA37A 80%);
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 100%;
+    height: 150px;
+}
+
+    #gradient:after {
+        content: "";
+        position: absolute;
+        background: #ddd5bf;
+        left: 50%;
+        margin-top: -67.5px;
+        margin-left: -270px;
+        padding-left: 20px;
+        border-radius: 5px;
+        width: 520px;
+        height: 275px;
+        z-index: -1;
+    }
+
+#card {
+    position: absolute;
+    width: 30rem;
+    height: 13.5rem;
+    padding: 25px;
+    padding-top: 0;
+    padding-bottom: 0;
+    left: 50%;
+    top: 3.8rem;
+    margin-left: -250px;
+    background: #e4dbc5;
+    box-shadow: -20px 0 35px -25px black, 20px 0 35px -25px black;
+    z-index: 5;
+    z-index: 5;
+}
+
+    #card img {
+        margin-top: 10%;
+        width: 150px;
+        height: 150px;
+        float: left;
+        border-radius: 5px;
+        margin-right: 20px;
+    }
+
+    #card h2 {
+        font-family: courier;
+        color: #333;
+        margin-top: 5px;
+        margin: auto;
+        padding: 0;
+        font-size: 15pt;
+        line-height: 4;
+        
+    }
+
+    #card p {
+        font-family: courier;
+        color: #555;
+        font-size: 13px;
+        margin-block-start: unset;
+        margin-block-end: unset;
+    }
+
+    #card span {
+        font-family: courier;
+        top: 85%;
+    }
+
+.imgDiv {
+    width: 170px;
+    height: 170px;
+    float: left;
+}
+
+.btn-Create {
+    color: #95ffbb;
+    border-color: #f1912c;
+    width: 4rem;
+    height: 1.8rem;
+    line-height: 1.0;
+}
+
+    .btn-Create:hover {
+        background-color: rgb(249 211 143);
+        color: #029a60;
+        border: rgb(155 222 197);
+    }
+.Block {
+    height: 4.5rem;
+    text-align: center;
+}
+
+.btnDiv {
+    text-align: center;
+}
+
