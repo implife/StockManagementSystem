@@ -13,5 +13,32 @@ namespace StockManagement.SystemBackEnd.Order
 
     public partial class CheckGoods
     {
+
+        /// <summary>
+        /// ltlTitleID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlTitleID;
+
+        /// <summary>
+        /// ltlItemList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlItemList;
+
+        /// <summary>
+        /// ltlTabPane control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlTabPane;
     }
 }
