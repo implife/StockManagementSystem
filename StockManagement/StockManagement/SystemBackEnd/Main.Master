@@ -35,6 +35,17 @@
 
 		#exampleModalLabel {color:red
 		}
+
+		.cl {
+			 color: #fff;
+             background-color: #80bc88;
+             border-color: #f0ded4;
+		}
+		.lu{
+			   color: #fff;
+               background-color: #f8402d;
+               border-color: #ff4a5b;
+		}
 	</style>
 	<script>
 		var myModal = document.getElementById('myModal')
@@ -70,8 +81,8 @@
 							是否登出本系統?
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btncl">取消</button>
-							<asp:Button ID="Button1" CssClass="btn btn-danger" runat="server" Text="登出" OnClick="BtnLogout_Click" />
+							<button type="button" class="btn btn-secondary cl" data-bs-dismiss="modal" id="btncl">取消</button>
+							<asp:Button ID="Button1" CssClass="btn btn-danger lu" runat="server" Text="登出" OnClick="BtnLogout_Click" />
 
 						</div>
 
