@@ -4,46 +4,84 @@
 
 <html>
 <head runat="server">
-    <title></title>
-    <link href="../StyleSheet/MainStyle.css" rel="stylesheet" />
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
-    <style>
-        .DefDiv1:hover {
-            background-color: #EDBE87;
-            animation-name: HoverAnime;
-            animation-duration: 0.6s;
-        }
+
+	<title></title>
+	
+	<link href="../StyleSheet/MainStyle.css" rel="stylesheet" />
+	<script src="../../Scripts/bootstrap.js"></script>
+    <script src="../../Scripts/bootstrap.bundle.min.js"></script>
+    <script src="../../Scripts/customize/fuse.js"></script>
+    <script src="../../Scripts/customize/jquery-3.6.0.min.js"></script>
+	<asp:ContentPlaceHolder ID="head" runat="server">
+
+	</asp:ContentPlaceHolder>
+	<style>
+		.DefDiv1:hover {
+			background-color: #EDBE87;
+			animation-name: HoverAnime;
+			animation-duration: 0.6s;
+		}
 
 
-        @keyframes HoverAnime {
-            from {
-                opacity: 0;
-            }
+		@keyframes HoverAnime {
+			from {
+				opacity: 0;
+			}
 
-            to {
-                opacity: 2;
-            }
-        }
-    </style>
+			to {
+				opacity: 2;
+			}
+		}
+
+		#exampleModalLabel {color:red
+		}
+	</style>
+	<script>
+		var myModal = document.getElementById('myModal')
+		var myInput = document.getElementById('myInput')
+
+		myModal.addEventListener('shown.bs.modal', function () {
+			myInput.focus()
+		})
+	</script>
+
 </head>
 <body>
-    <div id="mySidenav" class="sidenav">
-        <div id="titleDiv">
-            <a id="Title" href="#">薛丁格<br>
-                庫存管理系統</a>
-        </div>
-        <asp:Literal ID="ltlMainList" runat="server" EnableViewState="false"></asp:Literal>
-        <a href="#">登出</a>
-    </div>
+	<div id="mySidenav" class="sidenav">
+		<div id="titleDiv">
+			<a id="Title" href="#">薛丁格<br>
+				庫存管理系統</a>
+		</div>
+		<asp:Literal ID="ltlMainList" runat="server" EnableViewState="false"></asp:Literal>
+		<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">登出</a>
 
-    <div class="containerDiv">
-        <form runat="server" novalidate>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+	</div>
 
-            </asp:ContentPlaceHolder>
-        </form>
-    </div>
+	<div class="containerDiv">
+		<form runat="server" novalidate>
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">警告-登出</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="取消"></button>
+						</div>
+						<div class="modal-body">
+							是否登出本系統?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btncl">取消</button>
+							<asp:Button ID="Button1" CssClass="btn btn-danger" runat="server" Text="登出" OnClick="BtnLogout_Click" />
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+			</asp:ContentPlaceHolder>
+		</form>
+	</div>
 
 </body>
 </html>
