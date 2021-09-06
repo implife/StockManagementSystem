@@ -4,6 +4,12 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        div h6
+        {
+            font-weight:900;
+        }
+		</style>
     <link href="../../Content/bootstrap.css" rel="stylesheet" />
 
     <script src="../../Scripts/bootstrap.js"></script>

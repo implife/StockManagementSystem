@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CDManager.cs" />
+    <Compile Include="CDStockManager.cs" />
     <Compile Include="OrderManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInfoManager.cs" />

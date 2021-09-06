@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -15,13 +16,13 @@ namespace StockManagement.SystemBackEnd
             string SB = "SystemBackEnd";
 
             string[] StockSearch = { "庫存查詢", $"/{SB}/Search/StockSearch.aspx", $"/{SB}/Search/StockDetail.aspx" };
-            string[] RecordSearch = { "單據查詢",  $"/{SB}/Search/RecordSearch.aspx", "RecordList.aspx", "RecordDetail" };
+            string[] RecordSearch = { "單據查詢", $"/{SB}/Search/RecordSearch.aspx", "RecordList.aspx", "RecordDetail" };
             string[] OrderList = { "訂單管理", $"/{SB}/Order/OrderList.aspx", "NewOrder.aspx", "OrderDetail" };
             string[] SalesList = { "銷貨管理", $"/{SB}/Reimbursment/SalesList.aspx" };
             string[] Reimbursment = { "報銷管理", $"/{SB}/Sales/SalesList.aspx" };
             string[] ApproveList = { "核銷待審", $"/{SB}/Approve/ApproveList.aspx" };
             string[] StuffInfo = { "員工資訊", $"/{SB}/UserInfo/StaffInfo.aspx" };
-            string[] UserInfo = { "使用者資訊",  $"/{SB}/UserInfo/UserInfo.aspx" };
+            string[] UserInfo = { "使用者資訊", $"/{SB}/UserInfo/UserInfo.aspx" };
 
             string url = HttpContext.Current.Request.RawUrl;
             string[][] AllList = { StockSearch, RecordSearch, OrderList, SalesList, Reimbursment, ApproveList, StuffInfo, UserInfo };
@@ -50,6 +51,16 @@ namespace StockManagement.SystemBackEnd
 
 
             }
+        }
+        private static void Logout()
+        {
+            FormsAuthentication.SignOut();
+        }
+
+        protected void BtnLogout_Click(object sender, EventArgs e)
+        {
+            Logout();
+            Response.Redirect("/Login.aspx");
         }
     }
 }
