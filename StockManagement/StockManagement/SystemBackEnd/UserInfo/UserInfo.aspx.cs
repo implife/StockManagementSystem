@@ -76,8 +76,12 @@ namespace StockManagement.SystemBackEnd.UserInfo
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            this.Response.Redirect("/SystemBackEnd/UserInfo/UserEditor.aspx");
+            string id = (HttpContext.Current.User.Identity as FormsIdentity).Ticket.UserData;
+            Guid guid = Guid.Parse(id);
+            this.Response.Redirect($"/SystemBackEnd/UserInfo/UserEditor.aspx?UID={guid}");
+            
         }
+        
     }
 }
 

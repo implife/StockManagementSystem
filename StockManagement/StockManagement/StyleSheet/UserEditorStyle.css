@@ -52,8 +52,9 @@ div.row label {
     width: 100%;
     border-radius: 0;
     height: 3rem;
-    border-bottom-right-radius: 0.8rem;
-    border-bottom-left-radius: 0.8rem;
+    border-bottom-left-radius:0.5rem;
+    border-bottom-right-radius:0.5rem;
+ 
 }
 
     .btn-success:hover {
@@ -89,10 +90,9 @@ body {
     background: rgb(255 255 255 / 0.00)
 }
 
-.containerDiv2 {
-    height: 24.765rem;
+.containerDiv2 {   
+    height:23.785rem;
     width: 24.7rem;
-    
     background-color: #fafffd;
     border-radius: 0.8rem;
     margin-left: auto;
@@ -136,4 +136,8 @@ body {
 
 .dropdown-toggle:focus {
     box-shadow: none;
+}
+.feedback {
+    background-color: white;
+    margin-top: unset;
 }

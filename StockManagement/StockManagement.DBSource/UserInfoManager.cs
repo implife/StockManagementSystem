@@ -123,5 +123,34 @@ namespace StockManagement.DBSource
                 return false;
             }
         }
+
+        public static bool UpdateUserInfo(UserInfo userInfo)
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+
+                    var DBObject = context.UserInfoes.Where(obj => obj.UserID == userInfo.UserID).FirstOrDefault();
+
+                    if(DBObject != null)
+                    {
+                        DBObject.Name = userInfo.Name;
+                        DBObject.PWD = userInfo.PWD;
+                        DBObject.Tel = userInfo.Tel;
+                        DBObject.Email = userInfo.Email;
+                        DBObject.BloodType = userInfo.BloodType;
+                        DBObject.Account = userInfo.Account;
+                        
+                    }
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

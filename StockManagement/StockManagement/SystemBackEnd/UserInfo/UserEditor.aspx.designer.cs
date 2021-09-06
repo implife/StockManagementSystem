@@ -15,6 +15,15 @@ namespace StockManagement.SystemBackEnd.UserInfo
     {
 
         /// <summary>
+        /// ltlModal 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlModal;
+
+        /// <summary>
         /// txtInputName 控制項。
         /// </summary>
         /// <remarks>
@@ -87,22 +96,22 @@ namespace StockManagement.SystemBackEnd.UserInfo
         protected global::System.Web.UI.WebControls.Label lblTel;
 
         /// <summary>
-        /// txtInputPassword 控制項。
+        /// txtInputPWD 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInputPassword;
+        protected global::System.Web.UI.WebControls.TextBox txtInputPWD;
 
         /// <summary>
-        /// lblPassword 控制項。
+        /// Label1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPassword;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
         /// txtInputCheckPWD 控制項。
@@ -123,22 +132,31 @@ namespace StockManagement.SystemBackEnd.UserInfo
         protected global::System.Web.UI.WebControls.Label lblInputCheckPWD;
 
         /// <summary>
-        /// Blood 控制項。
+        /// ltlBlood 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField Blood;
+        protected global::System.Web.UI.WebControls.Literal ltlBlood;
 
         /// <summary>
-        /// btnNewStaff 控制項。
+        /// HD_Blood 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNewStaff;
+        protected global::System.Web.UI.WebControls.HiddenField HD_Blood;
+
+        /// <summary>
+        /// btnSubmit 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
 
         /// <summary>
         /// lblMsg 控制項。
