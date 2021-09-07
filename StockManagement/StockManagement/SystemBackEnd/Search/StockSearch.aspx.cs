@@ -45,10 +45,12 @@ namespace StockManagement.SystemBackEnd.Search
                 CompactDisc CD = CDManager.GetCDBySerialCode(nub.SerialCode);
                 CDStock CDs= CDStockManager.GetStockBySerialCode(nub.SerialCode);
                 int canused = CDs.TotalStock - CDs.InTransitStock - CDs.UnreviewedStock;
+          
 
-     
 
-				this.ltlCDStock.Text +=
+
+
+                this.ltlCDStock.Text +=
                     
                             $"<tr>" +
                             $"<th scope = \"row\" >{CD.Name}</ th >" +

@@ -4,6 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../StyleSheet/boostrap.min.css" rel="stylesheet" />
     <link href="../../StyleSheet/UserInfoStyle.css" rel="stylesheet" />
+	<script src="../../Scripts/bootstrap.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="gradient"></div>
