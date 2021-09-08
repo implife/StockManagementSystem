@@ -14,8 +14,8 @@ namespace StockManagement.SystemBackEnd.UserInfo
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            var UInfo = new List<StockManagement.ORM.DBModels.UserInfo>();
-            UInfo = UserInfoManager.GetUserInfoList();
+            
+            var UInfo = UserInfoManager.GetUserInfoList();
             // 結果列表的細目
             string id = (HttpContext.Current.User.Identity as FormsIdentity).Ticket.UserData;
             Guid guid = Guid.Parse(id);

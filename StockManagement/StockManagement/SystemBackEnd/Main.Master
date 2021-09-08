@@ -8,10 +8,7 @@
 	<title></title>
 	
 	<link href="../StyleSheet/MainStyle.css" rel="stylesheet" />
-	<script src="../../Scripts/bootstrap.js"></script>
-    <script src="../../Scripts/bootstrap.bundle.min.js"></script>
-    <script src="../../Scripts/customize/fuse.js"></script>
-    <script src="../../Scripts/customize/jquery-3.6.0.min.js"></script>
+    <link href="../StyleSheet/boostrap.min.css" rel="stylesheet" />
 	<asp:ContentPlaceHolder ID="head" runat="server">
 
 	</asp:ContentPlaceHolder>
