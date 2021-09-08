@@ -4,7 +4,6 @@
     <script src="../../Scripts/customize/jquery-3.6.0.min.js"></script>
     <script src="../../Scripts/customize/popper.min.js"></script>
     <script src="../../Scripts/bootstrap.min.js"></script>
-    <link href="../../StyleSheet/boostrap.min.css" rel="stylesheet" />
     <link href="../../StyleSheet/NewStaffStyle.css" rel="stylesheet" />
     <script>
 

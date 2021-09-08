@@ -9,16 +9,11 @@ namespace StockManagement.ORM.DBModels
     [Table("Order")]
     public partial class Order
     {
-        [Key]
-        [Column(Order = 0)]
         public Guid OrderID { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
         public DateTime OrderDate { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        [Required]
         [StringLength(50)]
         public string Seller { get; set; }
 
@@ -26,13 +21,8 @@ namespace StockManagement.ORM.DBModels
 
         public DateTime? ArrivalDate { get; set; }
 
-        [Key]
-        [Column(Order = 3)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Status { get; set; }
 
-        [Key]
-        [Column(Order = 4)]
         public Guid OrderResponsiblePerson { get; set; }
 
         public Guid? ArrivalResponsiblePerson { get; set; }

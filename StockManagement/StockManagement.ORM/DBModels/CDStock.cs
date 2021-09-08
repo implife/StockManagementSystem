@@ -9,23 +9,14 @@ namespace StockManagement.ORM.DBModels
     [Table("CDStock")]
     public partial class CDStock
     {
-        [Key]
-        [Column(Order = 0)]
+        public int ID { get; set; }
+
         public Guid SerialCode { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int TotalStock { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int InTransitStock { get; set; }
 
-        [Key]
-        [Column(Order = 3)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UnreviewedStock { get; set; }
     }
 }

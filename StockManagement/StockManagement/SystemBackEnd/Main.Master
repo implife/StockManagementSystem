@@ -8,7 +8,7 @@
 	<title></title>
 	
 	<link href="../StyleSheet/MainStyle.css" rel="stylesheet" />
-	<link href="../StyleSheet/boostrap.min.css" rel="stylesheet" />
+    <link href="../StyleSheet/boostrap.min.css" rel="stylesheet" />
 	<asp:ContentPlaceHolder ID="head" runat="server">
 
 	</asp:ContentPlaceHolder>
@@ -48,8 +48,11 @@
 		var myModal = document.getElementById('myModal')
 		var myInput = document.getElementById('myInput')
 
-	
-	</script>
+		myModal.addEventListener('shown.bs.modal', function () {
+			myInput.focus()
+		})
+        
+    </script>
 
 </head>
 <body>
@@ -77,8 +80,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary cl" data-bs-dismiss="modal" id="btncl">取消</button>
-							
-							<asp:Button ID="Button1" CssClass="btn btn-danger lu" runat="server" Text="登出" OnClick="BtnLogout_Click" UseSubmitBehavior="FALSE"  />
+							<asp:Button ID="Button1" CssClass="btn btn-danger lu" runat="server" Text="登出" OnClick="BtnLogout_Click" UseSubmitBehavior="false" />
 
 						</div>
 

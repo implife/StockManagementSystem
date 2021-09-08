@@ -1,10 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="OrderList.aspx.cs" Inherits="StockManagement.SystemBackEnd.Order.OrderList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
- 
     <script src="../../Scripts/bootstrap.js"></script>
     <script src="../../Scripts/customize/jquery-3.6.0.min.js"></script>
-    
     <%-- 自定義的css和js --%>
     <link href="../../StyleSheet/OrderList.css" rel="stylesheet" />
 

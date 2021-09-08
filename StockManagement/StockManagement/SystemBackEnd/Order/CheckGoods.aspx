@@ -660,8 +660,6 @@
 
                 if (successCount + errCount != totalCount) {
                     $('.saveAlert').addClass('alertShow');
-                    // event.preventDefault()
-                    // event.stopPropagation()
                 } else {
                     $('.saveAlert').removeClass('alertShow');
 
@@ -690,7 +688,11 @@
 
             // Submit時
             $('form').submit(function (event) {
+                let CheckedGoodsJSON = JSON.stringify(CorrectList);
+                let ErrorGoodsJSON = JSON.stringify(ErrorTempList);
 
+                $('input[id$=HFCheckedGoods]').val(CheckedGoodsJSON);
+                $('input[id$=HFErrorGoods]').val(ErrorGoodsJSON);
             });
 
         })
@@ -698,6 +700,10 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <asp:HiddenField ID="HFCheckedGoods" runat="server" />
+    <asp:HiddenField ID="HFErrorGoods" runat="server" />
+
     <div class="row" style="height: auto;">
         <div class="ChekGoodsList col-7">
             <div class="list-group ChekGoodsListGroup">
@@ -705,7 +711,6 @@
                 <%-- 標頭單號 --%>
                 <asp:Literal ID="ltlTitleID" runat="server"></asp:Literal>
 
-                <%--<h4>303ee776</h4>--%>
                 <div class="offset-md-1">
                     <a class="list-group-item disabled" href="#">
                         <div class="row">
@@ -774,8 +779,8 @@
                 </svg>
                 <div>仍有貨未點!</div>
             </div>
-            <input type="button" class="btn btn-outline-success" value="商品入庫" id="confirmModalBtn"></input><br>
-            <a type="button" class="btn btn-outline-secondary" href="#" role="button">取消</a>
+            <input type="button" class="btn btn-outline-success" value="商品入庫" id="confirmModalBtn"><br>
+            <a type="button" class="btn btn-outline-secondary" href="OrderList.aspx" role="button">取消</a>
         </div>
 
         <div class="modal fade" id="ConfirmModal" tabindex="-1" aria-labelledby="confirmModalLabel">
@@ -787,10 +792,13 @@
                     </div>
                     <div class="modal-body" id="confirmModalItemCheck">
                     </div>
+
                     <span id="confirmModalOrderSpan"></span>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary">確定</button>
+                        <asp:Button ID="btnConfirm" runat="server" Text="確定" CssClass="btn btn-primary" OnClick="btnConfirm_Click" />
+                        <%--<button type="button" class="btn btn-primary">確定</button>--%>
                     </div>
                 </div>
             </div>
