@@ -48,9 +48,7 @@
 		var myModal = document.getElementById('myModal')
 		var myInput = document.getElementById('myInput')
 
-		myModal.addEventListener('shown.bs.modal', function () {
-			myInput.focus()
-		})
+	
 	</script>
 
 </head>
@@ -79,7 +77,8 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary cl" data-bs-dismiss="modal" id="btncl">取消</button>
-							<asp:Button ID="Button1" CssClass="btn btn-danger lu" runat="server" Text="登出" OnClick="BtnLogout_Click" />
+							
+							<asp:Button ID="Button1" CssClass="btn btn-danger lu" runat="server" Text="登出" OnClick="BtnLogout_Click" UseSubmitBehavior="FALSE"  />
 
 						</div>
 
