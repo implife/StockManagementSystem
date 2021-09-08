@@ -20,7 +20,7 @@
     
     <%-- 自定義的css和js --%>
     <link href="../../StyleSheet/NewOrder.css" rel="stylesheet" />
-
+    
     <script>
         // 在後台執行時取得所有CD的資料
         const txtObj = '<%= this.stringObj %>';

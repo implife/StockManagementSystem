@@ -19,7 +19,6 @@ namespace StockManagement.SystemBackEnd.Order
             // 為一些asp.net控制項加上HTML Attribute
             this.txtSearch.Attributes.Add("data-bs-toggle", "dropdown");
             this.txtSearch.Attributes.Add("autocomplete", "off");
-            //this.btnSearch.Attributes.Add("onclick", "btnSearchClick()");
 
 
             this.Seller.Attributes.Add("placeholder", "賣家");
@@ -144,12 +143,21 @@ namespace StockManagement.SystemBackEnd.Order
             // 結果列表
             foreach (var cd in CDs)
             {
+                CDStock cdstock = CDStockManager.GetStockBySerialCode(cd.SerialCode);
+                int available = 0;
+                if (cdstock == null)
+                    throw new Exception("No Data in CDStock.");
+                else
+                {
+                    available = cdstock.TotalStock - cdstock.InTransitStock - cdstock.UnreviewedStock;
+                }
+
                 this.ltlCDList.Text +=
                     $"<a class=\"list-group-item list-group-item-action\" data-bs-toggle=\"list\" href=\"#ID{cd.SerialCode}\">" +
                     $"<div class=\"row\">" +
                     $"<div class=\"col-6\"> <h6>{cd.Name}</h6> </div>" +
                     $"<div class=\"col-3\"> <small>{cd.Artist}</small> </div>" +
-                    $"<div class=\"col-3\"><small>50</small></div>" +
+                    $"<div class=\"col-3\"><small>{available}</small></div>" +
                     $"</div> </a>";
             }
 
@@ -157,6 +165,14 @@ namespace StockManagement.SystemBackEnd.Order
             string disabled = "";
             foreach (var cd in CDs)
             {
+                CDStock cdstock = CDStockManager.GetStockBySerialCode(cd.SerialCode);
+                int available = 0;
+                if (cdstock == null)
+                    throw new Exception("No Data in CDStock.");
+                else
+                {
+                    available = cdstock.TotalStock - cdstock.InTransitStock - cdstock.UnreviewedStock;
+                }
                 this.ltlCDListTabContent.Text +=
                     $"<div class=\"tab-pane fade\" id=\"ID{cd.SerialCode}\">" +
                     $"<h6>專輯名稱: {cd.Name}</h6>" +
@@ -164,9 +180,9 @@ namespace StockManagement.SystemBackEnd.Order
                     $"<small>發行公司: {cd.Brand}</small><br />" +
                     $"<small>發行日期: {cd.PublicationDate.ToString("yyyy-MM-dd")}</small><br />" +
                     $"<small>地區: {cd.Region}</small><br />" +
-                    $"<small>可用庫存: 50</small><br />" +
-                    $"<small>在途庫存: 10</small><br />" +
-                    $"<small>待審核庫存: 2</small><br />" +
+                    $"<small>可用庫存: {available}</small><br />" +
+                    $"<small>在途庫存: {cdstock.InTransitStock}</small><br />" +
+                    $"<small>待審核庫存: {cdstock.UnreviewedStock}</small><br />" +
                     $"<button type='button' class='btn btn-outline-success' id='btnID{cd.SerialCode}' onclick='btnAddTemp(this)' {disabled}>新增</button>" +
                     $"</div>";
             }
@@ -185,7 +201,6 @@ namespace StockManagement.SystemBackEnd.Order
 
         private static List<CompactDisc> NewPageLoad(StockManagement.UserControls.ucPager pager)
         {
-            
             int totalItemSize = CDManager.GetSize();
             pager.TotalItemSize = totalItemSize;
 
@@ -220,7 +235,13 @@ namespace StockManagement.SystemBackEnd.Order
 
             foreach (TempListCD temp in sessionTempList)
             {
+                if (temp.Name.IndexOf("&amp;") != -1)
+                {
+                    temp.Name = temp.Name.Replace("&amp;", "&");
+                }
                 CompactDisc tempCD = cdList.Where(item => item.Name == temp.Name).FirstOrDefault();
+                
+
                 OrderSalesDetail d = new OrderSalesDetail()
                 {
                     SerialCode = tempCD.SerialCode,
@@ -254,29 +275,32 @@ namespace StockManagement.SystemBackEnd.Order
 
             this.Response.Redirect("OrderList.aspx");
         }
+
+        // 從前端傳來的搜尋結果的JSON格式
+        class Rootobject
+        {
+            public Item item { get; set; }
+            public int refIndex { get; set; }
+            public float score { get; set; }
+        }
+
+        class Item
+        {
+            public string SerialCode { get; set; }
+            public string Name { get; set; }
+            public string Brand { get; set; }
+            public string Artist { get; set; }
+            public string Region { get; set; }
+            public DateTime PublicationDate { get; set; }
+        }
+
+        class TempListCD
+        {
+            public string Name { get; set; }
+            public string Quantity { get; set; }
+        }
+
     }
 
-    // 從前端傳來的搜尋結果的JSON格式
-    public class Rootobject
-    {
-        public Item item { get; set; }
-        public int refIndex { get; set; }
-        public float score { get; set; }
-    }
-
-    public class Item
-    {
-        public string SerialCode { get; set; }
-        public string Name { get; set; }
-        public string Brand { get; set; }
-        public string Artist { get; set; }
-        public string Region { get; set; }
-        public DateTime PublicationDate { get; set; }
-    }
-
-    public class TempListCD
-    {
-        public string Name { get; set; }
-        public string Quantity { get; set; }
-    }
+    
 }

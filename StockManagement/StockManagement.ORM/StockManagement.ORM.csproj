@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBModels\CDStock.cs" />
     <Compile Include="DBModels\CompactDisc.cs" />
     <Compile Include="DBModels\ContextModel.cs" />
     <Compile Include="DBModels\Order.cs" />

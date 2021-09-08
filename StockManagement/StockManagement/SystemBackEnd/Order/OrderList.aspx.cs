@@ -30,8 +30,30 @@ namespace StockManagement.SystemBackEnd.Order
             if (!UserInfoManager.isManager(gid))
                 this.btnNewOrder.Enabled = false;
 
-            // 剔除已歸檔，按日期排序，再利用RefreshAndSort排序
+            /* -------------------- 將為配送超過三天的改成配送中 -------------------------*/
             List<ORM.DBModels.Order> orderList = OrderManager.GetOrderList();
+            List<ORM.DBModels.Order> ChangeDeliverOrders = orderList
+                .Where(item => item.Status == 0 && (DateTime.Now - item.OrderDate).Days >= 3) // 大於三天
+                .Select(item => 
+                    { 
+                        item.PredictedArrivalDate = item.OrderDate.AddDays(3);
+                        return item;   
+                    }).ToList();
+            foreach (var item in ChangeDeliverOrders)
+            {
+                bool isSuccess = OrderManager.UpdateOrderToDelivering(item);
+                if (!isSuccess)
+                {
+                    throw new Exception("Update Failed");
+                }
+            }
+            /* -------------------- 將為配送超過三天的改成配送中 -------------------------*/
+
+
+            orderList = OrderManager.GetOrderList();
+
+
+            // 剔除已歸檔，按日期排序，再利用RefreshAndSort排序
             orderList = orderList.Where(item => item.Status != (int)OrderStatus.Complete)
                 .OrderBy(d => d.OrderDate).ToList();
 
@@ -69,6 +91,10 @@ namespace StockManagement.SystemBackEnd.Order
                 string checkGoodsBtn = orderItem.Status == (int)OrderStatus.Delivering
                     ? $"<a class='btn btn-outline-info mb-1 ms-1' href='CheckGoods.aspx?OID={orderItem.OrderID}' role='button'>點貨</a>"
                     : "";
+                ORM.DBModels.UserInfo responsiblePerson = UserInfoManager.GetUserInfoByUserID(orderItem.OrderResponsiblePerson);
+                string responsibleName = responsiblePerson == null 
+                    ? "--" 
+                    : responsiblePerson.Name;
 
                 this.ltlOrderListTabPane.Text +=
                     $"<div class='tab-pane fade' id='ID{orderItem.OrderID}'>" +
@@ -80,7 +106,7 @@ namespace StockManagement.SystemBackEnd.Order
                     $"<p class='mb-1'>預計到貨日：{predictedDate}</p>" +
                     $"<p class='mb-1'>到貨日：{arrivalDate}</p>" +
                     $"<p class='mb-1'>總金額：{this.GetTotalPrice(orderItem)}</p>" +
-                    $"<p class='mb-1'>負責主管：{UserInfoManager.GetUserInfoByUserID(orderItem.OrderResponsiblePerson).Name}</p>" +
+                    $"<p class='mb-1'>負責主管：{responsibleName}</p>" +
                     checkGoodsBtn +
                     $"<div class='accordion accordion-flush' id='accordion{orderItem.OrderID}'>" +
                     $"<div class='accordion-item'>" +
@@ -154,7 +180,9 @@ namespace StockManagement.SystemBackEnd.Order
         // 左邊的列表Item
         private string RenderOrderListItem(ORM.DBModels.Order order, bool allowTextStyle = false)
         {
-            string responsibleName = UserInfoManager.GetUserInfoByUserID(order.OrderResponsiblePerson).Name;
+            ORM.DBModels.UserInfo responsiblePerson = UserInfoManager.GetUserInfoByUserID(order.OrderResponsiblePerson);
+            string responsibleName = responsiblePerson == null ? "--" : responsiblePerson.Name;
+
             string arrow = "";
             if (order.ReplenishID != null)
             {
