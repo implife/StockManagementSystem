@@ -33,7 +33,7 @@ namespace StockManagement.SystemBackEnd.Order
             /* -------------------- 將為配送超過三天的改成配送中 -------------------------*/
             List<ORM.DBModels.Order> orderList = OrderManager.GetOrderList();
             List<ORM.DBModels.Order> ChangeDeliverOrders = orderList
-                .Where(item => item.Status == 0 && (DateTime.Now - item.OrderDate).Days >= 3) // 大於三天
+                .Where(item => item.Status == 0 && (DateTime.Now - item.OrderDate).Seconds >= 20) // 大於三天
                 .Select(item => 
                     { 
                         item.PredictedArrivalDate = item.OrderDate.AddDays(3);
