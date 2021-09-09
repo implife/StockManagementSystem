@@ -57,11 +57,12 @@
       }
 
       tr:nth-child(even){background-color:  #ffecda}
-      tr:nth-child(odd){background-color:#ffffff}
+      tr:nth-child(odd){background-color:#F6FFFC}
 
         #ucPagermove {
             margin-left:40%;
             margin-top:3.5%;
+            
         }
 
         .shl {
@@ -138,7 +139,19 @@
        
         }
 
-  
+        
+
+       .btn-outline-primary {
+        color: #FF8F59;	
+        border-color: #FF9D6F	;
+       
+       }
+
+        .btn-outline-primary:hover {
+           background-color: #FF8F59	;
+           border-color: #FF8F59	;
+        }
+       
 
 
     </style>
@@ -157,7 +170,7 @@
             </ul>
             <asp:Button ID="btnSearch" runat="server" Text="查詢" CssClass="btn btn-outline-success"   OnClientClick="btnSearchClick()" />
              
-           <a id="showall" class="btn btn-outline-success" href="StockSearch.aspx" role="button">顯示全部</a>
+           <a id="showall" class="btn btn-outline-primary" href="StockSearch.aspx" role="button">顯示全部</a>
                 
             <%-- FuzzySearch的結果的HiddenField --%>
             <asp:HiddenField ID="HFSearchResult" runat="server" />
