@@ -199,21 +199,23 @@ namespace StockManagement.SystemBackEnd.Approve
                                              $"<p>發行日期：{CD.PublicationDate}</p>" +
                                              $"<p>地區：{CD.Region}</p>" +
                                              $"<p>單價：{OSD.UnitPrice}</p>" +
-                                        $"</div>" +
+                                         $"</div>" +
                                     $"</a>";
                 }
-                ltlOrderList.Text +=
-                                            /*以上為待審核單據的細項(需訂購商品,數量,缺少數量,備註,單類)*/
-                                            $"<div class='col-12' style='text-align:center; padding-top:1rem;'>" +
-                                                $"<input type = 'submit' value='核可' class='btn btn-outline-primary btn_Review' style='width:3rem; height:2rem;' />" +
-                                                $"<input type = 'submit' value='修改' class='btn btn-outline-primary btn_Modify' style='width:3rem; height:2rem;' />" +
-                                                 $"<br/>" +
-                                            $"</div>" +
-                                         $"</div>" +
-                                     $"</div>" +
+
+
+                ltlOrderList.Text +=    /*以上為待審核單據的細項(需訂購商品,數量,缺少數量,備註,單類)*/
+                                    
+                                    $"<div class='col-12' style='text-align:center; padding-top:1rem;'>" +
+                                        $"<input type = 'submit' value='核可' class='btn btn-outline-primary btn_Review' style='width:3rem; height:2rem;' />"+
+                                        $"<input type = 'submit' value='修改' class='btn btn-outline-primary btn_Modify' style='width:3rem; height:2rem;' />"+
+                                         $"<br/>" +
+                                    $"</div>" +
                                  $"</div>" +
                              $"</div>" +
-                           $"</div>";
+                         $"</div>" +
+                     $"</div>" +
+                   $"</div>";
 
 
 
