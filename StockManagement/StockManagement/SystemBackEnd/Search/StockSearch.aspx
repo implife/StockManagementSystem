@@ -43,6 +43,9 @@
  
   </script>
     <style>
+        body {
+    background-color: #DDF5EC;
+       }
 
       #inp{
         width: 34% ;
@@ -54,6 +57,7 @@
       }
 
       tr:nth-child(even){background-color:  #ffecda}
+      tr:nth-child(odd){background-color:#ffffff}
 
         #ucPagermove {
             margin-left:40%;
@@ -145,16 +149,12 @@
 
 
      <div>
-        <div class="dropdown  ">
+        <div class="dropdown">
              
-            <asp:TextBox ID="txtSearch" runat="server" CssClass="dropdown-toggle form-control" class="form-inline"  placeholder="請輸入關鍵字..." aria-label="Recipient's username" ></asp:TextBox>
+            <asp:TextBox ID="txtSearch" runat="server" CssClass="dropdown-toggle form-control"   placeholder="請輸入關鍵字..." aria-label="Recipient's username" ></asp:TextBox>
             <ul class="dropdown-menu" id="dropdownSearch">
-             <li></li>
-             <li>a</li>
-             <li>b</li>
-             <li>c</li>
+        
             </ul>
-         
             <asp:Button ID="btnSearch" runat="server" Text="查詢" CssClass="btn btn-outline-success"   OnClientClick="btnSearchClick()" />
              
            <a id="showall" class="btn btn-outline-success" href="StockSearch.aspx" role="button">顯示全部</a>

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace StockManagement.DBSource
 {
-	 public class CDStockManager
-	{
+    public class CDStockManager
+    {
         public static int GetStockSize()
         {
             using (ContextModel context = new ContextModel())
@@ -57,7 +57,7 @@ namespace StockManagement.DBSource
             {
                 using (ContextModel context = new ContextModel())
                 {
-                    return context.CDStocks.Where(item => item.SerialCode.Equals(serialCode)).FirstOrDefault();
+                    return context.CDStocks.Where(item => item.SerialCode.ToString() == serialCode.ToString()).FirstOrDefault();
                 }
             }
             catch (Exception ex)
@@ -65,6 +65,7 @@ namespace StockManagement.DBSource
                 return null;
             }
         }
+
 
         /// <summary>
         /// 增加總庫存
@@ -89,8 +90,9 @@ namespace StockManagement.DBSource
             {
                 return false;
             }
+
+
+
         }
-
-
     }
 }
