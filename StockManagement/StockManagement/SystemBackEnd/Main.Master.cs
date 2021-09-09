@@ -12,7 +12,7 @@ namespace StockManagement.SystemBackEnd
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+      
             string SB = "SystemBackEnd";
 
             string[] StockSearch = { "庫存查詢", $"/{SB}/Search/StockSearch.aspx", $"/{SB}/Search/StockDetail.aspx" };
@@ -59,10 +59,13 @@ namespace StockManagement.SystemBackEnd
 
         protected void BtnLogout_Click(object sender, EventArgs e)
         {
+           
             Logout();
             Response.Redirect("/Login.aspx");
         }
+        
     }
+
 }
 
 

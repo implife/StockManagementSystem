@@ -1,5 +1,6 @@
 ﻿using StockManagement.DBSource;
 using StockManagement.ORM.DBModels;
+using StockManagement.SystemBackEnd.Order;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,19 @@ namespace StockManagement.SystemBackEnd.Search
 {
     public partial class StockSearch : System.Web.UI.Page
     {
+
+        public string Searchjson { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            List<CompactDisc> searchlist = CDManager.GetCDList();
+
+            this.Searchjson = Newtonsoft.Json.JsonConvert.SerializeObject(searchlist);
+
+
+
+            this.txtSearch.Attributes.Add("data-bs-toggle", "dropdown");
+            this.txtSearch.Attributes.Add("autocomplete", "off");
            
 
             string query = this.Request.QueryString["Page"];
@@ -21,7 +33,7 @@ namespace StockManagement.SystemBackEnd.Search
             //List<CDStock> CDSList = new List<CDStock>();
 
             List<CompactDisc> CDSList = new List<CompactDisc>();
-
+           
 
             if (query == null)
             {
@@ -43,26 +55,32 @@ namespace StockManagement.SystemBackEnd.Search
 
 
                 CompactDisc CD = CDManager.GetCDBySerialCode(nub.SerialCode);
-                CDStock CDs= CDStockManager.GetStockBySerialCode(nub.SerialCode);
-                int canused = CDs.TotalStock - CDs.InTransitStock - CDs.UnreviewedStock;
+                CDStock CDss= CDStockManager.GetStockBySerialCode(nub.SerialCode);
+                int canused = CDss.TotalStock - CDss.InTransitStock - CDss.UnreviewedStock;
 
-     
 
-				this.ltlCDStock.Text +=
+
+                if (CD.Region == null)
+                {
+
+                    CD.Region = "－－";
+                }
+
+                this.ltlCDStock.Text +=
                     
                             $"<tr>" +
-                            $"<th scope = \"row\" >{CD.Name}</ th >" +
-                            $"<td>{canused}</td>" +
-                            $"<td>{CDs.TotalStock}</td>" +
-                            $"<td>{CDs.InTransitStock }</td>" +
-                            $"<td>{ CDs.UnreviewedStock}</td>" +
-                            $"<td>{CD.Artist }</td>" +
+                            $"<th scope = \"row\" id=\"CDN\"class=\"thdsize\" >{CD.Name}</ th >" +
+                            $"<td id=\"tdlist\" >{canused}</td>" +
+                            $"<td id=\"tdlist\">{CDss.TotalStock}</td>" +
+                            $"<td id=\"tdlist\">{CDss.InTransitStock }</td>" +
+                            $"<td id=\"tdlist\">{ CDss.UnreviewedStock}</td>" +
+                            $"<td >{CD.Artist }</td>" +
                             $"<td>{ CD.Brand}</td>" +
-                            $"<td>{CD.PublicationDate.Year }</td>" +
-                            $"<td>{ CD.Region}</td>" +
+                            $"<td >{ CD.Region}</td>" +
+                            $"<td class=\"tdlist\">{CD.PublicationDate.Year }</td>" +
                             $"</tr>";
 
-
+               
 
 
             }
@@ -72,7 +90,7 @@ namespace StockManagement.SystemBackEnd.Search
             this.ucPager.TotalItemSize = CDStockManager.GetStockSize();
             this.ucPager.Bind();
         }
-        
+      
 
 
     }

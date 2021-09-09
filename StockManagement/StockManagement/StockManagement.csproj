@@ -101,6 +101,7 @@
     <Content Include="Scripts\customize\popper.min.js" />
     <Content Include="Scripts\customize\NewOrder.js" />
     <Content Include="Scripts\customize\OrderList.js" />
+    <Content Include="StyleSheet\ApproveListStyle.css" />
     <Content Include="StyleSheet\boostrap.min.css" />
     <Content Include="StyleSheet\LoginStyle.css" />
     <Content Include="StyleSheet\MainStyle.css" />
