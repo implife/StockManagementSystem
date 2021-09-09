@@ -95,6 +95,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Icon\search-icon.png" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\customize\fuse.js" />
     <Content Include="Scripts\customize\jquery-3.6.0.min.js" />
