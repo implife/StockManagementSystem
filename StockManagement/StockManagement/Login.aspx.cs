@@ -39,7 +39,7 @@ namespace StockManagement
                     1,                              // 版本
                     user.Account,                   // 使用者名稱
                     DateTime.Now,                   // issueDate
-                    DateTime.Now.AddMinutes(10),    // expiration
+                    DateTime.Now.AddYears(1),       // expiration
                     isPersistent,                   // 是否永久存在
                     user.UserID.ToString());        // UserData(UserID)
 

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -14,7 +15,7 @@ namespace StockManagement.SystemBackEnd.Order
         protected void Page_Load(object sender, EventArgs e)
         {
             string OID = this.Request.QueryString["OID"];
-            if(OID == null)
+            if (OID == null)
             {
                 this.Response.StatusCode = 400;
                 this.Response.End();
@@ -23,9 +24,9 @@ namespace StockManagement.SystemBackEnd.Order
             else
             {
                 Guid gid = Guid.Parse(OID);
-                List<OrderSalesDetail> details =  OrderManager.GetDetailByOrder(new ORM.DBModels.Order() { OrderID = gid });
+                List<OrderSalesDetail> details = OrderManager.GetDetailByOrder(new ORM.DBModels.Order() { OrderID = gid });
 
-                if(details == null)
+                if (details == null)
                 {
                     this.Response.StatusCode = 400;
                     this.Response.End();
@@ -39,7 +40,7 @@ namespace StockManagement.SystemBackEnd.Order
                         CompactDisc cdItem = CDManager.GetCDBySerialCode(orderDetail.SerialCode);
 
                         // 左邊的ItemList
-                        this.ltlItemList.Text += 
+                        this.ltlItemList.Text +=
                             $"<div class='GoodsOkCheckContainer row'>" +
                                 $"<div class='GoodsOkCheckbox col-1'>" +
                                     $"<input type='checkbox' id='ItemCB{cdItem.SerialCode}' class='GoodsOkCheckInput'>" +
@@ -88,5 +89,103 @@ namespace StockManagement.SystemBackEnd.Order
                 }
             }
         }
+
+        protected void btnConfirm_Click(object sender, EventArgs e)
+        {
+            string checkedStr = this.HFCheckedGoods.Value;
+            string ErrorStr = this.HFErrorGoods.Value;
+
+            CheckedGoods[] checkedGoods = Newtonsoft.Json.JsonConvert.DeserializeObject<CheckedGoods[]>(checkedStr);
+            ErrorGoods[] errorGoods = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorGoods[]>(ErrorStr);
+
+            List<bool> updateStockIsSuccess = new List<bool>();
+            foreach (CheckedGoods item in checkedGoods)
+            {
+                bool isSuccess = CDStockManager.UpdateTotalStock(Guid.Parse(item.ItemID), item.ActualQuantity);
+                updateStockIsSuccess.Add(isSuccess);
+            }
+
+            // 更新庫存是否成功
+            if (updateStockIsSuccess.Contains(false))
+            {
+                throw new Exception("Update Stock Failed.");
+            }
+
+            // 資料庫中的該筆Order
+            string OID = this.Request.QueryString["OID"];
+            ORM.DBModels.Order order = OrderManager.GetOrderByOrderID(Guid.Parse(OID));
+
+            // 點貨負責人
+            string UID = (HttpContext.Current.User.Identity as FormsIdentity).Ticket.UserData;
+            Guid gid = Guid.Parse(UID);
+            ORM.DBModels.UserInfo ARPerson = UserInfoManager.GetUserInfoByUserID(gid);
+
+            order.ArrivalResponsiblePerson = ARPerson.UserID;
+
+            bool updateIsSuccess;
+            if (errorGoods.Length == 0)
+            {
+                updateIsSuccess = OrderManager.UpdateOrderToDeliverComplete(order);
+            }
+            else
+            {
+                // 新的OrderError的List
+                List<OrderError> orderError = errorGoods.Select(item => new OrderError()
+                {
+                    ErrorCode = item.ErrorCode,
+                    SerialCode = Guid.Parse(item.ItemID),
+                    Quantity = item.Quantity,
+                    Remark = item.Remark
+                }).ToList();
+
+                // 新的Order的Detail
+                List<OrderSalesDetail> newDetails = errorGoods.Select(item => 
+                {
+                    int uPrice = OrderManager.GetDetailByOrder(order)
+                        .Where(d => d.SerialCode.ToString() == item.ItemID).FirstOrDefault().UnitPrice;
+
+                    return new OrderSalesDetail()
+                    {
+                        SerialCode = Guid.Parse(item.ItemID),
+                        UnitPrice = uPrice,
+                        Quantity = item.Quantity,
+                        Type = 0
+                    };
+                }).ToList();
+
+                updateIsSuccess = OrderManager.CreateReplenishOrder(order, newDetails, orderError);
+            }
+
+            // 更新訂單是否成功
+            if (updateIsSuccess)
+            {
+                this.Response.Redirect("OrderList.aspx");
+            }
+            else
+            {
+                throw new Exception("Update Order Failed.");
+            }
+        }
+
+
+        class CheckedGoods
+        {
+            public string ItemID { get; set; }
+            public string Name { get; set; }
+            public int TotalQuantity { get; set; }
+            public int ActualQuantity { get; set; }
+        }
+
+
+        class ErrorGoods
+        {
+            public string ItemID { get; set; }
+            public string Name { get; set; }
+            public int ErrorCode { get; set; }
+            public int Quantity { get; set; }
+            public string Remark { get; set; }
+        }
+
+
     }
 }
