@@ -45,6 +45,7 @@ namespace StockManagement.SystemBackEnd.Order
                     date = new DateTime(y, m, d);
                 }
             }
+
             CompactDisc cd = new CompactDisc() {
                 Name = name,
                 Brand = brand,
@@ -57,6 +58,7 @@ namespace StockManagement.SystemBackEnd.Order
 
             if (result != null)
             {
+
                 this.Session["NewProduct"] = result;
                 this.Response.Redirect("NewOrder.aspx");
             }

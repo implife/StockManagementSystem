@@ -29,62 +29,22 @@ function fuzzySearch(pattern) {
 function dropitemClick(ele) {
     // 取得被點選的List的內容(專輯名稱)並寫入搜尋textbox(自動完成)，並執行一次FuzzySearch改寫下拉選單內容
     $(".txtSearchClass").val($(ele).html());
-    fuzzySearch($(".txtSearchClass").val());
 
-    // 將結果列表清空，填上標頭
-    $("#search_List_Group").html('<a class="list-group-item disabled" href="#">\
-                <div class="row" >\
-                    <div class="col-6"> <small>專輯名稱</small> </div>\
-                    <div class="col-3"> <small>歌手</small> </div>\
-                    <div class="col-3"> <small>可用庫存</small> </div>\
-                </div></a>');
-
-    // 取得被點選的項目的id(搜尋cdObj時的refIndex)，將資料寫入結果列表(只會有一筆)
-    var index = Number($(ele).attr("data-refIndex"));
-    var cd = cdObj[index];
-    $("#search_List_Group").append('<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#ID' + cd.SerialCode + '">\
-                <div class="row">\
-                    <div class="col-6"> <h6>' + cd.Name + '</h6> </div>\
-                    <div class="col-3"> <small>' + cd.Artist + '</small> </div >\
-                    <div class="col-3"> <small>50</small> </div>\
-                </div > </a> ');
-
-    // 處理發行日期的格式
-    var pDate = new Date(cd.PublicationDate);
-    var month = pDate.getMonth() < 9 ? "0" + (pDate.getMonth() + 1) : pDate.getMonth() + 1;
-    var date = pDate.getDate() < 10 ? "0" + pDate.getDate() : pDate.getDate();
-
-    // 顯示細目的tab content
-    var isDisabled = "";
-    var isDanger = "success";
-    for (let item of GetTempList()) {
-        if (item.Name == cd.Name) {
-            isDisabled = "disabled";
-            isDanger = "danger";
+    var result = fuzzySearch($(".txtSearchClass").val());
+    for (var re of result) {
+        if (re.item.Name == $(ele).html()) {
+            result = new Array();
+            result.push(re);
+            break;
         }
     }
-    $("#search_list_tab_content").html('<div class="tab-pane fade" id="ID' + cd.SerialCode + '">\
-                <h6>專輯名稱: ' + cd.Name + '</h6>\
-                <small>歌手: ' + cd.Artist + '</small><br />\
-                <small>發行公司: ' + cd.Brand + '</small><br />\
-                <small>發行日期: ' + `${pDate.getFullYear()}-${month}-${date}` + '</small><br />\
-                <small>地區: ' + (cd.Region == null ? "--" : cd.Region) + '</small><br />\
-                <small>可用庫存: 50</small><br />\
-                <small>在途庫存: 10</small><br />\
-                <small>待審核庫存: 2</small><br />\
-                <button type="button" class="btn btn-outline-' + isDanger + '" id="btnID' + cd.SerialCode + '" onclick="btnAddTemp(this)" ' + isDisabled + '>新增</button>\
-             </div>');
+    $("#ContentPlaceHolder1_HFSearchResult").val(JSON.stringify(result));
 
-    // 將pagination改成只有一頁
-    $("ul.pagination").html('\
-                <li class="page-item">\
-	                <a id="ContentPlaceHolder1_searchListPager_HLPre" class="page-link" href="#" tabindex="-1"><span>&laquo;</span></a>\
-                </li>\
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>\
-                <li class="page-item">\
-	                <a id="ContentPlaceHolder1_searchListPager_HLNext" class="page-link" href="#" tabindex="-1"><span>&raquo;</span></a>\
-                </li>');
-    CheckAddButton();
+    // 避免被Form Validate擋掉
+    if ($(".txtSellerClass").val() == "")
+        $(".txtSellerClass").val(" ");
+
+    $('form').submit();
 }
 
 // 將TempList裡的東西轉換成物件陣列回傳
@@ -269,7 +229,6 @@ function DeleteTempItem(name, quantity) {
         }
     });
 }
-
 
 // TempList綁定事件的function
 function TempListBind() {

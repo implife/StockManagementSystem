@@ -23,32 +23,32 @@ namespace StockManagement.SystemBackEnd.Order
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
-		/// <summary>
-		/// btnSearch 控制項。
-		/// </summary>
-		/// <remarks>
-		/// 自動產生的欄位。
-		/// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnSearch;
+        /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
 
-		/// <summary>
-		/// HFSearchResult 控制項。
-		/// </summary>
-		/// <remarks>
-		/// 自動產生的欄位。
-		/// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.HiddenField HFSearchResult;
+        /// <summary>
+        /// HFSearchResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HFSearchResult;
 
-		/// <summary>
-		/// ltlCDList 控制項。
-		/// </summary>
-		/// <remarks>
-		/// 自動產生的欄位。
-		/// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Literal ltlCDList;
+        /// <summary>
+        /// ltlCDList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlCDList;
 
         /// <summary>
         /// ltlCDListTabContent control.
@@ -59,67 +59,67 @@ namespace StockManagement.SystemBackEnd.Order
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlCDListTabContent;
 
-		/// <summary>
-		/// searchListPager 控制項。
-		/// </summary>
-		/// <remarks>
-		/// 自動產生的欄位。
-		/// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-		/// </remarks>
-		protected global::StockManagement.UserControls.ucPager searchListPager;
+        /// <summary>
+        /// searchListPager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::StockManagement.UserControls.ucPager searchListPager;
 
-		/// <summary>
-		/// HFTempList 控制項。
-		/// </summary>
-		/// <remarks>
-		/// 自動產生的欄位。
-		/// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.HiddenField HFTempList;
+        /// <summary>
+        /// HFTempList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HFTempList;
 
-		/// <summary>
-		/// Seller 控制項。
-		/// </summary>
-		/// <remarks>
-		/// 自動產生的欄位。
-		/// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox Seller;
+        /// <summary>
+        /// Seller control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Seller;
 
-		/// <summary>
-		/// Label1 控制項。
-		/// </summary>
-		/// <remarks>
-		/// 自動產生的欄位。
-		/// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label Label1;
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
 
-		/// <summary>
-		/// btnSave 控制項。
-		/// </summary>
-		/// <remarks>
-		/// 自動產生的欄位。
-		/// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnSave;
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
 
-		/// <summary>
-		/// btnCancel 控制項。
-		/// </summary>
-		/// <remarks>
-		/// 自動產生的欄位。
-		/// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnCancel;
+        /// <summary>
+        /// btnCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancel;
 
-		/// <summary>
-		/// ltlFailedModal 控制項。
-		/// </summary>
-		/// <remarks>
-		/// 自動產生的欄位。
-		/// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Literal ltlFailedModal;
-	}
+        /// <summary>
+        /// ltlFailedModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlFailedModal;
+    }
 }
