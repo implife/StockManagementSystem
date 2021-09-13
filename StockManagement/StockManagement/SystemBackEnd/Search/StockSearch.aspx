@@ -18,31 +18,54 @@
 	  const options = {
 		  includeScore: true,
 		  keys: [
-			  { name: "Name", weight: 0.4 },
-			  { name: "Artist", weight: 0.4 },
-			  { name: "Region", weight: 0.1 },
-			  { name: "Brand", weight: 0.1 }
+			  { name: "Name", weight:0.6 },
+			  { name: "Artist", weight: 0.3 },
+			  { name: "Region", weight: 0.05},
+			  { name: "Brand", weight: 0.05 }
 		  ]
       }
       const fuse = new Fuse(Searchary, options);
 
-      $(function fuzzySearch() {
-		  $('#ContentPlaceHolder1_txtSearch').keyup(function () {
-              let result = fuse.search($(this).val())
-              $('#dropdownSearch').html('')
+      function fuseSearch(pattern) {
+          let result = fuse.search(pattern);
+          $('#dropdownSearch').html('')
 
-              var count = 0;
-              for (var data of result) {
-				  $('#dropdownSearch').append('<li class="lishow">' + data.item.Name +'</li> ')
-                  count++;
-                  if (count == 10)
-                      break;
-              }
+          var count = 0;
+          for (var data of result) {
+              $('#dropdownSearch').append('<li class="lishow">' + data.item.Name + '</li> ')
+              count++;
+              if (count == 10)
+                  break;
+          }
+          return result;
+      }
+
+      $(function () {
+          $('#ContentPlaceHolder1_txtSearch').keyup(function () {
+              fuseSearch($(this).val())
           })
+
+          //搜尋紐事件 //asp控制項會改ID 改成後臺可讀取語言 搜尋結果放入HF
+          $('input[id$=btnSearch]').click(function () {
+			  let result = fuse.search($('input[id$=txtSearch]').val());
+
+			  $('input[id$=btnhappenhf]').val(JSON.stringify(result));
+              
+          })
+
+          $('#dropdownSearch').on('click','li',function(){
+
+              $('#ContentPlaceHolder1_txtSearch').val($(this).text());
+              fuseSearch($('#ContentPlaceHolder1_txtSearch').val());
+          })
+
       });
  
   </script>
     <style>
+        body {
+    background-color: #DDF5EC;
+       }
 
       #inp{
         width: 34% ;
@@ -54,10 +77,12 @@
       }
 
       tr:nth-child(even){background-color:  #ffecda}
+      tr:nth-child(odd){background-color:#F6FFFC}
 
         #ucPagermove {
             margin-left:40%;
             margin-top:3.5%;
+            
         }
 
         .shl {
@@ -82,6 +107,7 @@
              width:325px;
              margin-left:0.79%;
              margin-top:1.1%;
+             border-radius: 3px;
  
            
       
@@ -113,6 +139,8 @@
 
         }
 
+     
+
         .lishow:hover {
            background-color:rgb(208 208 208 / 0.54);
            
@@ -134,8 +162,18 @@
        
         }
 
-  
+       .btn-outline-primary {
+        color: #FF8040;	
+        border-color: #FF8040;
+       
+       }
 
+        .btn-outline-primary:hover {
+           background-color: #FF8040;
+           border-color: #FF8040;
+        }
+
+   
 
     </style>
 </asp:Content>
@@ -145,28 +183,27 @@
 
 
      <div>
-        <div class="dropdown  ">
+        <div class="dropdown">
              
-            <asp:TextBox ID="txtSearch" runat="server" CssClass="dropdown-toggle form-control" class="form-inline"  placeholder="請輸入關鍵字..." aria-label="Recipient's username" ></asp:TextBox>
+            <asp:TextBox ID="txtSearch" runat="server" CssClass="dropdown-toggle form-control"   placeholder="請輸入關鍵字..." aria-label="Recipient's username" ></asp:TextBox>
             <ul class="dropdown-menu" id="dropdownSearch">
-             <li></li>
-             <li>a</li>
-             <li>b</li>
-             <li>c</li>
+                
             </ul>
-         
+
+            <asp:HiddenField ID="btnhappenhf" runat="server" />
+
             <asp:Button ID="btnSearch" runat="server" Text="查詢" CssClass="btn btn-outline-success"   OnClientClick="btnSearchClick()" />
              
-           <a id="showall" class="btn btn-outline-success" href="StockSearch.aspx" role="button">顯示全部</a>
+           <a id="showall" class="btn btn-outline-primary" href="StockSearch.aspx" role="button">顯示全部</a>
                 
-            <%-- FuzzySearch的結果的HiddenField --%>
-            <asp:HiddenField ID="HFSearchResult" runat="server" />
+           
+
 
         </div>
     </div>
     
-                <div id="tabl" >
-                    <table class="table">
+                <div id="tabl">
+                    <table class="table" >
                         <thead>
                           <tr  class="table-light">
                             <th scope="col" >專輯名稱</th>
