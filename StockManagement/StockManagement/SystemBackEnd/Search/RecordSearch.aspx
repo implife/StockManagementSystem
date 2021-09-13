@@ -20,7 +20,7 @@
             margin-left: 2%;
         }
 
-        #txtOrderIdSearch {
+        input[id$=txtOrderIdSearch] {
             width: 215px;
             display: inline-block;
             margin-right: 5px;
@@ -90,6 +90,7 @@
 
         .dropdownSearch .list-group-item {
             border: none;
+            z-index: 999;
         }
 
         .dropdownSearch li:first-child .list-group-item {
@@ -229,7 +230,7 @@
             justify-content: center;
             top: 19px;
             left: 30px;
-            z-index: 100;
+            z-index: 3;
             padding: 0;
         }
 
@@ -396,7 +397,6 @@
 
         /* #endregion Nav RadioBtn */
 
-        
     </style>
 
     <script>
@@ -411,24 +411,24 @@
         }
         const fuse = new Fuse(orderAry, options);
 
-        $(function () {
-            $('#txtOrderIdSearch').keyup(function () {
-                let result = fuse.search($(this).val());
-                $('#dropdownSearch').html("");
+        // 傳入搜尋字串進行Fuzzy Search
+        function fuseSearch(pattern) {
+            let result = fuse.search(pattern);
+            $('#dropdownSearch').html("");
 
-                var count = 0;
-                for (var data of result) {
-                    $('#dropdownSearch').append('<li><a class="dropItem list-group-item list-group-item-action" href="javascript:void(0)"\
+            var count = 0;
+            for (var data of result) {
+                $('#dropdownSearch').append('<li><a class="dropItem list-group-item list-group-item-action" href="javascript:void(0)"\
                                 data-refindex="0" >' + data.item.OrderID.split('-')[0] + '</a ></li >');
-                    count++;
-                    if (count == 10)
-                        break;
-                }
-            })
-        })
+                count++;
+                if (count == 10)
+                    break;
+            }
 
+            return result;
+        }
 
-
+        
 
 
         var tabpaneStatus = 0;
@@ -440,6 +440,7 @@
                 $('.arrow').toggleClass('bounceAlpha');
             });
 
+            // 訂單裡的商品列表的Popup
             $('.cdListItem').bind({
                 mouseenter: function () {
                     $(this).children('.CdDetailPopup').addClass('myShow');
@@ -450,6 +451,7 @@
                 }
             });
 
+            // 到貨狀況的Popup
             $('.deliverCheckListItem').bind({
                 mouseenter: function () {
                     $(this).children('.RemarkPopup').addClass('myShow');
@@ -459,13 +461,14 @@
                 }
             });
 
-            // 搜尋欄
+            // 搜尋欄的下拉選單
             $('.dropdownSearchInput').bind({
                 focusin: function () {
                     $('.dropdownSearch').addClass('dropdowmShow');
                 }
             });
 
+            // 搜尋欄的消失條件
             $('html, body').on('click', function (e) {
 
                 if (!$(e.target).is('.dropdownSearchInput') &&
@@ -474,6 +477,24 @@
                 }
 
             });
+
+            // 搜尋欄事件
+            $('input[id$=txtOrderIdSearch]').keyup(function () {
+                fuseSearch($(this).val())
+            })
+
+            // 搜尋紐事件
+            $('input[id$=btnSearch]').click(function () {
+                let result = fuseSearch($('input[id$=txtOrderIdSearch]').val());
+
+                $('input[id$=HFSearchResult]').val(JSON.stringify(result));
+            })
+
+            // 搜尋下拉選單li Click事件
+            $('#dropdownSearch').on('click', 'li',function () {
+                $('input[id$=txtOrderIdSearch]').val($(this).children('a').text());
+                fuseSearch($('input[id$=txtOrderIdSearch]').val());
+            })
         })
     </script>
 
@@ -500,16 +521,18 @@
             <div class="tab-pane fade show active" id="OrderTab">
                 <div class="row">
                     <div class="mb-3 col-11 mt-1">
-                        <input type="text" class="form-control dropdownSearchInput" id="txtOrderIdSearch"
-                            placeholder="輸入單號查詢">
+
+                        <asp:TextBox ID="txtOrderIdSearch" runat="server" CssClass="form-control dropdownSearchInput"></asp:TextBox>
+                        
                         <ul class="dropdownSearch" id="dropdownSearch">
-                            <li><a class="dropItem list-group-item list-group-item-action" href="javascript:void(0)"
-                                data-refindex="0">Hello</a></li>
-                            <li><a class="dropItem list-group-item list-group-item-action" href="javascript:void(0)"
-                                data-refindex="0">World</a></li>
+
                         </ul>
 
-                        <button type="button" class="btn btn-outline-success">查詢</button>
+                        <%-- 將搜尋結果傳回伺服器的Hidden Field --%>
+                        <asp:HiddenField ID="HFSearchResult" runat="server" />
+
+                        <asp:Button ID="btnSearch" runat="server" Text="查詢" CssClass="btn btn-outline-success" />
+
                         <div class="radio">
                             <input label="顯示全部" type="radio" id="male" name="gender" value="male" checked>
                             <input label="一周內" type="radio" id="female" name="gender" value="female">
@@ -552,78 +575,7 @@
                     <%-- 左邊的Result List --%>
                     <asp:Literal ID="ltlResultList" runat="server" EnableViewState="false"></asp:Literal>
 
-                    <%--<a class="list-group-item list-group-item-action myActive" data-bs-toggle="list" href="#ID303">
-                        <div class="row">
-                            <div class="col-3">303ee776</div>
-                            <div class="col-2"> <small>2021-08-08</small> </div>
-                            <div class="col-2"><small>2021-08-10</small></div>
-                            <div class="col-2"><small>2500</small></div>
-                            <div class="col-3"><small>Admin</small></div>
-                        </div>
-                    </a>
-                    <a class="list-group-item list-group-item-action myActive" data-bs-toggle="list" href="#ID0D9A714B">
-                        <div class="row">
-                            <div class="col-3">0D9A714B</div>
-                            <div class="col-2"> <small>2021-08-09</small> </div>
-                            <div class="col-2"><small>2021-08-12</small></div>
-                            <div class="col-2"><small>3500</small></div>
-                            <div class="col-3"><small>Admin</small></div>
-                        </div>
-                    </a>
-                    <a class="list-group-item list-group-item-action myActive" data-bs-toggle="list" href="#ID5767BAA9">
-                        <div class="row">
-                            <div class="col-3">5767BAA9</div>
-                            <div class="col-2"> <small>2021-08-06</small> </div>
-                            <div class="col-2"><small>2021-08-09</small></div>
-                            <div class="col-2"><small>4500 </small></div>
-                            <div class="col-3"><small>Admin</small></div>
-                        </div>
-                    </a>
-
-                    <!--         關連訂單           -->
-                    <a class="list-group-item list-group-item-action myActive" data-bs-toggle="list" href="#ID3e71e815">
-                        <div class="row">
-                            <div class="center-con">
-                                <div class="round">
-                                    <div id="cta">
-                                        <span class="arrow primera next "></span>
-                                        <span class="arrow segunda next "></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3" style="color:#dd7b5c">3e71e815</div>
-                            <div class="col-2"> <small>2021-08-01</small> </div>
-                            <div class="col-2"><small>2021-08-04</small></div>
-                            <div class="col-2"><small>7500 </small></div>
-                            <div class="col-3"><small>Admin</small></div>
-                        </div>
-                    </a>
-                    <a class="list-group-item list-group-item-action myActive" data-bs-toggle="list" href="#ID10e3d2ba">
-                        <div class="row">
-                            <div class="center-con">
-                                <div class="round">
-                                    <div id="cta">
-                                        <span class="arrow primera next "></span>
-                                        <span class="arrow segunda next "></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3" style="color:#dd7b5c">10e3d2ba</div>
-                            <div class="col-2"> <small>2021-08-05</small> </div>
-                            <div class="col-2"><small>2021-08-08</small></div>
-                            <div class="col-2"><small>2000 </small></div>
-                            <div class="col-3"><small>Admin</small></div>
-                        </div>
-                    </a>
-                    <a class="list-group-item list-group-item-action myActive" data-bs-toggle="list" href="#ID2ef12f10">
-                        <div class="row">
-                            <div class="col-3" style="color:#dd7b5c">2ef12f10</div>
-                            <div class="col-2"> <small>2021-08-09</small> </div>
-                            <div class="col-2"><small>2021-08-12</small></div>
-                            <div class="col-2"><small>1000 </small></div>
-                            <div class="col-3"><small>--</small></div>
-                        </div>
-                    </a>--%>
+                   
                 </div>
             </div>
             <div class="col-5">

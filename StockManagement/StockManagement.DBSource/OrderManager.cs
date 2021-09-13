@@ -29,6 +29,7 @@ namespace StockManagement.DBSource
 
             if (order.OrderResponsiblePerson == null)
                 throw new ArgumentException("OrderResponsiblePerson should not be null");
+
             try
             {
                 using (ContextModel context = new ContextModel())
@@ -43,6 +44,13 @@ namespace StockManagement.DBSource
                         d.Type = 0;
                         return d;
                     });
+
+                    // 增加在途庫存
+                    //foreach (OrderSalesDetail de in details)
+                    //{
+                    //    var stockObj = context.CDStocks.Where(item => item.SerialCode == de.SerialCode).FirstOrDefault();
+                    //    stockObj.InTransitStock += de.Quantity;
+                    //}
 
                     context.Orders.Add(order);
                     context.OrderSalesDetails.AddRange(detailResult);
@@ -91,7 +99,8 @@ namespace StockManagement.DBSource
                         OrderID = Guid.NewGuid(),
                         OrderDate = DateTime.Now,
                         Seller = originalOrder.Seller,
-                        Status = 4
+                        Status = 4,
+                        MainOrder = originalOrder.MainOrder == null ? originalOrder.OrderID : originalOrder.MainOrder
                     };
 
                     // 新訂單的Order Detail
@@ -108,6 +117,8 @@ namespace StockManagement.DBSource
                     originalObj.Status = 2;
                     originalObj.ArrivalDate = DateTime.Now;
                     originalObj.ArrivalResponsiblePerson = originalOrder.ArrivalResponsiblePerson;
+                    if (originalObj.MainOrder == null)
+                        originalObj.MainOrder = originalObj.OrderID;
 
                     // 異常資料
                     var errResult = errorOrder.Select(item =>
@@ -178,6 +189,14 @@ namespace StockManagement.DBSource
                     Order orderObj = context.Orders.Where(item => item.OrderID == order.OrderID).FirstOrDefault();
                     orderObj.Status = 1;
                     orderObj.PredictedArrivalDate = order.PredictedArrivalDate;
+
+                    // 增加在途庫存
+                    List<OrderSalesDetail> details = OrderManager.GetDetailByOrder(order);
+                    foreach (OrderSalesDetail de in details)
+                    {
+                        var stockObj = context.CDStocks.Where(item => item.SerialCode == de.SerialCode).FirstOrDefault();
+                        stockObj.InTransitStock += de.Quantity;
+                    }
 
                     context.SaveChanges();
                     return true;

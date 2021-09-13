@@ -79,7 +79,7 @@ namespace StockManagement.SystemBackEnd.Order
                 else
                     statusCode = -1;
 
-                this.ltlOrderListItem.Text += RenderOrderListItem(orderItem, IsAllow) + "\n";
+                this.ltlOrderListItem.Text += this.RenderOrderListItem(orderItem, IsAllow) + "\n";
 
                 /*------------------------------訂單細目的TabPane---------------------------*/
                 string predictedDate = orderItem.PredictedArrivalDate == null
@@ -107,6 +107,7 @@ namespace StockManagement.SystemBackEnd.Order
                     $"<p class='mb-1'>到貨日：{arrivalDate}</p>" +
                     $"<p class='mb-1'>總金額：{this.GetTotalPrice(orderItem)}</p>" +
                     $"<p class='mb-1'>負責主管：{responsibleName}</p>" +
+                    this.RenderMainOrder(orderItem) +
                     checkGoodsBtn +
                     $"<div class='accordion accordion-flush' id='accordion{orderItem.OrderID}'>" +
                     $"<div class='accordion-item'>" +
@@ -252,6 +253,16 @@ namespace StockManagement.SystemBackEnd.Order
                 $"</div></a>";
 
             return listItem;
+        }
+
+        // TabPane資訊列的主單資訊
+        private string RenderMainOrder(ORM.DBModels.Order order)
+        {
+            string result = "";
+            if (order.MainOrder != null && order.MainOrder != order.OrderID)
+                result = $"<p class='mb-1'>主單：{order.MainOrder.ToString().Split('-')[0]}</p>";
+
+            return result;
         }
 
         // TabPane的到貨狀況的按鈕

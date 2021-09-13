@@ -182,7 +182,7 @@ namespace StockManagement.SystemBackEnd.Order
                     $"<small>地區: {cd.Region}</small><br />" +
                     $"<small>可用庫存: {available}</small><br />" +
                     $"<small>在途庫存: {cdstock.InTransitStock}</small><br />" +
-                    $"<small>待審核庫存: {cdstock.UnreviewedStock}</small><br />" +
+                    //$"<small>待審核庫存: {cdstock.UnreviewedStock}</small><br />" +
                     $"<button type='button' class='btn btn-outline-success' id='btnID{cd.SerialCode}' onclick='btnAddTemp(this)' {disabled}>新增</button>" +
                     $"</div>";
             }
@@ -221,27 +221,30 @@ namespace StockManagement.SystemBackEnd.Order
             TempListCD[] sessionTempList = Newtonsoft.Json.JsonConvert.DeserializeObject<TempListCD[]>(tempListStr);
             
             List<CompactDisc> cdList = CDManager.GetCDList();
-            List<OrderSalesDetail> orderDetailList = new List<OrderSalesDetail>();
-
+            
+            // 目前登入使用者
             string id = (HttpContext.Current.User.Identity as FormsIdentity).Ticket.UserData;
             Guid gid = Guid.Parse(id);
 
+            // 新Order物件
             ORM.DBModels.Order newOrder = new ORM.DBModels.Order()
             {
                 Seller = this.Seller.Text,
                 OrderResponsiblePerson = gid
             };
 
+            // 新OrderSalesDetail物件的List
+            List<OrderSalesDetail> orderDetailList = new List<OrderSalesDetail>();
 
             foreach (TempListCD temp in sessionTempList)
             {
+                // 處理'&'符號可能出錯問題
                 if (temp.Name.IndexOf("&amp;") != -1)
                 {
                     temp.Name = temp.Name.Replace("&amp;", "&");
                 }
-                CompactDisc tempCD = cdList.Where(item => item.Name == temp.Name).FirstOrDefault();
-                
 
+                CompactDisc tempCD = cdList.Where(item => item.Name == temp.Name).FirstOrDefault();
                 OrderSalesDetail d = new OrderSalesDetail()
                 {
                     SerialCode = tempCD.SerialCode,

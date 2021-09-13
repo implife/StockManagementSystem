@@ -97,15 +97,22 @@ namespace StockManagement.DBSource
                 using (ContextModel context = new ContextModel())
                 {
                     cd.SerialCode = Guid.NewGuid();
-
                     CompactDisc cdResult = context.CompactDiscs.Add(cd);
+
+                    // 增加庫存資料
+                    context.CDStocks.Add(new CDStock() { 
+                        SerialCode = cdResult.SerialCode,
+                        TotalStock = 0,
+                        InTransitStock = 0,
+                        UnreviewedStock = 0
+                    });
+
                     context.SaveChanges();
                     return cdResult;
                 }
             }
             catch (Exception ex)
             {
-
                 return null;
             }
         }

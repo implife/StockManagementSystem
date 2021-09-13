@@ -14,7 +14,6 @@ namespace StockManagement.ORM.DBModels
         public DateTime OrderDate { get; set; }
 
         [Required]
-        [StringLength(50)]
         public string Seller { get; set; }
 
         public DateTime? PredictedArrivalDate { get; set; }
@@ -23,12 +22,14 @@ namespace StockManagement.ORM.DBModels
 
         public int Status { get; set; }
 
-        public Guid OrderResponsiblePerson { get; set; }
+        public Guid? OrderResponsiblePerson { get; set; }
 
         public Guid? ArrivalResponsiblePerson { get; set; }
 
+        public Guid? ArchiveResponsiblePerson { get; set; }
+
         public Guid? ReplenishID { get; set; }
 
-        public string Reason { get; set; }
+        public Guid? MainOrder { get; set; }
     }
 }

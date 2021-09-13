@@ -10,7 +10,6 @@
             font-weight:900;
         }
 		</style>
-    <link href="../../Content/bootstrap.css" rel="stylesheet" />
 
     <script src="../../Scripts/bootstrap.js"></script>
     <script src="../../Scripts/bootstrap.bundle.min.js"></script>
