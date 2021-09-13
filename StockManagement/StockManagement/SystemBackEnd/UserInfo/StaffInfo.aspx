@@ -4,9 +4,13 @@
     <script src="../../Scripts/bootstrap.js"></script>
     <link href="../../StyleSheet/boostrap.min.css" rel="stylesheet" />
     <style>
+        body{
+             background-color:#DDF5EC;
+        }
         td {
             padding: unset;
             margin-bottom: 0.1rem;
+           
         }
 
         p {
@@ -32,6 +36,8 @@
             border-color:#cdece0;
             color: dimgrey;
         }
+        tbody tr:nth-child(even){background-color:  #FFF2EB}
+        tbody tr:nth-child(odd){background-color:#F6FFFC}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -62,6 +68,9 @@
                 </td>
                 <td>
                     <p>到職日期</p>
+                </td>
+                <td>
+
                 </td>
             </tr>
         </thead>

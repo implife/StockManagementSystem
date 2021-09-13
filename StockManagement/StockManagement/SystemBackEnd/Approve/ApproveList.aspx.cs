@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -11,7 +12,18 @@ namespace StockManagement.SystemBackEnd.Approve
 {
     public partial class ApproveList : System.Web.UI.Page
     {
-
+        private bool ReplenishIsAllowedInList(ORM.DBModels.Order order)
+        {
+            if (order.ReplenishID == null)
+            {
+                if (order.Status == 4 || order.Status == 3)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return ReplenishIsAllowedInList(OrderManager.GetOrderByOrderID((Guid)order.ReplenishID));
+        }
         private void RenewOrderList(List<ORM.DBModels.Order> result, List<ORM.DBModels.Order> origin)
         {
             if (origin.Count() == 0)
@@ -65,15 +77,48 @@ namespace StockManagement.SystemBackEnd.Approve
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack)
+            {
+                if (HD_Btn.Value != null)
+                {
+                    string id = (HttpContext.Current.User.Identity as FormsIdentity).Ticket.UserData;
+                    Guid guid = Guid.Parse(id);
+
+                    Guid btn_Order_ID = Guid.Parse(HD_Btn.Value.Split(',')[0]);
+                    string btn_Order_behavior = HD_Btn.Value.Split(',')[1];
+
+                    ORM.DBModels.Order order = DBSource.OrderManager.GetOrderByOrderID(btn_Order_ID);
 
 
+                    switch (btn_Order_behavior)
+                    {
+                        case "Review":
+                            DBSource.OrderManager.UpdateDeliverCompleteToComplete(order);
+                            break;
+                        case "Modify":
+                            order.OrderResponsiblePerson = guid;
+                            this.Response.Redirect($"//SystemBackEnd/Order/OrderModify.aspx?OrderID={order.OrderID}");
+
+                            break;
+                        case "Approve":
+                            order.OrderResponsiblePerson = guid;
+                            DBSource.OrderManager.UpdateoWaitForReviewedToNotDeliver(order);
+                            break;
+                    }
+                }
+            }
             var AllOderList = OrderManager.GetOrderList();
-            var OrderList = AllOderList.Where(obj => obj.Status == 3 || obj.Status == 4 || obj.Status == 2).OrderBy(obj => obj.OrderDate).ToList();
+            var OrderList = AllOderList.Where(obj => 
+            {
+                bool isAllow = false;
+                if (obj.Status == 2)
+                    isAllow = this.ReplenishIsAllowedInList(obj);
+                return obj.Status == 3 || obj.Status == 4 || isAllow;
+            }).OrderBy(obj => obj.OrderDate).ToList();
             List<ORM.DBModels.Order> result = new List<ORM.DBModels.Order>();
             RenewOrderList(result, OrderList);
 
             bool ColoredOrNot = false;
-
 
 
             foreach (ORM.DBModels.Order orders in result)
@@ -110,7 +155,10 @@ namespace StockManagement.SystemBackEnd.Approve
                 {
                     if (ColoredOrNot)
                         OrderHead = $"<th scope='row' style='color:#dd7b5c'>編號：{orders.OrderID.ToString().Split('-')[0]}</th>";
+                    else
+                        OrderHead = $"<th scope='row'>編號：{orders.OrderID.ToString().Split('-')[0]}</th>";
                     ColoredOrNot = false;
+
                 }
                 ltlOrderList.Text +=
                     $"<div class='accordion-item'>" +
@@ -203,12 +251,33 @@ namespace StockManagement.SystemBackEnd.Approve
                                     $"</a>";
                 }
 
+                var BottonShow = "";
+                if (orders.Status == 2)
+                {
+                    BottonShow = "";
+
+
+                }
+                else if (orders.Status == 3)
+                {
+                    BottonShow =
+                      $"<input type = 'submit' value='歸檔' class='btn btn-outline-primary btn_Review' style='width:3rem; height:2rem;' />";
+
+
+                }
+                else if (orders.Status == 4)
+                {
+                    BottonShow =
+                      $"<input type = 'submit' value='核可' class='btn btn-outline-primary btn_Approve' style='width:3rem; height:2rem;' />" +
+                      $"<input type = 'submit' value='修改' class='btn btn-outline-primary btn_Modify' style='width:3rem; height:2rem;' />";
+                }
+
+
 
                 ltlOrderList.Text +=    /*以上為待審核單據的細項(需訂購商品,數量,缺少數量,備註,單類)*/
-                                    
+
                                     $"<div class='col-12' style='text-align:center; padding-top:1rem;'>" +
-                                        $"<input type = 'submit' value='核可' class='btn btn-outline-primary btn_Review' style='width:3rem; height:2rem;' />"+
-                                        $"<input type = 'submit' value='修改' class='btn btn-outline-primary btn_Modify' style='width:3rem; height:2rem;' />"+
+                                        BottonShow +
                                          $"<br/>" +
                                     $"</div>" +
                                  $"</div>" +
@@ -218,6 +287,7 @@ namespace StockManagement.SystemBackEnd.Approve
                    $"</div>";
 
 
+                //$/*('input[class$=btn_Review]').click*/
 
 
             }

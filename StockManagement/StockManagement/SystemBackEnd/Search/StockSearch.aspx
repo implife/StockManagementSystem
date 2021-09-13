@@ -56,7 +56,7 @@
    
       }
 
-      tr:nth-child(even){background-color:  #ffecda}
+      tr:nth-child(even){background-color:  #FFF2EB}
       tr:nth-child(odd){background-color:#F6FFFC}
 
         #ucPagermove {

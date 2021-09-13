@@ -52,11 +52,9 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">修改失敗,請重新填寫</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        
                     </button>
                 </div>
                 <div class="modal-body">
-                    
                 </div>
             </div>
         </div>
@@ -108,14 +106,20 @@
             </div>
 
             <div class="col-sm-12 col-md-12 form__group form-floating" style="align-items: center;">
-                <asp:Literal ID="ltlBlood" runat="server"></asp:Literal>
-               
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">A</a></li>
-                    <li><a class="dropdown-item" href="#">B</a></li>
-                    <li><a class="dropdown-item" href="#">AB</a></li>
-                    <li><a class="dropdown-item" href="#">O</a></li>
-                </ul>
+                <div class="row">
+                    <div class="col-2 offset-md-1 divChoose"><span>請選擇血型</span></div>
+                    <div class="col-9 divbotton">
+                        <asp:Literal ID="ltlBlood" runat="server"></asp:Literal>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">A</a></li>
+                            <li><a class="dropdown-item" href="#">B</a></li>
+                            <li><a class="dropdown-item" href="#">AB</a></li>
+                            <li><a class="dropdown-item" href="#">O</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
             </div>
 
 
@@ -124,9 +128,9 @@
 
             <div class="col-12" style="text-align: center">
 
-                <asp:Button ID="btnSubmit" runat="server" Text="確認" class="btn btn-outline-primary" Style="width: 6rem; height: 2.5rem; margin-top: 1rem;" OnClick="btnSubmit_Click" />
+                <asp:Button ID="btnSubmit" runat="server" Text="確認" class="btn btn-outline-primary btn_Check" Style="width: 6rem; height: 2.5rem; margin-top: 1rem;" OnClick="btnSubmit_Click" />
 
-                <a class="btn btn-outline-secondary " href="/SystemBackEnd/UserInfo/UserInfo.aspx" role="button" style="width: 6rem; height: 2.5rem; margin-top: 1rem">取消</a>
+                <a class="btn btn-outline-secondary btn_Cancel" href="/SystemBackEnd/UserInfo/UserInfo.aspx" role="button" style="width: 6rem; height: 2.5rem; margin-top: 1rem">取消</a>
                 <br />
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>

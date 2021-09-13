@@ -123,6 +123,7 @@
     <Content Include="SystemBackEnd\Order\NewProduct.aspx" />
     <Content Include="SystemBackEnd\Order\OrderDetail.aspx" />
     <Content Include="SystemBackEnd\Order\OrderList.aspx" />
+    <Content Include="SystemBackEnd\Order\OrderModify.aspx" />
     <Content Include="SystemBackEnd\Resimbursment\NewReimbursment.aspx" />
     <Content Include="SystemBackEnd\Resimbursment\ReimbursmentDetail.aspx" />
     <Content Include="SystemBackEnd\Resimbursment\ReimbursmentList.aspx" />
@@ -213,6 +214,13 @@
     </Compile>
     <Compile Include="SystemBackEnd\Order\OrderList.aspx.designer.cs">
       <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\Order\OrderModify.aspx.cs">
+      <DependentUpon>OrderModify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\Order\OrderModify.aspx.designer.cs">
+      <DependentUpon>OrderModify.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemBackEnd\Resimbursment\NewReimbursment.aspx.cs">
       <DependentUpon>NewReimbursment.aspx</DependentUpon>

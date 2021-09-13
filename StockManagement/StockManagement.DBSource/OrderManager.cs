@@ -267,5 +267,53 @@ namespace StockManagement.DBSource
                 return null;
             }
         }
+
+
+        public static  bool UpdateDeliverCompleteToComplete (Order order)
+        {
+            if (order.Status != 3)
+                throw new ArgumentException("Status Should Be DeliverComplete!!");
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    Order orderObj = context.Orders.Where(item => item.OrderID == order.OrderID).FirstOrDefault();
+                    orderObj.Status = 5;
+
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+        public static bool UpdateoWaitForReviewedToNotDeliver(Order order)
+        {
+            if (order.Status != 4)
+                throw new ArgumentException("Status Should Be DeliverComplete!!");
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    Order orderObj = context.Orders.Where(item => item.OrderID == order.OrderID).FirstOrDefault();
+                    orderObj.Status = 0;
+                    orderObj.OrderResponsiblePerson = order.OrderResponsiblePerson;
+
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+
     }
 }

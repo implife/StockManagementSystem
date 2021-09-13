@@ -14,12 +14,29 @@
                 $('.arrow').toggleClass('bounceAlpha');
             });
 
+            $('input[class$=btn_Review]').click(function () {
+                var StrID = $(this).parent().parent().attr('id').slice(11)
+                var Submit = StrID + ",Review";
+                $('input[id$=HD_Btn]').val(Submit);
+            });
+
+            $('input[class$=btn_Approve]').click(function () {
+                var StrID = $(this).parent().parent().attr('id').slice(11)
+                var Submit = StrID + ",Approve";
+                $('input[id$=HD_Btn]').val(Submit);
+            });
+
+            $('input[class$=btn_Modify]').click(function () {
+                var StrID = $(this).parent().parent().attr('id').slice(11)
+                var Submit = StrID + ",Modify";
+                $('input[id$=HD_Btn]').val(Submit);
+            });
         })
     </script>
-
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <asp:HiddenField ID="HD_Btn" runat="server" />
     <div class="Switch">
         <div class="tabber">
             <label for="t1">單據審核</label>
