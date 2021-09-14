@@ -73,7 +73,7 @@ namespace StockManagement.DBSource
         /// <param name="serialCode">要增加的目標CD條碼號</param>
         /// <param name="AddSize">要增加的數量</param>
         /// <returns>成功回傳true，反之false</returns>
-        public static bool UpdateTotalStock(Guid serialCode, int AddSize)
+        public static bool UpdateTotalStock(Guid serialCode, int AddSize, bool isCheckGoods = false)
         {
             try
             {
@@ -81,6 +81,8 @@ namespace StockManagement.DBSource
                 {
                     CDStock stockObj = context.CDStocks.Where(item => item.SerialCode == serialCode).FirstOrDefault();
                     stockObj.TotalStock += AddSize;
+                    if(isCheckGoods)
+                        stockObj.InTransitStock -= AddSize;
 
                     context.SaveChanges();
                     return true;

@@ -101,7 +101,7 @@ namespace StockManagement.SystemBackEnd.Order
             List<bool> updateStockIsSuccess = new List<bool>();
             foreach (CheckedGoods item in checkedGoods)
             {
-                bool isSuccess = CDStockManager.UpdateTotalStock(Guid.Parse(item.ItemID), item.ActualQuantity);
+                bool isSuccess = CDStockManager.UpdateTotalStock(Guid.Parse(item.ItemID), item.ActualQuantity, true);
                 updateStockIsSuccess.Add(isSuccess);
             }
 

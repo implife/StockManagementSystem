@@ -38,14 +38,6 @@ namespace StockManagement.ORM.DBModels
                 .Property(e => e.Region)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Order>()
-                .Property(e => e.Seller)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Order>()
-                .Property(e => e.Reason)
-                .IsUnicode(false);
-
             modelBuilder.Entity<UserInfo>()
                 .Property(e => e.Account)
                 .IsUnicode(false);

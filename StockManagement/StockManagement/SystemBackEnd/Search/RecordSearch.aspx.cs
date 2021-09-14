@@ -14,27 +14,126 @@ namespace StockManagement.SystemBackEnd.Search
         public string OrderJSON { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.txtOrderIdSearch.Attributes.Add("placeholder", "輸入單號查詢");
+            this.txtOrderIdSearch.Attributes.Add("autocomplete", "off");
+            this.All.InputAttributes.Add("MyLabel", "顯示全部");
+            this.Week.InputAttributes.Add("MyLabel", "一周內");
+            this.Month.InputAttributes.Add("MyLabel", "一個月內");
+
+
             List<ORM.DBModels.Order> originalOrder = OrderManager.GetOrderList();
 
-            this.OrderJSON = Newtonsoft.Json.JsonConvert.SerializeObject(originalOrder);
-
-
-
-
-
-            // 只選取已完成(status=5)
+            // 只選取已完成(status=5)並按日期排序
             originalOrder = originalOrder.Where(item => item.Status == 5)
-                .OrderBy(o => o.OrderDate).ToList();
+                    .OrderBy(o => o.OrderDate).ToList();
 
-            // 排序
             List<ORM.DBModels.Order> result = new List<ORM.DBModels.Order>();
-            RecursiveSortOrder(originalOrder, result);
+            int sizeInPage = this.ucPager.ItemSizeInPage;
 
-            
-            //int sizeInPage = this.ucPager.ItemSizeInPage;
-            //if (result.Count() > sizeInPage)
-            //    result = result.Take(sizeInPage).ToList();
+            // 將訂單資料傳至前端以利查詢
+            var toClient = originalOrder.Select(item => new { OrderID = item.OrderID });
+            this.OrderJSON = Newtonsoft.Json.JsonConvert.SerializeObject(toClient);
 
+            // PostBack必為搜尋
+            if (IsPostBack)
+            {
+                string searchResultJSON = this.HFSearchResult.Value;
+                SearchRoot[] searchResultAry = Newtonsoft.Json.JsonConvert.DeserializeObject<SearchRoot[]>(searchResultJSON);
+
+                if(searchResultAry == null)
+                {
+                    string radioBehavior = this.HFRangeRdioBtn.Value;
+                    if (radioBehavior == "All")
+                    {
+                        this.Response.Redirect(this.Request.Path);
+                    }
+                    else if (radioBehavior == "Month")
+                    {
+                        this.Response.Redirect(this.Request.Path + "?Action=Month");
+                    }
+                    else if (radioBehavior == "Week")
+                    {
+                        this.Response.Redirect(this.Request.Path + "?Action=Week");
+                    }
+                    else
+                    {
+                        this.Response.Redirect(this.Request.Path);
+                    }
+                }
+
+                result = searchResultAry.Select(re =>
+                {
+                    return OrderManager.GetOrderByOrderID(Guid.Parse(re.item.OrderID));
+                }).ToList();
+
+                // 將不在List裡的關聯單加入
+                result = this.SearchReplenishNotInList(result);
+
+                // 排序
+                result = result.OrderBy(o => o.OrderDate).ToList();
+
+                List<ORM.DBModels.Order> temp = new List<ORM.DBModels.Order>();
+                this.RecursiveSortOrder(result, temp);
+                result = temp;
+
+                // 搜尋結果(加入聯單並排序後)放進Session
+                this.Session["OrderSearchObject"] = result;
+                this.Session["OrderSearchText"] = this.txtOrderIdSearch.Text;
+
+                // 重新導頁，避免Page參數問題
+                this.Response.Redirect(this.Request.Path + "?Action=Search");
+            }
+            else
+            {
+                // 搜尋模式
+                if (this.Request.QueryString["Action"] == "Search")
+                {
+                    result = this.Session["OrderSearchObject"] as List<ORM.DBModels.Order>;
+                    this.txtOrderIdSearch.Text = this.Session["OrderSearchText"] as string;
+
+                    this.ucPager.TotalItemSize = result.Count;
+                    this.ucPager.isSearch = true;
+
+                }
+                else if(this.Request.QueryString["Action"] == "Month")
+                {
+                    List<ORM.DBModels.Order> temp = originalOrder.Where(item => item.OrderDate >= DateTime.Now.AddMonths(-1)).ToList();
+                    temp = this.SearchReplenishNotInList(temp).OrderBy(o => o.OrderDate).ToList();
+
+                    this.RecursiveSortOrder(temp, result);
+
+                    this.Month.Checked = true;
+                    this.ucPager.TotalItemSize = result.Count;
+                }
+                else if(this.Request.QueryString["Action"] == "Week")
+                {
+                    List<ORM.DBModels.Order> temp = originalOrder.Where(item => item.OrderDate >= DateTime.Now.AddDays(-7)).ToList();
+                    temp = this.SearchReplenishNotInList(temp).OrderBy(o => o.OrderDate).ToList();
+
+                    this.RecursiveSortOrder(temp, result);
+
+                    this.Week.Checked = true;
+                    this.ucPager.TotalItemSize = result.Count;
+                }
+                // 剛進頁面或顯示全部情況下跳頁
+                else
+                {
+                    // 排序
+                    this.RecursiveSortOrder(originalOrder, result);
+                    this.ucPager.TotalItemSize = result.Count;
+
+                    this.Session["OrderSearchObject"] = null;
+                    this.Session["OrderSearchText"] = null;
+
+                    this.All.Checked = true;
+                }
+            }
+
+            // 切割出特定頁的資料，並去頭加尾
+            int currentPage = this.ucPager.GetCurrentPage();
+            result = this.FindItemsInPage((currentPage - 1) * 10, sizeInPage, result);
+
+            // Render HTML
             this.ltlResultList.Text = "";
             this.ltlSearchTabPane.Text = "";
             bool allowTextStyle = false;
@@ -74,6 +173,8 @@ namespace StockManagement.SystemBackEnd.Search
                     $"<p class='mb-1'>到貨日期：{orderItem.ArrivalDate?.ToString("yyyy - MM - dd")}</p>" +
                     $"<p class='mb-1'>總金額：{GetTotalPrice(orderItem)}</p>" +
                     $"<p class='mb-1'>負責主管：{UserInfoManager.GetUserInfoByUserID(orderItem.OrderResponsiblePerson).Name}</p>" +
+                    $"<p class='mb-1'>歸檔主管：{UserInfoManager.GetUserInfoByUserID(orderItem.ArchiveResponsiblePerson).Name}</p>" +
+                    this.RenderMainOrder(orderItem) +
                     $"<div class='accordion accordion-flush' id='accordion{orderItem.OrderID}'>" +
                     $"<div class='accordion-item'>" +
                     $"<h2 class='accordion-header'>" +
@@ -115,12 +216,12 @@ namespace StockManagement.SystemBackEnd.Search
                     $"<div class='accordion-body'>" +
                     $"<p class='mb-1'>到貨日期：{orderItem.ArrivalDate?.ToString("yyyy - MM - dd")}</p>" +
                     $"<p class='mb-1'>點貨人員：{UserInfoManager.GetUserInfoByUserID(orderItem.ArrivalResponsiblePerson).Name}</p>" +
-                    $"<p class='mb-1'>關連訂單：{RID}</p>" +
+                    $"<p class='mb-1'>關連訂單：{RID.Split('-')[0]}</p>" +
                     this.RenderDeliverListUL(OrderManager.GetDetailByOrder(orderItem)) +
                     $"</div></div></div></div></div>";
             }
 
-            this.ucPager.TotalItemSize = result.Count;
+
             this.ucPager.Bind();
         }
 
@@ -135,7 +236,7 @@ namespace StockManagement.SystemBackEnd.Search
             foreach (OrderSalesDetail detailItem in frontThree)
             {
                 var err = errorList?.Where(e => e.SerialCode == detailItem.SerialCode).FirstOrDefault();
-                if(err == null)
+                if (err == null)
                 {
                     str += $"<li class='list-group-item list-group-item-success deliverCheckListItem'>" +
                         $"<span class='myCheck'></span>{CDManager.GetCDBySerialCode(detailItem.SerialCode).Name}</li>";
@@ -218,10 +319,20 @@ namespace StockManagement.SystemBackEnd.Search
             return sum;
         }
 
+        // TabPane資訊列的主單資訊
+        private string RenderMainOrder(ORM.DBModels.Order order)
+        {
+            string result = "";
+            if (order.MainOrder != null && order.MainOrder != order.OrderID)
+                result = $"<p class='mb-1'>主單：{order.MainOrder.ToString().Split('-')[0]}</p>";
+
+            return result;
+        }
+
         // 利用遞迴對Order List做排序，包括處理補貨單
         private void RecursiveSortOrder(List<ORM.DBModels.Order> original, List<ORM.DBModels.Order> result)
         {
-            if(original.Count() != 0)
+            if (original.Count() != 0)
             {
                 RecursiveSortReplenish(original, result, original[0]);
                 RecursiveSortOrder(original, result);
@@ -232,7 +343,7 @@ namespace StockManagement.SystemBackEnd.Search
         {
             result.Add(item);
             original.Remove(item);
-            if(item.ReplenishID != null)
+            if (item.ReplenishID != null)
             {
                 ORM.DBModels.Order next = original.Where(o => o.OrderID == item.ReplenishID).FirstOrDefault();
                 if (next == null)
@@ -240,5 +351,113 @@ namespace StockManagement.SystemBackEnd.Search
                 RecursiveSortReplenish(original, result, next);
             }
         }
+
+        // 尋找不在List裡的關連訂單
+        private List<ORM.DBModels.Order> SearchReplenishNotInList(List<ORM.DBModels.Order> original)
+        {
+            List<ORM.DBModels.Order> result = new List<ORM.DBModels.Order>();
+            List<Guid> temp = new List<Guid>();
+
+            foreach (ORM.DBModels.Order item in original)
+            {
+                if (item.MainOrder == null)
+                    result.Add(item);
+                else
+                {
+                    if (!temp.Contains((Guid)item.MainOrder))
+                        temp.Add((Guid)item.MainOrder);
+                }
+            }
+
+            List<ORM.DBModels.Order> AllList = OrderManager.GetOrderList();
+            foreach (Guid item in temp)
+            {
+                result.AddRange(AllList.Where(i => i.MainOrder == item).ToList());
+            }
+
+            return result;
+
+
+            //foreach (ORM.DBModels.Order orderItem in original)
+            //{
+            //    if(orderItem.ReplenishID != null)
+            //    {
+            //        if(!original.Any(item => item.OrderID == orderItem.ReplenishID))
+            //        {
+            //            if (!result.Any(item => item.OrderID == orderItem.ReplenishID))
+            //            {
+            //                List<ORM.DBModels.Order> add = SearchRecursive(orderItem);
+            //                result.AddRange(add);
+            //            }
+            //        }
+            //    }
+            //}
+            //return result;
+        }
+
+        // 尋找不在List裡的關連訂單Recursive
+        private List<ORM.DBModels.Order> SearchRecursive(ORM.DBModels.Order test)
+        {
+            List<ORM.DBModels.Order> result = new List<ORM.DBModels.Order>();
+
+            if (test.ReplenishID != null)
+            {
+                result.AddRange(SearchRecursive(OrderManager.GetOrderByOrderID((Guid)test.ReplenishID)));
+            }
+            else
+            {
+                result.Add(test);
+            }
+            return result;
+        }
+
+        // 切割出特定頁的資料，並去頭加尾
+        private List<ORM.DBModels.Order> FindItemsInPage(int startIndex, int sizeInPage, List<ORM.DBModels.Order> original)
+        {
+            List<ORM.DBModels.Order> result = new List<ORM.DBModels.Order>();
+            if (original.Count() == 0)
+                return result;
+            if (startIndex >= original.Count())
+                startIndex = 1;
+
+            result = original.Skip(startIndex).Take(sizeInPage).ToList();
+            this.DeleteHeadAssociation(result);
+            this.AddTailAssociation(result);
+
+            return result;
+        }
+
+        // 不完整的頭都去掉
+        private void DeleteHeadAssociation(List<ORM.DBModels.Order> list)
+        {
+            if (list[0].MainOrder != null && list[0].MainOrder != list[0].OrderID)
+            {
+                list.RemoveAt(0);
+                DeleteHeadAssociation(list);
+            }
+        }
+
+        // 不完整的尾加上來
+        private void AddTailAssociation(List<ORM.DBModels.Order> list)
+        {
+            if (list[list.Count - 1].ReplenishID != null)
+            {
+                list.Add(OrderManager.GetOrderByOrderID((Guid)list[list.Count - 1].ReplenishID));
+                AddTailAssociation(list);
+            }
+        }
+
+        class SearchRoot
+        {
+            public Item item { get; set; }
+            public int refIndex { get; set; }
+            public float score { get; set; }
+        }
+
+        class Item
+        {
+            public string OrderID { get; set; }
+        }
+
     }
 }

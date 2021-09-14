@@ -30,7 +30,12 @@ namespace StockManagement
         {
             // 某些特定頁面須檢查是否為Manager
             string[] pages = {
-                "/SystemBackEnd/Order/NewOrder.aspx"};
+                "/SystemBackEnd/Order/NewOrder.aspx",
+                "/SystemBackEnd/Order/NewProduct.aspx",
+                "/SystemBackEnd/Order/OrderModify.aspx",
+                "/SystemBackEnd/UserInfo/NewStaff.aspx",
+                "/SystemBackEnd/Approve"
+            };
 
             var request = HttpContext.Current.Request;
             var response = HttpContext.Current.Response;
@@ -60,7 +65,6 @@ namespace StockManagement
                             response.End();
                             return;
                         }
-
                     }
                 }
 

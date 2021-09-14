@@ -29,6 +29,7 @@ namespace StockManagement.DBSource
 
             if (order.OrderResponsiblePerson == null)
                 throw new ArgumentException("OrderResponsiblePerson should not be null");
+
             try
             {
                 using (ContextModel context = new ContextModel())
@@ -43,6 +44,13 @@ namespace StockManagement.DBSource
                         d.Type = 0;
                         return d;
                     });
+
+                    // 增加在途庫存
+                    //foreach (OrderSalesDetail de in details)
+                    //{
+                    //    var stockObj = context.CDStocks.Where(item => item.SerialCode == de.SerialCode).FirstOrDefault();
+                    //    stockObj.InTransitStock += de.Quantity;
+                    //}
 
                     context.Orders.Add(order);
                     context.OrderSalesDetails.AddRange(detailResult);
@@ -91,7 +99,8 @@ namespace StockManagement.DBSource
                         OrderID = Guid.NewGuid(),
                         OrderDate = DateTime.Now,
                         Seller = originalOrder.Seller,
-                        Status = 4
+                        Status = 4,
+                        MainOrder = originalOrder.MainOrder == null ? originalOrder.OrderID : originalOrder.MainOrder
                     };
 
                     // 新訂單的Order Detail
@@ -108,6 +117,8 @@ namespace StockManagement.DBSource
                     originalObj.Status = 2;
                     originalObj.ArrivalDate = DateTime.Now;
                     originalObj.ArrivalResponsiblePerson = originalOrder.ArrivalResponsiblePerson;
+                    if (originalObj.MainOrder == null)
+                        originalObj.MainOrder = originalObj.OrderID;
 
                     // 異常資料
                     var errResult = errorOrder.Select(item =>
@@ -179,6 +190,14 @@ namespace StockManagement.DBSource
                     orderObj.Status = 1;
                     orderObj.PredictedArrivalDate = order.PredictedArrivalDate;
 
+                    // 增加在途庫存
+                    List<OrderSalesDetail> details = OrderManager.GetDetailByOrder(order);
+                    foreach (OrderSalesDetail de in details)
+                    {
+                        var stockObj = context.CDStocks.Where(item => item.SerialCode == de.SerialCode).FirstOrDefault();
+                        stockObj.InTransitStock += de.Quantity;
+                    }
+
                     context.SaveChanges();
                     return true;
                 }
@@ -193,13 +212,24 @@ namespace StockManagement.DBSource
         /// 取得所有訂單的List
         /// </summary>
         /// <returns></returns>
-        public static List<Order> GetOrderList()
+        public static List<Order> GetOrderList(bool month = false, bool week = false)
         {
             try
             {
                 using (ContextModel context = new ContextModel())
                 {
-                    return context.Orders.ToList();
+                    if (month)
+                    {
+                        DateTime monthAgo = DateTime.Now.AddMonths(-1);
+                        return context.Orders.Where(item => item.OrderDate >= monthAgo).ToList();
+                    }
+                    else if (week)
+                    {
+                        DateTime weekAgo = DateTime.Now.AddDays(-7);
+                        return context.Orders.Where(item => item.OrderDate >= weekAgo).ToList();
+                    }
+                    else
+                        return context.Orders.ToList();
                 }
             }
             catch (Exception ex)
@@ -267,5 +297,53 @@ namespace StockManagement.DBSource
                 return null;
             }
         }
+
+
+        public static  bool UpdateDeliverCompleteToComplete (Order order)
+        {
+            if (order.Status != 3)
+                throw new ArgumentException("Status Should Be DeliverComplete!!");
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    Order orderObj = context.Orders.Where(item => item.OrderID == order.OrderID).FirstOrDefault();
+                    orderObj.Status = 5;
+
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+        public static bool UpdateoWaitForReviewedToNotDeliver(Order order)
+        {
+            if (order.Status != 4)
+                throw new ArgumentException("Status Should Be DeliverComplete!!");
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    Order orderObj = context.Orders.Where(item => item.OrderID == order.OrderID).FirstOrDefault();
+                    orderObj.Status = 0;
+                    orderObj.OrderResponsiblePerson = order.OrderResponsiblePerson;
+
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+
     }
 }

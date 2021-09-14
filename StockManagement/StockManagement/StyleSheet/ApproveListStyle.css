@@ -259,8 +259,15 @@ svg {
         border-color: #f5dbc3;
     }
 
-
-
+.btn_Approve {
+    color: #6A9657;
+    border-color: #ABC69F;
+}
+    .btn_Approve:hover {
+        background-color: #73ce8e;
+        color: #ffffff;
+        border-color: #cff7db;
+    }
 /*--------------------Animated Arrow Style------------------------*/
 .myCheck {
     display: inline-block;
