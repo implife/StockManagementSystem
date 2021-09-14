@@ -212,13 +212,24 @@ namespace StockManagement.DBSource
         /// 取得所有訂單的List
         /// </summary>
         /// <returns></returns>
-        public static List<Order> GetOrderList()
+        public static List<Order> GetOrderList(bool month = false, bool week = false)
         {
             try
             {
                 using (ContextModel context = new ContextModel())
                 {
-                    return context.Orders.ToList();
+                    if (month)
+                    {
+                        DateTime monthAgo = DateTime.Now.AddMonths(-1);
+                        return context.Orders.Where(item => item.OrderDate >= monthAgo).ToList();
+                    }
+                    else if (week)
+                    {
+                        DateTime weekAgo = DateTime.Now.AddDays(-7);
+                        return context.Orders.Where(item => item.OrderDate >= weekAgo).ToList();
+                    }
+                    else
+                        return context.Orders.ToList();
                 }
             }
             catch (Exception ex)
