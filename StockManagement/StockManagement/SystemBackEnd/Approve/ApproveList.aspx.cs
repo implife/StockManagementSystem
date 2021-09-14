@@ -93,6 +93,7 @@ namespace StockManagement.SystemBackEnd.Approve
                     switch (btn_Order_behavior)
                     {
                         case "Review":
+                            order.ArchiveResponsiblePerson = guid;
                             DBSource.OrderManager.UpdateDeliverCompleteToComplete(order);
                             break;
                         case "Modify":

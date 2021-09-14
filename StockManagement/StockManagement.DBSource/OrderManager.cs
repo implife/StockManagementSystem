@@ -86,7 +86,7 @@ namespace StockManagement.DBSource
                 throw new ArgumentException("Quanyiyt must larger than 0.");
 
 
-            if(originalOrder.ArrivalResponsiblePerson == null)
+            if (originalOrder.ArrivalResponsiblePerson == null)
                 throw new ArgumentException("ArrivalResponsiblePerson should not be null");
 
             try
@@ -150,7 +150,7 @@ namespace StockManagement.DBSource
         {
             if (order.Status != 1)
                 throw new ArgumentException("Status should be Delivering.");
-            if(order.ArrivalResponsiblePerson == null)
+            if (order.ArrivalResponsiblePerson == null)
                 throw new ArgumentException("ArrivalResponsiblePerson should not be null");
 
             try
@@ -288,7 +288,7 @@ namespace StockManagement.DBSource
         }
 
 
-        public static  bool UpdateDeliverCompleteToComplete (Order order)
+        public static bool UpdateDeliverCompleteToComplete(Order order)
         {
             if (order.Status != 3)
                 throw new ArgumentException("Status Should Be DeliverComplete!!");
@@ -296,14 +296,30 @@ namespace StockManagement.DBSource
             {
                 using (ContextModel context = new ContextModel())
                 {
-                    Order orderObj = context.Orders.Where(item => item.OrderID == order.OrderID).FirstOrDefault();
-                    orderObj.Status = 5;
+
+                    if (order.MainOrder != null)
+                    {
+                        List<Order> MainOrderList =  context.Orders.Where(obj => obj.MainOrder == order.MainOrder).ToList();
+                        
+                        foreach(var mainList in MainOrderList)
+                        {
+                            mainList.ArchiveResponsiblePerson = order.ArchiveResponsiblePerson;
+                            mainList.Status = 5;
+                        }
+                    }
+                    else
+                    {
+                        Order orderObj = context.Orders.Where(item => item.OrderID == order.OrderID).FirstOrDefault();
+                        orderObj.ArchiveResponsiblePerson = order.ArchiveResponsiblePerson;
+                        orderObj.Status = 5;
+                    }
+
 
                     context.SaveChanges();
                     return true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
