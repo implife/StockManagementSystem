@@ -75,10 +75,12 @@ namespace StockManagement.SystemBackEnd.Search
 						Region = resultItem.item.Region,
 						PublicationDate = resultItem.item.PublicationDate
 	                }).ToList();
-
 					this.ucPager.TotalItemSize = CDSList.Count; //.count 取得這個List 比數的總數
 					int pagenb = this.ucPager.GetCurrentPage();
-					CDSList =CDSList.GetRange(pagenb * 10 - 10, this.ucPager.ItemSizeInPage);
+					if (pagenb == this.ucPager.GetTotalPage())
+						CDSList = CDSList.GetRange(pagenb * 10 - 10, CDSList.Count - (pagenb * 10 - 10));
+					else 
+						CDSList = CDSList.GetRange(pagenb * 10 - 10, this.ucPager.ItemSizeInPage);
 
 					this.ucPager.isSearch = true;
 
