@@ -5,7 +5,6 @@
     <script src="../../Scripts/customize/jquery-3.6.0.min.js"></script>
     <%-- 自定義的css和js --%>
     <link href="../../StyleSheet/OrderList.css" rel="stylesheet" />
-
     <script src="../../Scripts/customize/OrderList.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -49,9 +48,9 @@
             </div>
         </div>
     </div>
-    <div class="mt-1">
-        <asp:Button ID="btnNewOrder" runat="server" Text="新增訂單" CssClass="btn btn-outline-primary" OnClick="btnNewOrder_Click" />
-        <asp:Button ID="btnPastOrder" runat="server" Text="歷史訂單" CssClass="btn btn-outline-secondary" />
+    <div class="mt-1 btn_Div">
+        <asp:Button ID="btnNewOrder" runat="server" Text="新增訂單" CssClass="btn btn-outline-primary btn_AddOrder" OnClick="btnNewOrder_Click" />
+        <asp:Button ID="btnPastOrder" runat="server" Text="歷史訂單" CssClass="btn btn-outline-secondary btn_OrderHistory" />
     </div>
 
 </asp:Content>

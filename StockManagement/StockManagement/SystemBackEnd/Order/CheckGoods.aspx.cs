@@ -83,7 +83,7 @@ namespace StockManagement.SystemBackEnd.Order
                                             $"<input class='form-control' id='ErrRemark{cdItem.SerialCode}' type='text' name='ErrRemark'>" +
                                          $"</div>" +
                                     $"</div>" +
-                                    $"<button type='button' class='btn btn-outline-primary' style='margin-left: 70%; margin-top: 15px;'>確定</button>" +
+                                    $"<button type='button' class='btn btn-outline-primary btn_Check' style='margin-left: 70%; margin-top: 15px;'>確定</button>" +
                             $"</div></div>";
                     }
                 }

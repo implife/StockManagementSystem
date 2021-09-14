@@ -33,7 +33,7 @@
                 } else {
                     status = 2;
                 }
-                var result = level+","+status;
+                var result = level + "," + status;
                 $('input[ID$="HDField"]').val(result)
             })
         })
@@ -41,6 +41,9 @@
 
     </script>
     <style>
+        body{
+            background-color:#DDF5EC;
+        }
         td {
             padding: unset;
             margin-bottom: 0.1rem;
@@ -65,43 +68,62 @@
             border-color: #DD7B5C;
             box-shadow: 0 0 0 0.18rem rgb(225 83 97 / 50%);
         }
+
+        .btn_Update {
+            color: #ffff;
+            background-color: #78C979;
+            border-color: #78C979;
+        }
+
+            .btn_Update:hover {
+                color: #ffff;
+                background-color: #ECA37A;
+                border-color: #ECA37A;
+            }
+        .containerDiv2{
+            width:90%;
+            margin-left:auto;
+            margin-right:auto;
+
+        }
     </style>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="table table-hover">
-        <thead>
-            <tr class="tHeadTr">
-                <td>
-                    <p>姓名</p>
-                </td>
-                <td>
-                    <p>血型</p>
-                </td>
-                <td>
-                    <p>電話</p>
-                </td>
-                <td>
-                    <p>等級</p>
-                </td>
-                <td>
-                    <p>職稱</p>
-                </td>
-                <td>
-                    <p>狀態</p>
-                </td>
-                <td>
-                    <p>電子信箱</p>
-                </td>
-                <td>
-                    <p>到職日期</p>
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            <asp:Literal ID="ltlStaffEditor" runat="server" EnableViewState="false"></asp:Literal>
-        </tbody>
-    </table>
-    <asp:HiddenField ID="HDField" runat="server" />
-    <asp:Button ID="btnUpdate" runat="server" Text="更改" OnClick="Button1_Click"/>
+    <div class="containerDiv2">
+        <table class="table table-hover">
+            <thead>
+                <tr class="tHeadTr">
+                    <td>
+                        <p>姓名</p>
+                    </td>
+                    <td>
+                        <p>血型</p>
+                    </td>
+                    <td>
+                        <p>電話</p>
+                    </td>
+                    <td>
+                        <p>等級</p>
+                    </td>
+                    <td>
+                        <p>職稱</p>
+                    </td>
+                    <td>
+                        <p>狀態</p>
+                    </td>
+                    <td>
+                        <p>電子信箱</p>
+                    </td>
+                    <td>
+                        <p>到職日期</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <asp:Literal ID="ltlStaffEditor" runat="server" EnableViewState="false"></asp:Literal>
+            </tbody>
+        </table>
+        <asp:HiddenField ID="HDField" runat="server" />
+        <asp:Button ID="btnUpdate" class="btn btn_Update" runat="server" Text="更改" OnClick="Button1_Click" />
+    </div>
 </asp:Content>

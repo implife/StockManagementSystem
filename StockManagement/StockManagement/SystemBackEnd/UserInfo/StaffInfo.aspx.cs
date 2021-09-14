@@ -54,7 +54,15 @@ namespace StockManagement.SystemBackEnd.UserInfo
                 }
 
                 string Editor = UserInfoManager.isManager(guid) ? $"<a href='/SystemBackend/UserInfo/Staffeditor.aspx?ID={user.UserID}'><span class='badge'>編輯</span></a>" : "";
-
+                
+                if(UserInfoManager.isManager(guid) == true)
+                {
+                    this.btnNewStaff.Visible = true;
+                }
+                else
+                {
+                    this.btnNewStaff.Visible = false;
+                }
                 this.ltlUserList.Text +=
                     $"<tr>" +
                     $"<td>{user.Name}</td>" +
