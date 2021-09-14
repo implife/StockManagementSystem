@@ -23,12 +23,12 @@ namespace StockManagement.SystemBackEnd.Search
 
 			
 
-			this.txtSearch.Attributes.Add("data-bs-toggle", "dropdown");
+			this.txtSearch.Attributes.Add("data-bs-toggle", "dropdown"); //asp控制項沒有這些功能 要後臺手動加
 			this.txtSearch.Attributes.Add("autocomplete", "off");
 
 
 			string query = this.Request.QueryString["Page"];
-			int pagenb = Convert.ToInt32(query);
+			//int pagenb = Convert.ToInt32(query);
 
 			//List<CDStock> CDSList = new List<CDStock>();
 
@@ -36,8 +36,10 @@ namespace StockManagement.SystemBackEnd.Search
 
 			if (IsPostBack)//如果送表單回來
 			{
+				
 				string JAresult = this.btnhappenhf.Value; //將取得的結果值，用string變數去接
 				Rootobject[] Searchresultary = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject[]>(JAresult); //反序列化變成Class
+				this.Session["StockSearchObject"] = Searchresultary;
 
 				CDSList = Searchresultary.Take(10).Select(re => new CompactDisc() //用CDSList去接陣列(要先轉成Llist)一頁10筆(take)
 				{
@@ -50,25 +52,48 @@ namespace StockManagement.SystemBackEnd.Search
 				}).ToList();
 
 				this.ucPager.TotalItemSize = Searchresultary.Length;
+				int pagenb = this.ucPager.GetCurrentPage();
+
+				this.ucPager.isSearch = true;
 				this.ucPager.Bind();
 			}
+
 			else 
 			{
 
-				if (query == null)
-				{
+				
 
-					CDSList = CDManager.GetCDByIndex(0, 10);
+				if (this.Request.QueryString["Action"] == "Search")
+				{
+					Rootobject[] sessionSearchResult = this.Session["StockSearchObject"] as Rootobject[];
+
+					CDSList = sessionSearchResult.Select(resultItem => new CompactDisc() { 
+						SerialCode = Guid.Parse(resultItem.item.SerialCode),
+						Name = resultItem.item.Name,
+						Brand = resultItem.item.Brand,
+						Artist = resultItem.item.Artist,
+						Region = resultItem.item.Region,
+						PublicationDate = resultItem.item.PublicationDate
+	                }).ToList();
+
+					this.ucPager.TotalItemSize = CDSList.Count; //.count 取得這個List 比數的總數
+					int pagenb = this.ucPager.GetCurrentPage();
+					CDSList =CDSList.GetRange(pagenb * 10 - 10, this.ucPager.ItemSizeInPage);
+
+					this.ucPager.isSearch = true;
+
+				}
+				else 
+				{
+                  
+			      this.ucPager.TotalItemSize = CDStockManager.GetStockSize();
+					int pagenb = this.ucPager.GetCurrentPage();
+					CDSList = CDManager.GetCDByIndex(pagenb * 10 - 10, this.ucPager.ItemSizeInPage) ;
 
 
 				}
-				else
-				{
-					CDSList = CDManager.GetCDByIndex(pagenb * 10 - 10, 10);
-
-				}
-
-				this.ucPager.TotalItemSize = CDStockManager.GetStockSize();
+				
+				
 				this.ucPager.Bind();
 			}
 
@@ -100,7 +125,6 @@ namespace StockManagement.SystemBackEnd.Search
 							$"<td id=\"tdlist\" >{canused}</td>" +
 							$"<td id=\"tdlist\">{CDss.TotalStock}</td>" +
 							$"<td id=\"tdlist\">{CDss.InTransitStock }</td>" +
-							$"<td id=\"tdlist\">{ CDss.UnreviewedStock}</td>" +
 							$"<td >{CD.Artist }</td>" +
 							$"<td>{ CD.Brand}</td>" +
 							$"<td >{ CD.Region}</td>" +
@@ -119,6 +143,7 @@ namespace StockManagement.SystemBackEnd.Search
 
 		public class Rootobject
 		{
+			//fuzzysearch 的結果格式
 			public Item item { get; set; }
 			public int refIndex { get; set; }
 			public float score { get; set; }
@@ -126,6 +151,7 @@ namespace StockManagement.SystemBackEnd.Search
 
 		public class Item
 		{
+			//fuzzysearch 的結果格式
 			public string SerialCode { get; set; }
 			public string Name { get; set; }
 			public string Brand { get; set; }

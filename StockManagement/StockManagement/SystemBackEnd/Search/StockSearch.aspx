@@ -6,11 +6,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 	
+    
     <link href="../../Content/bootstrap.css" rel="stylesheet" />
     <script src="../../Scripts/bootstrap.js"></script>
     <script src="../../Scripts/bootstrap.bundle.min.js"></script>
     <script src="../../Scripts/customize/fuse.js"></script>
     <script src="../../Scripts/customize/jquery-3.6.0.min.js"></script>
+    <link href="../../StyleSheet/StockSearchStyle.css" rel="stylesheet" />
   <script>
       const Searchjson = '<%=this.Searchjson%>';
       const Searchary = JSON.parse(Searchjson);
@@ -18,8 +20,8 @@
 	  const options = {
 		  includeScore: true,
 		  keys: [
-			  { name: "Name", weight:0.6 },
-			  { name: "Artist", weight: 0.3 },
+			  { name: "Name", weight:99 },
+			  { name: "Artist", weight: 0.5 },
 			  { name: "Region", weight: 0.05},
 			  { name: "Brand", weight: 0.05 }
 		  ]
@@ -63,117 +65,7 @@
  
   </script>
     <style>
-        body {
-    background-color: #DDF5EC;
-       }
-
-      #inp{
-        width: 34% ;
-      }
-    
-      #tabl{
-        width:98% ;margin-left:1%;margin-top:1.5%;margin-right:1%;
-   
-      }
-
-      tr:nth-child(even){background-color:  #ffecda}
-      tr:nth-child(odd){background-color:#F6FFFC}
-
-        #ucPagermove {
-            margin-left:40%;
-            margin-top:3.5%;
-            
-        }
-
-        .shl {
-            margin-left:3%;
-            margin-top:2%;
-        }
-
-        .shb {
-            margin-top:2%;
-        }
-
-        #showall {
-            height:38.5px;
-            margin-top:-0.1%;
-            margin-bottom:0.1%;
-            margin-left:0.8%;
-           
-            }
-
-        #ContentPlaceHolder1_txtSearch {
-             height:37.5px;
-             width:325px;
-             margin-left:0.79%;
-             margin-top:1.1%;
-             border-radius: 3px;
- 
-           
-      
-        }
-        #ContentPlaceHolder1_btnSearch {
-             height:38.5px;
-             margin-top:-0.1%;
-             margin-bottom:0.1%;
-             margin-left:0.5%;
-             width:70px;
-        }
-
-
-        #CDN {
-            text-align:left;
-        }
-      
-        
-        #tdlist {
-             text-align:center;
-             padding-right:2.7%;
-             padding-left:1%;
-        }
-        #dropdownSearch {
-            width:325px;
-            
-          
-            
-
-        }
-
-     
-
-        .lishow:hover {
-           background-color:rgb(208 208 208 / 0.54);
-           
-        }
-
-        .lishow {
-            margin-left:1%;
-            margin-right:1%;
-            padding-top:5%;
-            padding-bottom:5%;
-            padding-left:4%;
-            padding-right:5%;
-            
-            list-style-position: outside;
-        }
-
-        .form-control {
-        display:inline;
        
-        }
-
-       .btn-outline-primary {
-        color: #FF8040;	
-        border-color: #FF8040;
-       
-       }
-
-        .btn-outline-primary:hover {
-           background-color: #FF8040;
-           border-color: #FF8040;
-        }
-
-   
 
     </style>
 </asp:Content>
@@ -210,7 +102,6 @@
                             <th scope="col" >可用庫存</th>
                             <th scope="col" >總庫存</th>
                             <th scope="col" >在途庫存</th>
-                            <th scope="col" >待審核</th>
                             <th scope="col" >歌手名稱</th>
                             <th scope="col">發行公司</th>
                             <th scope="col"id="threg">地區</th>
