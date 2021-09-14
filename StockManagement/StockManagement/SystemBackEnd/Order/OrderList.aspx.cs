@@ -462,6 +462,8 @@ namespace StockManagement.SystemBackEnd.Order
             else
             {
                 ORM.DBModels.Order next = original.Where(i => i.OrderID == item.ReplenishID).FirstOrDefault();
+                if (next == null)
+                    throw new Exception("Next is NULL.");
                 RecursiveOrderSort(result, original, next);
             }
             return;

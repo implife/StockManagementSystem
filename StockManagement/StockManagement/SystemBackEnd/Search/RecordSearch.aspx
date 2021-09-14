@@ -14,9 +14,14 @@
             background-color: #ddf5ec;
         }
 
+        #OrderListAndTabPane{
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 80vh;
+        }
 
         #OrderContainer {
-            height: 85vh;
+            /*height: 85vh;*/
             margin-left: 2%;
         }
 
@@ -69,6 +74,10 @@
             border-bottom: 3px solid #78b13f;
             border-right: 3px solid #78b13f;
             margin: 0 8px;
+        }
+
+        .pagination{
+            margin-left: 2%;
         }
 
         /* #region Search Dropdown */
@@ -389,7 +398,7 @@
         }
 
         .radio input:before {
-            content: attr(label);
+            content: attr(MyLabel);
             display: inline-block;
             text-align: center;
             width: 100%;
@@ -475,7 +484,6 @@
                     !$(e.target).is('.dropdownSearch')) {
                     $('.dropdownSearch').removeClass('dropdowmShow');
                 }
-
             });
 
             // 搜尋欄事件
@@ -495,6 +503,12 @@
                 $('input[id$=txtOrderIdSearch]').val($(this).children('a').text());
                 fuseSearch($('input[id$=txtOrderIdSearch]').val());
             })
+
+            // 顯示範圍的Radio Button
+            $('input[type=radio][name$=DisplayRange]').change(function () {
+                $('input[type=hidden][id$=HFRangeRdioBtn]').val($(this).val());
+                $('form').submit();
+            });
         })
     </script>
 
@@ -502,7 +516,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-sm-12 col-md-11" id="OrderContainer">
 
-        <ul class="nav nav-tabs">
+        <%--<ul class="nav nav-tabs">
             <li class="nav-item">
                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#OrderTab"
                     type="button">
@@ -518,38 +532,40 @@
             </li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane fade show active" id="OrderTab">
-                <div class="row">
-                    <div class="mb-3 col-11 mt-1">
+            <div class="tab-pane fade show active" id="OrderTab">--%>
+        <div class="row">
+            <div class="mb-3 col-11 mt-1">
 
-                        <asp:TextBox ID="txtOrderIdSearch" runat="server" CssClass="form-control dropdownSearchInput"></asp:TextBox>
+                <asp:TextBox ID="txtOrderIdSearch" runat="server" CssClass="form-control dropdownSearchInput"></asp:TextBox>
                         
-                        <ul class="dropdownSearch" id="dropdownSearch">
+                <ul class="dropdownSearch" id="dropdownSearch">
 
-                        </ul>
+                </ul>
 
-                        <%-- 將搜尋結果傳回伺服器的Hidden Field --%>
-                        <asp:HiddenField ID="HFSearchResult" runat="server" />
+                <%-- 將搜尋結果傳回伺服器的Hidden Field --%>
+                <asp:HiddenField ID="HFSearchResult" runat="server" />
 
-                        <asp:Button ID="btnSearch" runat="server" Text="查詢" CssClass="btn btn-outline-success" />
+                <asp:Button ID="btnSearch" runat="server" Text="查詢" CssClass="btn btn-outline-success" />
+                <div class="radio">
+                    <asp:RadioButton ID="All" runat="server" GroupName="DisplayRange"/>
+                    <asp:RadioButton ID="Week" runat="server" GroupName="DisplayRange" />
+                    <asp:RadioButton ID="Month" runat="server" GroupName="DisplayRange"  />
 
-                        <div class="radio">
-                            <input label="顯示全部" type="radio" id="male" name="gender" value="male" checked>
-                            <input label="一周內" type="radio" id="female" name="gender" value="female">
-                            <input label="一個月內" type="radio" id="other" name="gender" value="other">
-                        </div>
-                    </div>
+                    <%-- Radio button按下時將Radio資訊放進HF --%>
+                    <asp:HiddenField ID="HFRangeRdioBtn" runat="server" />
                 </div>
+            </div>
+               <%-- </div>
             </div>
             <div class="tab-pane fade" id="SalesTab">
                 <h4>銷貨單查詢</h4>
             </div>
             <div class="tab-pane fade" id="ReimbueseTab">
                 <h4>報銷單查詢</h4>
-            </div>
+            </div>--%>
         </div>
 
-        <div class="row">
+        <div class="row" id="OrderListAndTabPane">
             <div class="col-7">
                 <div class="list-group" id="OrderListGroup">
                     <a class="list-group-item disabled" href="#">

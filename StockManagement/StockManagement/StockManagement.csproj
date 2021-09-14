@@ -120,28 +120,16 @@
     <Content Include="SystemBackEnd\Order\CheckGoods.aspx" />
     <Content Include="SystemBackEnd\Order\NewOrder.aspx" />
     <Content Include="SystemBackEnd\Order\NewProduct.aspx" />
-    <Content Include="SystemBackEnd\Order\OrderDetail.aspx" />
     <Content Include="SystemBackEnd\Order\OrderList.aspx" />
-    <Content Include="SystemBackEnd\Order\OrderModify.aspx" />
-    <Content Include="SystemBackEnd\Resimbursment\NewReimbursment.aspx" />
-    <Content Include="SystemBackEnd\Resimbursment\ReimbursmentDetail.aspx" />
-    <Content Include="SystemBackEnd\Resimbursment\ReimbursmentList.aspx" />
-    <Content Include="SystemBackEnd\Sales\NewSales.aspx" />
-    <Content Include="SystemBackEnd\Sales\SalesDetail.aspx" />
-    <Content Include="SystemBackEnd\Sales\SalesList.aspx" />
-    <Content Include="SystemBackEnd\Search\RecordDetail.aspx" />
     <Content Include="SystemBackEnd\Search\RecordSearch.aspx" />
-    <Content Include="SystemBackEnd\Search\StockDetail.aspx" />
     <Content Include="SystemBackEnd\Search\StockSearch.aspx" />
     <Content Include="SystemBackEnd\UserInfo\NewStaff.aspx" />
     <Content Include="SystemBackEnd\UserInfo\StaffEditor.aspx" />
     <Content Include="SystemBackEnd\UserInfo\StaffInfo.aspx" />
-    <Content Include="SystemBackEnd\UserInfo\StaffPassword.aspx" />
     <Content Include="SystemBackEnd\UserInfo\UserInfo.aspx" />
     <Content Include="SystemBackEnd\UserInfo\UserEditor.aspx" />
     <Content Include="UserControls\ucPager.ascx" />
     <Content Include="Web.config" />
-    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
@@ -200,13 +188,6 @@
     <Compile Include="SystemBackEnd\Order\NewProduct.aspx.designer.cs">
       <DependentUpon>NewProduct.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SystemBackEnd\Order\OrderDetail.aspx.cs">
-      <DependentUpon>OrderDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SystemBackEnd\Order\OrderDetail.aspx.designer.cs">
-      <DependentUpon>OrderDetail.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SystemBackEnd\Order\OrderList.aspx.cs">
       <DependentUpon>OrderList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -214,75 +195,12 @@
     <Compile Include="SystemBackEnd\Order\OrderList.aspx.designer.cs">
       <DependentUpon>OrderList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SystemBackEnd\Order\OrderModify.aspx.cs">
-      <DependentUpon>OrderModify.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SystemBackEnd\Order\OrderModify.aspx.designer.cs">
-      <DependentUpon>OrderModify.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SystemBackEnd\Resimbursment\NewReimbursment.aspx.cs">
-      <DependentUpon>NewReimbursment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SystemBackEnd\Resimbursment\NewReimbursment.aspx.designer.cs">
-      <DependentUpon>NewReimbursment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SystemBackEnd\Resimbursment\ReimbursmentDetail.aspx.cs">
-      <DependentUpon>ReimbursmentDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SystemBackEnd\Resimbursment\ReimbursmentDetail.aspx.designer.cs">
-      <DependentUpon>ReimbursmentDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SystemBackEnd\Resimbursment\ReimbursmentList.aspx.cs">
-      <DependentUpon>ReimbursmentList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SystemBackEnd\Resimbursment\ReimbursmentList.aspx.designer.cs">
-      <DependentUpon>ReimbursmentList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SystemBackEnd\Sales\NewSales.aspx.cs">
-      <DependentUpon>NewSales.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SystemBackEnd\Sales\NewSales.aspx.designer.cs">
-      <DependentUpon>NewSales.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SystemBackEnd\Sales\SalesDetail.aspx.cs">
-      <DependentUpon>SalesDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SystemBackEnd\Sales\SalesDetail.aspx.designer.cs">
-      <DependentUpon>SalesDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SystemBackEnd\Sales\SalesList.aspx.cs">
-      <DependentUpon>SalesList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SystemBackEnd\Sales\SalesList.aspx.designer.cs">
-      <DependentUpon>SalesList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SystemBackEnd\Search\RecordDetail.aspx.cs">
-      <DependentUpon>RecordDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SystemBackEnd\Search\RecordDetail.aspx.designer.cs">
-      <DependentUpon>RecordDetail.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SystemBackEnd\Search\RecordSearch.aspx.cs">
       <DependentUpon>RecordSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SystemBackEnd\Search\RecordSearch.aspx.designer.cs">
       <DependentUpon>RecordSearch.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SystemBackEnd\Search\StockDetail.aspx.cs">
-      <DependentUpon>StockDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SystemBackEnd\Search\StockDetail.aspx.designer.cs">
-      <DependentUpon>StockDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemBackEnd\Search\StockSearch.aspx.cs">
       <DependentUpon>StockSearch.aspx</DependentUpon>
@@ -312,13 +230,6 @@
     <Compile Include="SystemBackEnd\UserInfo\StaffInfo.aspx.designer.cs">
       <DependentUpon>StaffInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SystemBackEnd\UserInfo\StaffPassword.aspx.cs">
-      <DependentUpon>StaffPassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SystemBackEnd\UserInfo\StaffPassword.aspx.designer.cs">
-      <DependentUpon>StaffPassword.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SystemBackEnd\UserInfo\UserInfo.aspx.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -339,13 +250,6 @@
     </Compile>
     <Compile Include="UserControls\ucPager.ascx.designer.cs">
       <DependentUpon>ucPager.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

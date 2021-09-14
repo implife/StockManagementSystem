@@ -42,6 +42,42 @@ namespace StockManagement.SystemBackEnd.Search
         protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
+        /// All control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton All;
+
+        /// <summary>
+        /// Week control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton Week;
+
+        /// <summary>
+        /// Month control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton Month;
+
+        /// <summary>
+        /// HFRangeRdioBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HFRangeRdioBtn;
+
+        /// <summary>
         /// ltlResultList control.
         /// </summary>
         /// <remarks>
