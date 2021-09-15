@@ -21,51 +21,31 @@ namespace StockManagement.SystemBackEnd.Search
 
 			this.Searchjson = Newtonsoft.Json.JsonConvert.SerializeObject(searchlist);
 
-			
 
 			this.txtSearch.Attributes.Add("data-bs-toggle", "dropdown"); //asp控制項沒有這些功能 要後臺手動加
 			this.txtSearch.Attributes.Add("autocomplete", "off");
 
 
-			string query = this.Request.QueryString["Page"];
-			//int pagenb = Convert.ToInt32(query);
-
-			//List<CDStock> CDSList = new List<CDStock>();
-
 			List<CompactDisc> CDSList = new List<CompactDisc>();
 
-			if (IsPostBack)//如果送表單回來
+			// 如果送表單回來
+			if (IsPostBack)
 			{
-				
 				string JAresult = this.btnhappenhf.Value; //將取得的結果值，用string變數去接
 				Rootobject[] Searchresultary = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject[]>(JAresult); //反序列化變成Class
+
 				this.Session["StockSearchObject"] = Searchresultary;
+				this.Session["StockSearchText"] = this.txtSearch.Text;
 
-				CDSList = Searchresultary.Take(10).Select(re => new CompactDisc() //用CDSList去接陣列(要先轉成Llist)一頁10筆(take)
-				{
-					SerialCode = Guid.Parse(re.item.SerialCode),
-					Name = re.item.Name,
-					Artist = re.item.Artist,
-					Brand = re.item.Brand,
-					Region = re.item.Region,
-					PublicationDate = re.item.PublicationDate
-				}).ToList();
-
-				this.ucPager.TotalItemSize = Searchresultary.Length;
-				int pagenb = this.ucPager.GetCurrentPage();
-
-				this.ucPager.isSearch = true;
-				this.ucPager.Bind();
+				// 重新導頁，參數加上Search，避免Page參數問題
+				this.Response.Redirect(this.Request.Path + "?Action=Search");
 			}
-
 			else 
 			{
-
-				
-
 				if (this.Request.QueryString["Action"] == "Search")
 				{
 					Rootobject[] sessionSearchResult = this.Session["StockSearchObject"] as Rootobject[];
+					this.txtSearch.Text = this.Session["StockSearchText"] as string;
 
 					CDSList = sessionSearchResult.Select(resultItem => new CompactDisc() { 
 						SerialCode = Guid.Parse(resultItem.item.SerialCode),
@@ -75,43 +55,35 @@ namespace StockManagement.SystemBackEnd.Search
 						Region = resultItem.item.Region,
 						PublicationDate = resultItem.item.PublicationDate
 	                }).ToList();
+
 					this.ucPager.TotalItemSize = CDSList.Count; //.count 取得這個List 比數的總數
+					this.ucPager.isSearch = true;
+
+					// List的GetRange()不允許超出範圍，需判斷是否為最後一頁
 					int pagenb = this.ucPager.GetCurrentPage();
 					if (pagenb == this.ucPager.GetTotalPage())
 						CDSList = CDSList.GetRange(pagenb * 10 - 10, CDSList.Count - (pagenb * 10 - 10));
 					else 
 						CDSList = CDSList.GetRange(pagenb * 10 - 10, this.ucPager.ItemSizeInPage);
-
-					this.ucPager.isSearch = true;
-
 				}
+				// 新進頁面或顯示全部情況下換頁
 				else 
 				{
-                  
-			      this.ucPager.TotalItemSize = CDStockManager.GetStockSize();
+					this.ucPager.TotalItemSize = CDStockManager.GetStockSize();
 					int pagenb = this.ucPager.GetCurrentPage();
 					CDSList = CDManager.GetCDByIndex(pagenb * 10 - 10, this.ucPager.ItemSizeInPage) ;
-
-
 				}
-				
-				
+
 				this.ucPager.Bind();
 			}
 
 
 
-
-
-			//List<CompactDisc> CDs = new List<CompactDisc>();
 			foreach (var nub in CDSList)
 			{
-
-
 				CompactDisc CD = CDManager.GetCDBySerialCode(nub.SerialCode);
 				CDStock CDss = CDStockManager.GetStockBySerialCode(nub.SerialCode);
 				int canused = CDss.TotalStock - CDss.InTransitStock - CDss.UnreviewedStock;
-
 
 
 				if (CD.Region == null)
@@ -132,16 +104,10 @@ namespace StockManagement.SystemBackEnd.Search
 							$"<td >{ CD.Region}</td>" +
 							$"<td class=\"tdlist\">{CD.PublicationDate.Year }</td>" +
 							$"</tr>";
-
-
-
-
 			}
-
-
-
-			
 		}
+
+
 
 		public class Rootobject
 		{
@@ -161,8 +127,5 @@ namespace StockManagement.SystemBackEnd.Search
 			public string Region { get; set; }
 			public DateTime PublicationDate { get; set; }
 		}
-
-
-
 	}
 }

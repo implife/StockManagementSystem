@@ -15,7 +15,7 @@ namespace StockManagement.SystemBackEnd.Order
         {
             this.EpisodeName.Attributes.Add("placeholder", "專輯名稱");
             this.Brand.Attributes.Add("placeholder", "發行公司");
-            this.Artist.Attributes.Add("placeholder", "表演者");
+            this.Artist.Attributes.Add("placeholder", "音樂家");
             this.Region.Attributes.Add("placeholder", "地區");
 
 

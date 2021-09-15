@@ -95,12 +95,15 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="img\invalid_mark.svg" />
+    <Content Include="img\valid_mark.svg" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\customize\fuse.js" />
     <Content Include="Scripts\customize\jquery-3.6.0.min.js" />
     <Content Include="Scripts\customize\popper.min.js" />
     <Content Include="Scripts\customize\NewOrder.js" />
     <Content Include="Scripts\customize\OrderList.js" />
+    <Content Include="Scripts\customize\Validation.js" />
     <Content Include="StyleSheet\ApproveListStyle.css" />
     <Content Include="StyleSheet\boostrap.min.css" />
     <Content Include="StyleSheet\LoginStyle.css" />
