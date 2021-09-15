@@ -126,9 +126,9 @@ body {
 }
 
     .btn-Create:hover {
-        background-color: rgb(150 224 151);
+        background-color: #78C979;
         color: #ffffff;
-        border: rgb(155 222 197);
+        border: #78C979;
     }
 .Block {
     height: 4.5rem;

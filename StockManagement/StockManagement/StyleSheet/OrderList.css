@@ -1,11 +1,18 @@
-﻿#OrderContainer {
+﻿body {
+    background-color: #DDF5EC;
+}
+
+#OrderContainer {
     height: 90vh;
-    border: 1px solid #edbe87;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ebf6f3;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
     overflow-x: hidden;
     overflow-y: auto;
+    background-color: #EBF6F3;
     padding-left: 1%;
 }
 
@@ -242,4 +249,68 @@ button.collapsed:disabled {
         animation-delay: 0.2s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+    }
+
+.btn_Div {
+    margin-left: 4.1%;
+}
+
+.Accordion_Botton {
+    background-color: #FBD9C5;
+    color: black;
+}
+
+button.collapsed:disabled {
+    color: black;
+}
+
+.accordion-body {
+    background-color: #ebf6f3;
+}
+
+.List_Group a:nth-child(even) {
+    background-color: #FFF2EB
+}
+
+.List_Group a:nth-child(odd) {
+    background-color: #F6FFFC
+}
+
+.List_Group a:nth-child(1) {
+    background-color: #ffff;
+}
+
+.btn-outline-info {
+    color: #0c96e6;
+    border-color: #449be6;
+}
+
+    .btn-outline-info:hover {
+        color: #ffff;
+        border-color: #449be6;
+        background-color: #449be6f3
+    }
+
+
+.btn_AddOrder {
+    color: #6A9657;
+    border-color: #ABC69F;
+}
+
+    .btn_AddOrder:hover {
+        background-color: #73ce8e;
+        color: #ffffff;
+        border-color: #cff7db;
+    }
+
+
+.btn_OrderHistory {
+    color: #AA734B;
+    border-color: #C6AF9F;
+}
+
+    .btn_OrderHistory:hover {
+        background-color: #e4af73;
+        color: #ffffff;
+        border-color: #f5dbc3;
     }

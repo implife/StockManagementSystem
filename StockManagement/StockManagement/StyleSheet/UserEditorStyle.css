@@ -75,11 +75,12 @@ div.row label {
 body {
     font-family: "Roboto";
     font-size: 14px;
-    background-size: 200% 100% !important;
+    /*background-size: 200% 100% !important;
     -webkit-animation: Move 16s ease infinite;
     animation: Move 30s ease infinite;
-    transform: translate3d(0, 0, 0);
-    background: linear-gradient(-45deg, #dd6945, #d660ee, #3bb7e4, #7ef5d9, #ccfaf0);
+    transform: translate3d(0, 0, 0);*/
+    background-color: #DDF5EC;
+    /*background: linear-gradient(-45deg, #dd6945, #d660ee, #3bb7e4, #7ef5d9, #ccfaf0);*/
     height: 100vh;
 }
 
@@ -94,8 +95,8 @@ body {
 }
 
 .containerDiv2 {
-    height: 24.785rem;
-    width: 24.7rem;
+    height: 26.4rem;
+    width: 25.7rem;
     background-color: #fafffd;
     border-radius: 0.8rem;
     margin-left: auto;
@@ -104,7 +105,7 @@ body {
 }
 
 
-@-webkit-keyframes Move {
+@/*-webkit-keyframes Move {
     0% {
         background-position: 160% 40%;
     }
@@ -130,7 +131,7 @@ body {
     100% {
         background-position: 0 0;
     }
-}
+}*/
 
 .form-control:focus {
     border-color: lightgreen;

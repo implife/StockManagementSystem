@@ -111,12 +111,12 @@ namespace StockManagement.SystemBackEnd.Order
                     checkGoodsBtn +
                     $"<div class='accordion accordion-flush' id='accordion{orderItem.OrderID}'>" +
                     $"<div class='accordion-item'>" +
-                    $"<h2 class='accordion-header'>" +
-                    $"<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#accItemBody{orderItem.OrderID}'>品項</button>" +
+                    $"<h2 class='accordion-header AccordionHeader'>" +
+                    $"<button class='accordion-button collapsed Accordion_Botton' type='button' data-bs-toggle='collapse' data-bs-target='#accItemBody{orderItem.OrderID}'>品項</button>" +
                     $"</h2>" +
                     $"<div id='accItemBody{orderItem.OrderID}' class='accordion-collapse collapse' data-bs-parent='#accordion{orderItem.OrderID}'>" +
                     $"<div class='accordion-body'>" +
-                    $"<div class='list-group'>" +
+                    $"<div class='list-group List_Group'>" +
                     $"<a class='list-group-item disabled' href='#'>" +
                     $"<div class='row'>" +
                     $"<div class='col-6'><small>專輯名稱</small></div>" +
@@ -312,7 +312,7 @@ namespace StockManagement.SystemBackEnd.Order
                     return "";
             }
 
-            string result = $"<button class='accordion-button collapsed' type='button'{isToggle} data-bs-target='#accArrivalBody{order.OrderID}'>" +
+            string result = $"<button class='accordion-button collapsed Accordion_Botton' type='button'{isToggle} data-bs-target='#accArrivalBody{order.OrderID}'>" +
                 $"到貨狀況<span class='badge bg-{textStyle} arrival-status-span'>{this.GetStatusChinese(order.Status)}</span>" +
                 $"</button>";
 

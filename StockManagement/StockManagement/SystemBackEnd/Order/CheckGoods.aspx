@@ -10,6 +10,10 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <style>
+        body {
+            background-color: #DDF5EC;
+        }
+
         .active.myActive {
             background-color: #e9ecef;
             color: #000;
@@ -234,7 +238,7 @@
             transition: all 600ms cubic-bezier(0.175, 0.885, 0.32, 1.5);
         }
 
-        
+
         input.GoodsOkCheckInput[type="checkbox"]:checked + label .tick {
             opacity: 1;
             -webkit-transform: rotate(45deg) scale(1);
@@ -432,8 +436,38 @@
             }
         }
 
+        .btn_check {
+            margin-left: 70%;
+            margin-top: 15px;
+            color: #4375e4;
+            border-color: #4375e4;
+        }
+
+            .btn_check:hover {
+                color: #ffff;
+                background-color: #4375e4;
+                border-color: #4375e4;
+            }
         /* #endregion Radio Button*/
 
+        .List_Group_Space {
+            background-color: #ffff;
+        }
+
+
+
+        .btn_Cancle {
+            color: #AA734B;
+            border-color: #c39c81;
+        }
+
+            .btn_Cancle:hover {
+                background-color: #E19468;
+                color: #ffffff;
+                border-color: #E19468;
+            }
+
+        
     </style>
 
 
@@ -745,7 +779,7 @@
     </div>
     <div class="row">
         <div class="col-7 ErrorTempList">
-            <div class="list-group offset-md-1">
+            <div class="list-group offset-md-1 List_Group_Space">
                 <a class="list-group-item disabled" href="#">
                     <div class="row">
                         <div class="col-5">
@@ -779,8 +813,8 @@
                 </svg>
                 <div>仍有貨未點!</div>
             </div>
-            <input type="button" class="btn btn-outline-success" value="商品入庫" id="confirmModalBtn"><br>
-            <a type="button" class="btn btn-outline-secondary" href="OrderList.aspx" role="button">取消</a>
+            <input type="button" class="btn btn-outline-success btn_Success" value="商品入庫" id="confirmModalBtn"><br>
+            <a type="button" class="btn btn-outline-secondary btn_Cancle" href="OrderList.aspx" role="button">取消</a>
         </div>
 
         <div class="modal fade" id="ConfirmModal" tabindex="-1" aria-labelledby="confirmModalLabel">
@@ -796,7 +830,7 @@
                     <span id="confirmModalOrderSpan"></span>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">取消</button>
                         <asp:Button ID="btnConfirm" runat="server" Text="確定" CssClass="btn btn-primary" OnClick="btnConfirm_Click" />
                         <%--<button type="button" class="btn btn-primary">確定</button>--%>
                     </div>

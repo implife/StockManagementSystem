@@ -126,7 +126,7 @@
 
             <asp:HiddenField ID="HD_Blood" runat="server" />
 
-            <div class="col-12" style="text-align: center">
+            <div class="col-12" style="text-align: center; margin-top: 1rem;">
 
                 <asp:Button ID="btnSubmit" runat="server" Text="確認" class="btn btn-outline-primary btn_Check" Style="width: 6rem; height: 2.5rem; margin-top: 1rem;" OnClick="btnSubmit_Click" />
 
