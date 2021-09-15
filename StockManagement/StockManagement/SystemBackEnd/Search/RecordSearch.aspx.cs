@@ -170,7 +170,7 @@ namespace StockManagement.SystemBackEnd.Search
                     $"</div>" +
                     $"<p class='mb-1'>訂貨日期：{orderItem.OrderDate.ToString("yyyy-MM-dd")}</p>" +
                     $"<p class='mb-1'>預計到貨日：{orderItem.PredictedArrivalDate?.ToString("yyyy-MM-dd")}</p>" +
-                    $"<p class='mb-1'>到貨日期：{orderItem.ArrivalDate?.ToString("yyyy - MM - dd")}</p>" +
+                    $"<p class='mb-1'>到貨日期：{orderItem.ArrivalDate?.ToString("yyyy-MM-dd")}</p>" +
                     $"<p class='mb-1'>總金額：{GetTotalPrice(orderItem)}</p>" +
                     $"<p class='mb-1'>負責主管：{UserInfoManager.GetUserInfoByUserID(orderItem.OrderResponsiblePerson).Name}</p>" +
                     $"<p class='mb-1'>歸檔主管：{UserInfoManager.GetUserInfoByUserID(orderItem.ArchiveResponsiblePerson).Name}</p>" +

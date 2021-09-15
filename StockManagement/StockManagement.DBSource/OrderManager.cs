@@ -190,12 +190,13 @@ namespace StockManagement.DBSource
                     orderObj.Status = 1;
                     orderObj.PredictedArrivalDate = order.PredictedArrivalDate;
 
-                    // 增加在途庫存
+                    // 增加在途庫存與總庫存
                     List<OrderSalesDetail> details = OrderManager.GetDetailByOrder(order);
                     foreach (OrderSalesDetail de in details)
                     {
                         var stockObj = context.CDStocks.Where(item => item.SerialCode == de.SerialCode).FirstOrDefault();
                         stockObj.InTransitStock += de.Quantity;
+                        stockObj.TotalStock += de.Quantity;
                     }
 
                     context.SaveChanges();
@@ -303,12 +304,16 @@ namespace StockManagement.DBSource
         {
             if (order.Status != 3)
                 throw new ArgumentException("Status Should Be DeliverComplete!!");
+            if(order.ArchiveResponsiblePerson == null)
+                throw new ArgumentException("ArchiveResponsiblePerson cannot be null.");
+
             try
             {
                 using (ContextModel context = new ContextModel())
                 {
                     Order orderObj = context.Orders.Where(item => item.OrderID == order.OrderID).FirstOrDefault();
                     orderObj.Status = 5;
+                    orderObj.ArchiveResponsiblePerson = order.ArchiveResponsiblePerson;
 
                     context.SaveChanges();
                     return true;

@@ -175,13 +175,13 @@ namespace StockManagement.SystemBackEnd.Order
                 }
                 this.ltlCDListTabContent.Text +=
                     $"<div class=\"tab-pane fade\" id=\"ID{cd.SerialCode}\">" +
-                    $"<h6>專輯名稱: {cd.Name}</h6>" +
-                    $"<small>歌手: {cd.Artist}</small><br />" +
-                    $"<small>發行公司: {cd.Brand}</small><br />" +
-                    $"<small>發行日期: {cd.PublicationDate.ToString("yyyy-MM-dd")}</small><br />" +
-                    $"<small>地區: {cd.Region}</small><br />" +
-                    $"<small>可用庫存: {available}</small><br />" +
-                    $"<small>在途庫存: {cdstock.InTransitStock}</small><br />" +
+                    $"<h5>專輯名稱: {cd.Name}</h5>" +
+                    $"<p><small>歌手: {cd.Artist}</small></p>" +
+                    $"<p><small>發行公司: {cd.Brand}</small></p>" +
+                    $"<p><small>發行日期: {cd.PublicationDate.ToString("yyyy-MM-dd")}</small></p>" +
+                    $"<p><small>地區: {cd.Region}</small></p>" +
+                    $"<p><small>可用庫存: {available}</small></p>" +
+                    $"<p><small>在途庫存: {cdstock.InTransitStock}</small></p>" +
                     //$"<small>待審核庫存: {cdstock.UnreviewedStock}</small><br />" +
                     $"<button type='button' class='btn btn-outline-success' id='btnID{cd.SerialCode}' onclick='btnAddTemp(this)' {disabled}>新增</button>" +
                     $"</div>";

@@ -43,6 +43,16 @@
                background-color: #f8402d;
                border-color: #ff4a5b;
 		}
+		.login-user{
+			position: fixed;
+			width: 120px;
+			color: #555;
+			padding: 5px 8px;
+			font-size: 14px;
+			right: 10px;
+			top: 5px;
+			z-index: 100;
+		}
 	</style>
 	<script>
 		var myModal = document.getElementById('myModal')
@@ -65,7 +75,9 @@
 		<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">登出</a>
 
 	</div>
-
+	<div class="login-user">
+		使用者：陳致安
+	</div>
 	<div class="containerDiv">
 		<form runat="server" novalidate>
 			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

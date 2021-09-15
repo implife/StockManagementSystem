@@ -9,7 +9,7 @@
     <script src="../../Scripts/customize/OrderList.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-sm-12 col-md-11" id="OrderContainer">
+    <div class="col-md-12" id="OrderContainer">
         <div class="row">
             <div class="col-7">
                 <div class="list-group" id="OrderListGroup">
@@ -49,7 +49,7 @@
             </div>
         </div>
     </div>
-    <div class="mt-1">
+    <div class="mt-1 ms-1">
         <asp:Button ID="btnNewOrder" runat="server" Text="新增訂單" CssClass="btn btn-outline-primary" OnClick="btnNewOrder_Click" />
         <asp:Button ID="btnPastOrder" runat="server" Text="歷史訂單" CssClass="btn btn-outline-secondary" />
     </div>

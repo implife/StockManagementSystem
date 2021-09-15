@@ -32,8 +32,8 @@
     <script src="../../Scripts/customize/NewOrder.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-        <div class="dropdown">
+    
+        <div class="dropdown mt-2 mb-1">
             <a class="btn btn-info" href="NewOrder.aspx" role="button">顯示所有資料</a>
             <asp:TextBox ID="txtSearch" runat="server" CssClass="dropdown-toggle txtSearchClass"></asp:TextBox>
             <ul class="dropdown-menu" id="dropdownSearch">
@@ -45,8 +45,8 @@
             <asp:HiddenField ID="HFSearchResult" runat="server" />
 
         </div>
-    </div>
-    <div class="row">
+    
+    <div class="row mt-1 mb-1" id="NewOrderItemContainer">
         <div class="col-7">
             <div class="list-group" id="search_List_Group">
                 <a class="list-group-item disabled" href="#">
@@ -78,12 +78,12 @@
             </div>
         </div>
     </div>
-    <div id="UserPagination">
+    <div id="UserPagination" class="ms-4 mb-2">
         <uc1:ucPager runat="server" ID="searchListPager" Url="NewOrder.aspx" ItemSizeInPage="8" />
     </div>
 
 
-    <div class="row">
+    <div class="row ms-2 mt-1">
         <div class="col-9 popup-container">
             <ul class="list-group col-7" id="TempListContainer">
                 <%-- 暫存列表(由Javascript產生) --%>

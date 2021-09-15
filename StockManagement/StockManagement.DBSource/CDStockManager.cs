@@ -66,21 +66,22 @@ namespace StockManagement.DBSource
             }
         }
 
-
         /// <summary>
         /// 增加總庫存
         /// </summary>
         /// <param name="serialCode">要增加的目標CD條碼號</param>
         /// <param name="AddSize">要增加的數量</param>
+        /// <param name="isCheckGoods">是否為點貨</param>
+        /// <param name="isReimburse">是否為報銷</param>
         /// <returns>成功回傳true，反之false</returns>
-        public static bool UpdateTotalStock(Guid serialCode, int AddSize, bool isCheckGoods = false)
+        public static bool UpdateStock(Guid serialCode, int AddSize, bool isCheckGoods = false, bool isReimburse = false)
         {
             try
             {
                 using (ContextModel context = new ContextModel())
                 {
                     CDStock stockObj = context.CDStocks.Where(item => item.SerialCode == serialCode).FirstOrDefault();
-                    stockObj.TotalStock += AddSize;
+
                     if(isCheckGoods)
                         stockObj.InTransitStock -= AddSize;
 

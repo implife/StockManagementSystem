@@ -1,5 +1,5 @@
 ﻿#search_List_Group {
-    border: 1px solid #ced4da;
+    /*border: 1px solid #ced4da;*/
     height: 400px;
     overflow-x: visible;
     overflow-y: auto;
@@ -151,4 +151,14 @@ div.text-div {
     to {
         opacity: .5;
     }
+}
+
+#NewOrderItemContainer{
+    padding-left: 1%;
+}
+.dropdown{
+    margin-left: 2%;
+}
+.pagination{
+    margin-bottom: 0;
 }

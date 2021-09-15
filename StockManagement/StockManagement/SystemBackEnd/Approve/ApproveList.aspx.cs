@@ -12,6 +12,7 @@ namespace StockManagement.SystemBackEnd.Approve
 {
     public partial class ApproveList : System.Web.UI.Page
     {
+
         private bool ReplenishIsAllowedInList(ORM.DBModels.Order order)
         {
             if (order.ReplenishID == null)
@@ -62,8 +63,7 @@ namespace StockManagement.SystemBackEnd.Approve
             }
             else
             {
-                return
-                           $"<div class='center-con'>" +
+                return $"<div class='center-con'>" +
                                $"<div class='round'>" +
                                    $"<div id='cta'>" +
                                        $"<span class='arrow primera next'></span>" +
@@ -93,12 +93,12 @@ namespace StockManagement.SystemBackEnd.Approve
                     switch (btn_Order_behavior)
                     {
                         case "Review":
+                            order.ArchiveResponsiblePerson = guid;
                             DBSource.OrderManager.UpdateDeliverCompleteToComplete(order);
                             break;
                         case "Modify":
                             order.OrderResponsiblePerson = guid;
-                            this.Response.Redirect($"//SystemBackEnd/Order/OrderModify.aspx?OrderID={order.OrderID}");
-
+                            this.Response.Redirect($"/SystemBackEnd/Order/OrderModify.aspx?OrderID={order.OrderID}");
                             break;
                         case "Approve":
                             order.OrderResponsiblePerson = guid;
