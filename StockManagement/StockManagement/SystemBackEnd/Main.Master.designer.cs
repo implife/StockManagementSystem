@@ -33,6 +33,15 @@ namespace StockManagement.SystemBackEnd
         protected global::System.Web.UI.WebControls.Literal ltlMainList;
 
         /// <summary>
+        /// ltlLogInUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlLogInUser;
+
+        /// <summary>
         /// Button1 control.
         /// </summary>
         /// <remarks>

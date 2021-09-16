@@ -125,10 +125,10 @@
                     Good!
                 </div>
             </div>
-            <a href="NewProduct.aspx" class="btn btn-outline-primary" tabindex="-1" role="button">新建商品</a><br />
-            <asp:Button ID="btnSave" runat="server" Text="建立訂單" OnClick="btnSave_Click" CssClass="btn btn-outline-success" /><br />
+            <a href="NewProduct.aspx" class="btn btn-outline-primary mt-1 mb-1" tabindex="-1" role="button">新建商品</a><br />
+            <asp:Button ID="btnSave" runat="server" Text="建立訂單" OnClick="btnSave_Click" CssClass="btn btn-outline-success mt-1 mb-1" /><br />
 
-            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#CancelModal">
+            <button type="button" class="btn btn-outline-secondary mt-1 mb-1" data-bs-toggle="modal" data-bs-target="#CancelModal">
                 取消
             </button>
             

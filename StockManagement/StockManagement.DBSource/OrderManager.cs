@@ -17,21 +17,22 @@ namespace StockManagement.DBSource
         /// <returns>成功回傳true,失敗回傳false</returns>
         public static bool CreateOrder(Order order, List<OrderSalesDetail> details)
         {
-            // 檢查傳入值
-            if (details == null)
-                throw new ArgumentNullException("Order or Sales Detail can't be null.");
-            if (details.Count == 0)
-                throw new ArgumentException("Should have at least one Order or Sales Detail.");
-            if (details.Any(d => d.UnitPrice <= 0))
-                throw new ArgumentException("Unit Price must larger than 0.");
-            if (details.Any(d => d.Quantity <= 0))
-                throw new ArgumentException("Quanyiyt must larger than 0.");
-
-            if (order.OrderResponsiblePerson == null)
-                throw new ArgumentException("OrderResponsiblePerson should not be null");
+            
 
             try
             {
+                // 檢查傳入值
+                if (details == null)
+                    throw new ArgumentNullException("Order or Sales Detail can't be null.");
+                if (details.Count == 0)
+                    throw new ArgumentException("Should have at least one Order or Sales Detail.");
+                if (details.Any(d => d.UnitPrice <= 0))
+                    throw new ArgumentException("Unit Price must larger than 0.");
+                if (details.Any(d => d.Quantity <= 0))
+                    throw new ArgumentException("Quanyiyt must larger than 0.");
+
+                if (order.OrderResponsiblePerson == null)
+                    throw new ArgumentException("OrderResponsiblePerson should not be null");
                 using (ContextModel context = new ContextModel())
                 {
                     order.OrderID = Guid.NewGuid();
@@ -75,22 +76,23 @@ namespace StockManagement.DBSource
         /// <returns></returns>
         public static bool CreateReplenishOrder(Order originalOrder, List<OrderSalesDetail> NewDetails, List<OrderError> errorOrder)
         {
-            // 檢查傳入值
-            if (NewDetails == null)
-                throw new ArgumentNullException("Order or Sales Detail can't be null.");
-            if (NewDetails.Count == 0)
-                throw new ArgumentException("Should have at least one Order or Sales Detail.");
-            if (NewDetails.Any(d => d.UnitPrice <= 0))
-                throw new ArgumentException("Unit Price must larger than 0.");
-            if (NewDetails.Any(d => d.Quantity <= 0))
-                throw new ArgumentException("Quanyiyt must larger than 0.");
-
-
-            if (originalOrder.ArrivalResponsiblePerson == null)
-                throw new ArgumentException("ArrivalResponsiblePerson should not be null");
+            
 
             try
             {
+                // 檢查傳入值
+                if (NewDetails == null)
+                    throw new ArgumentNullException("Order or Sales Detail can't be null.");
+                if (NewDetails.Count == 0)
+                    throw new ArgumentException("Should have at least one Order or Sales Detail.");
+                if (NewDetails.Any(d => d.UnitPrice <= 0))
+                    throw new ArgumentException("Unit Price must larger than 0.");
+                if (NewDetails.Any(d => d.Quantity <= 0))
+                    throw new ArgumentException("Quanyiyt must larger than 0.");
+
+
+                if (originalOrder.ArrivalResponsiblePerson == null)
+                    throw new ArgumentException("ArrivalResponsiblePerson should not be null");
                 using (ContextModel context = new ContextModel())
                 {
                     // 新訂單
@@ -148,13 +150,14 @@ namespace StockManagement.DBSource
         /// <returns></returns>
         public static bool UpdateOrderToDeliverComplete(Order order)
         {
-            if (order.Status != 1)
-                throw new ArgumentException("Status should be Delivering.");
-            if (order.ArrivalResponsiblePerson == null)
-                throw new ArgumentException("ArrivalResponsiblePerson should not be null");
+            
 
             try
             {
+                if (order.Status != 1)
+                    throw new ArgumentException("Status should be Delivering.");
+                if (order.ArrivalResponsiblePerson == null)
+                    throw new ArgumentException("ArrivalResponsiblePerson should not be null");
                 using (ContextModel context = new ContextModel())
                 {
                     Order orderObj = context.Orders.Where(item => item.OrderID == order.OrderID).FirstOrDefault();
@@ -179,11 +182,13 @@ namespace StockManagement.DBSource
         /// <returns></returns>
         public static bool UpdateOrderToDelivering(Order order)
         {
-            if (order.Status != 0)
-                throw new ArgumentException("Status should be 'Not Delivered'.");
+            
 
             try
             {
+                if (order.Status != 0)
+                    throw new ArgumentException("Status should be 'Not Delivered'.");
+
                 using (ContextModel context = new ContextModel())
                 {
                     Order orderObj = context.Orders.Where(item => item.OrderID == order.OrderID).FirstOrDefault();
@@ -302,13 +307,14 @@ namespace StockManagement.DBSource
 
         public static bool UpdateDeliverCompleteToComplete(Order order)
         {
-            if (order.Status != 3)
-                throw new ArgumentException("Status Should Be DeliverComplete!!");
-            if(order.ArchiveResponsiblePerson == null)
-                throw new ArgumentException("ArchiveResponsiblePerson cannot be null.");
-
             try
             {
+                if (order.Status != 3)
+                    throw new ArgumentException("Status Should Be DeliverComplete!!");
+                if (order.ArchiveResponsiblePerson == null)
+                    throw new ArgumentException("ArchiveResponsiblePerson cannot be null.");
+
+
                 using (ContextModel context = new ContextModel())
                 {
 
@@ -343,10 +349,11 @@ namespace StockManagement.DBSource
 
         public static bool UpdateoWaitForReviewedToNotDeliver(Order order)
         {
-            if (order.Status != 4)
-                throw new ArgumentException("Status Should Be DeliverComplete!!");
+            
             try
             {
+                if (order.Status != 4)
+                    throw new ArgumentException("Status Should Be WaitForReviewed!!");
                 using (ContextModel context = new ContextModel())
                 {
                     Order orderObj = context.Orders.Where(item => item.OrderID == order.OrderID).FirstOrDefault();

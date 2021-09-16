@@ -76,7 +76,8 @@
 
 	</div>
 	<div class="login-user">
-		使用者：陳致安
+		使用者：
+		<asp:Literal ID="ltlLogInUser" runat="server" EnableViewState="false"></asp:Literal>
 	</div>
 	<div class="containerDiv">
 		<form runat="server" novalidate>

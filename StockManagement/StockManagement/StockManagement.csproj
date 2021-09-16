@@ -96,6 +96,9 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="img\invalid_mark.svg" />
+    <Content Include="img\NoImage.jpg" />
+    <Content Include="img\Nomiya.jpg" />
+    <Content Include="img\Tommy.jpg" />
     <Content Include="img\valid_mark.svg" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\customize\fuse.js" />

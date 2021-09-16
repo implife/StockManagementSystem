@@ -114,6 +114,7 @@ body {
     width: 170px;
     height: 170px;
     float: left;
+    overflow: hidden;
 }
 
 .btn-Create {

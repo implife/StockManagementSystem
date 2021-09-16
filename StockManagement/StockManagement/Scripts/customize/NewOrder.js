@@ -1,4 +1,5 @@
-﻿// 設定fuse的options
+﻿
+// 設定fuse的options
 const options = {
     includeScore: true,
     keys: [
@@ -10,7 +11,7 @@ const options = {
 }
 const fuse = new Fuse(cdObj, options);
 
-// 利用pattern執行Fuzzy Search，並將結果寫入搜尋的Dropdown List中
+// 利用使用者輸入的pattern執行Fuzzy Search，並將結果寫入搜尋的Dropdown List中
 function fuzzySearch(pattern) {
     let result = fuse.search(pattern);
 
