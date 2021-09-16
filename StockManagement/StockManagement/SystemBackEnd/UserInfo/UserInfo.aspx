@@ -25,7 +25,7 @@
         <p>電子信箱：<%=email %></p>
         <p>密碼：<%=pwd %></p>
         <span class="left bottom">tel:<%=tel%></span>
-        <span class="right bottom">adress: <%=address %></span>
+        <span class="right bottom">Account: <%=address %></span>
 
 
     </div>

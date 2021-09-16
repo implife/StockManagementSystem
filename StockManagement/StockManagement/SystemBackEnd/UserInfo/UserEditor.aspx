@@ -10,6 +10,7 @@
         $(function () {
             $('li').click(function () {
                 $(this).parent().siblings("button").text($(this).text());
+                $('input[ID$="HD_Blood"]').val($(this).text())
             })
 
             $('form').submit(function () {
@@ -163,19 +164,17 @@
                         </ul>
                     </div>
                 </div>
-
-
             </div>
-
-
 
             <asp:HiddenField ID="HD_Blood" runat="server" />
 
             <div class="col-12" style="text-align: center; margin-top: 1rem;">
 
-                <asp:Button ID="btnSubmit" runat="server" Text="確認" class="btn btn-outline-primary btn_Check" Style="width: 6rem; height: 2.5rem; margin-top: 1rem;" OnClick="btnSubmit_Click" />
+                <asp:Button ID="btnSubmit" runat="server" Text="確認" class="btn btn-outline-success " Style="width: 6rem; height: 2.5rem; margin-top: 1.5rem;" OnClick="btnSubmit_Click" />
 
-                <a class="btn btn-outline-secondary btn_Cancel" href="/SystemBackEnd/UserInfo/UserInfo.aspx" role="button" style="width: 6rem; height: 2.5rem; margin-top: 1rem">取消</a>
+                <a class="btn btn-outline-secondary btn_Cancel" href="/SystemBackEnd/UserInfo/UserInfo.aspx" role="button" style="width: 6rem; height: 2.5rem; margin-top: 1.5rem; line-height: 1.7;">取消</a>
+
+                <a class="btn btn-outline-secondary btn_ChangePWD" href="/SystemBackEnd/UserInfo/ChangePWD.aspx" role="button" style="width: 6rem; height: 2.5rem; margin-top: 1.5rem; line-height: 1.7;">更改密碼</a>
                 <br />
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>

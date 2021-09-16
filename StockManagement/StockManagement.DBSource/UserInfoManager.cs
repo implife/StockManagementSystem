@@ -135,8 +135,7 @@ namespace StockManagement.DBSource
 
                     if(DBObject != null)
                     {
-                        DBObject.Name = userInfo.Name;
-                        DBObject.PWD = userInfo.PWD;
+                        DBObject.Name = userInfo.Name;                      
                         DBObject.Tel = userInfo.Tel;
                         DBObject.Email = userInfo.Email;
                         DBObject.BloodType = userInfo.BloodType;

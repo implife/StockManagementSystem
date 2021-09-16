@@ -51,7 +51,7 @@ namespace StockManagement.SystemBackEnd.UserInfo
             userInfo.Account = txtInputAccount.Text;
             userInfo.Email = txtInputMail.Text;
             userInfo.Tel = txtInputTel.Text;
-            userInfo.BloodType = HD_Blood.Value;
+            userInfo.BloodType = this.HD_Blood.Value;
 
 
             bool result = UserInfoManager.UpdateUserInfo(userInfo);

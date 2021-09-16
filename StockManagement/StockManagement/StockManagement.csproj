@@ -127,6 +127,7 @@
     <Content Include="SystemBackEnd\Order\OrderList.aspx" />
     <Content Include="SystemBackEnd\Search\RecordSearch.aspx" />
     <Content Include="SystemBackEnd\Search\StockSearch.aspx" />
+    <Content Include="SystemBackEnd\UserInfo\ChangePWD.aspx" />
     <Content Include="SystemBackEnd\UserInfo\NewStaff.aspx" />
     <Content Include="SystemBackEnd\UserInfo\StaffEditor.aspx" />
     <Content Include="SystemBackEnd\UserInfo\StaffInfo.aspx" />
@@ -212,6 +213,13 @@
     </Compile>
     <Compile Include="SystemBackEnd\Search\StockSearch.aspx.designer.cs">
       <DependentUpon>StockSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\ChangePWD.aspx.cs">
+      <DependentUpon>ChangePWD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemBackEnd\UserInfo\ChangePWD.aspx.designer.cs">
+      <DependentUpon>ChangePWD.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemBackEnd\UserInfo\NewStaff.aspx.cs">
       <DependentUpon>NewStaff.aspx</DependentUpon>
