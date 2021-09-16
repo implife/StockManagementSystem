@@ -14,6 +14,11 @@ function validateTxtContext(txt, alphabet = true, number = true, others = false)
         if (result != undefined)
             return { isValid: false, msg: '輸入內容必須是A-z或0-9' };
         return { isValid: true };
+    } else if (!alphabet && number && !others) {
+        let result = txt.match(/[^0-9]/);
+        if (result != undefined)
+            return { isValid: false, msg: '輸入內容必須是0-9' };
+        return { isValid: true };
     }
 }
 
@@ -67,6 +72,8 @@ function CheckHasValid(item) {
 
 $(function () {
     $('form').submit(function (event) {
+        console.log('sub');
+
         // Email
         $('input.myValidation.validateEmail[type=text]').on('keyup', function () {
             let result = validateEmail($(this).val());
