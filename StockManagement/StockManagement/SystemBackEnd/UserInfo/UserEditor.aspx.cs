@@ -27,9 +27,6 @@ namespace StockManagement.SystemBackEnd.UserInfo
                 this.txtInputName.Text = userData.Name;
                 this.txtInputAccount.Attributes.Add("placeholder", "請輸入帳號");
                 this.txtInputAccount.Text = userData.Account;
-                this.txtInputPWD.Attributes.Add("placeholder", "請輸入密碼");
-                this.txtInputPWD.Text = userData.PWD;
-                this.txtInputCheckPWD.Attributes.Add("placeholder", "請再次輸入密碼");
                 this.txtInputMail.Attributes.Add("placeholder", "請輸入電子郵件");
                 this.txtInputMail.Text = userData.Email;
                 this.txtInputTel.Attributes.Add("placeholder", "請輸入電話號碼");
@@ -52,7 +49,6 @@ namespace StockManagement.SystemBackEnd.UserInfo
             userInfo.UserID = guid;
             userInfo.Name = txtInputName.Text;
             userInfo.Account = txtInputAccount.Text;
-            userInfo.PWD = txtInputPWD.Text;
             userInfo.Email = txtInputMail.Text;
             userInfo.Tel = txtInputTel.Text;
             userInfo.BloodType = HD_Blood.Value;
