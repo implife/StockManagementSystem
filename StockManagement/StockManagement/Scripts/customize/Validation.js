@@ -10,7 +10,7 @@ function validateTxtWidth(txt, min = 1, max = 999) {
 // 檢查字串內容
 function validateTxtContext(txt, alphabet = true, number = true, others = false) {
     if (alphabet && number && !others) {
-        let result = txt.match(/[^0-9a-z]/);
+        let result = txt.match(/[^0-9A-z]/);
         if (result != undefined)
             return { isValid: false, msg: '輸入內容必須是A-z或0-9' };
         return { isValid: true };
