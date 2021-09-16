@@ -27,8 +27,12 @@
         var hStatus = 0;
         var originalSearchVal = "";
         var submitStatus = true;
-
+        $(function () {
+            
+        })
+        
     </script>
+    <script src="../../Scripts/customize/Validation.js"></script>
     <script src="../../Scripts/customize/NewOrder.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -94,7 +98,7 @@
         </div>
         <div class="col-3">
             <div class="col-sm-12 col-md-6 form-item form-floating">
-                <asp:TextBox ID="Seller" runat="server" CssClass="form-control txtSellerClass"></asp:TextBox>
+                <asp:TextBox ID="Seller" runat="server" CssClass="form-control txtSellerClass myValidation"></asp:TextBox>
                 <asp:Label ID="Label1" runat="server" Text="賣家" AssociatedControlID="Seller"></asp:Label>
                 <div class="invalid-feedback">
                     請輸入賣家
