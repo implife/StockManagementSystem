@@ -32,6 +32,10 @@ namespace StockManagement.SystemBackEnd.Search
 			if (IsPostBack)
 			{
 				string JAresult = this.btnhappenhf.Value; //將取得的結果值，用string變數去接
+
+				if (JAresult == "")
+					return;
+			
 				Rootobject[] Searchresultary = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject[]>(JAresult); //反序列化變成Class
 
 				this.Session["StockSearchObject"] = Searchresultary;
@@ -63,14 +67,24 @@ namespace StockManagement.SystemBackEnd.Search
 					int pagenb = this.ucPager.GetCurrentPage();
 					if (pagenb == this.ucPager.GetTotalPage())
 						CDSList = CDSList.GetRange(pagenb * 10 - 10, CDSList.Count - (pagenb * 10 - 10));
-					else 
+					else
+					{
+						if (CDSList.Count == 0)
+						{
+							this.ltlCDStock.Text = "";
+							this.nore.Text = "查無相符之搜尋結果!!";
+							ucPager.Visible = false;
+							return;
+						}
 						CDSList = CDSList.GetRange(pagenb * 10 - 10, this.ucPager.ItemSizeInPage);
+					}
 				}
 				// 新進頁面或顯示全部情況下換頁
 				else 
 				{
 					this.ucPager.TotalItemSize = CDStockManager.GetStockSize();
 					int pagenb = this.ucPager.GetCurrentPage();
+					
 					CDSList = CDManager.GetCDByIndex(pagenb * 10 - 10, this.ucPager.ItemSizeInPage) ;
 				}
 
@@ -79,6 +93,7 @@ namespace StockManagement.SystemBackEnd.Search
 
 
 
+			
 			foreach (var nub in CDSList)
 			{
 				CompactDisc CD = CDManager.GetCDBySerialCode(nub.SerialCode);

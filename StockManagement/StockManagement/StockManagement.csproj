@@ -95,7 +95,9 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="img\Dio.jpeg" />
     <Content Include="img\invalid_mark.svg" />
+    <Content Include="img\Kenny.jpg" />
     <Content Include="img\NoImage.jpg" />
     <Content Include="img\Nomiya.jpg" />
     <Content Include="img\Tommy.jpg" />
