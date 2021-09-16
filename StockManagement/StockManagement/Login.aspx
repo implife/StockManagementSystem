@@ -63,7 +63,7 @@
                                     </p>
 
                                     <div class="form-outline form-white mb-4">
-                                        <asp:TextBox ID="txtAccount" runat="server" CssClass="form-control form-control-lg myValidation validateNullWhiteSpace" placeholder="請輸入帳號/員工編號"></asp:TextBox>
+                                        <asp:TextBox ID="txtAccount" runat="server" CssClass="form-control form-control-lg myValidation validateNullWhiteSpace" placeholder="請輸入帳號"></asp:TextBox>
                                         <div class="invalid-feedback">
                                             --
                                         </div>

@@ -37,15 +37,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:HiddenField ID="HD_Btn" runat="server" />
-    <div class="Switch">
-        <div class="tabber">
-            <label for="t1">單據審核</label>
-            <input id="t1" name="food" type="radio" checked>
-            <label for="t2">報廢核銷</label>
-            <input id="t2" name="food" type="radio">
-            <div class="blob"></div>
-        </div>
-    </div>
     <div style="width: 53rem;">
         <div class="accordion" id="accordionExample">
             <asp:Literal ID="ltlOrderList" runat="server" EnableViewState="false"></asp:Literal>
