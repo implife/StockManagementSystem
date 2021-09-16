@@ -15,6 +15,21 @@
             padding: 1rem 1.5rem;
         }
     </style>
+    <script>
+        $(function () {
+            $('form').submit(function (event) {
+                let dateStr = $("#PubDate").val();
+
+                $("input[id$=HFPubDate]").val(dateStr);
+
+
+                if (!$('input.myValidation').toArray().every(CheckHasValid)) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+            })
+        })
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-sm-10 col-md-6 offset-md-3" id="CDForm_Container">
