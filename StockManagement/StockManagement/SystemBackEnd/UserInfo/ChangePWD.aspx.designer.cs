@@ -24,13 +24,13 @@ namespace StockManagement.SystemBackEnd.UserInfo
         protected global::System.Web.UI.WebControls.TextBox txtInputOldPWD;
 
         /// <summary>
-        /// Label1 控制項。
+        /// lblOldPWD 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblOldPWD;
 
         /// <summary>
         /// txtInputNewPWD 控制項。
@@ -42,13 +42,13 @@ namespace StockManagement.SystemBackEnd.UserInfo
         protected global::System.Web.UI.WebControls.TextBox txtInputNewPWD;
 
         /// <summary>
-        /// lblName 控制項。
+        /// lblNewWD 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblName;
+        protected global::System.Web.UI.WebControls.Label lblNewWD;
 
         /// <summary>
         /// txtCheckPWD 控制項。
@@ -60,13 +60,13 @@ namespace StockManagement.SystemBackEnd.UserInfo
         protected global::System.Web.UI.WebControls.TextBox txtCheckPWD;
 
         /// <summary>
-        /// lblAccount 控制項。
+        /// lblCheckPWD 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAccount;
+        protected global::System.Web.UI.WebControls.Label lblCheckPWD;
 
         /// <summary>
         /// btnSubmit 控制項。
@@ -85,5 +85,23 @@ namespace StockManagement.SystemBackEnd.UserInfo
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMsg;
+
+        /// <summary>
+        /// ltlModal 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlModal;
+
+        /// <summary>
+        /// Literal1 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal1;
     }
 }

@@ -104,6 +104,16 @@ body {
     font-size: 17px;
 }
 
+.containerDiv3 {
+    height: 14rem;
+    width: 25.7rem;
+    background-color: #fafffd;
+    border-radius: 0.8rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 17px;
+}
+
 
 @ /*-webkit-keyframes Move {
     0% {

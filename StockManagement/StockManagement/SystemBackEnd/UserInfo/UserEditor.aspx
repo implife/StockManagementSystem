@@ -81,6 +81,11 @@
                         }
                     }
                 }).trigger('keyup');
+
+                if (!$('input.myValidation').toArray().every(CheckHasValid)) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
             });
         });
 

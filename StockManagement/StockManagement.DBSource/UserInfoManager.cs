@@ -151,5 +151,28 @@ namespace StockManagement.DBSource
                 return false;
             }
         }
+
+        public static bool UpdateUserPWD(UserInfo userInfo)
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+
+                    var DBObject = context.UserInfoes.Where(obj => obj.UserID == userInfo.UserID).FirstOrDefault();
+
+                    if (DBObject != null)
+                    {
+                        DBObject.PWD = userInfo.PWD;
+                    }
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
