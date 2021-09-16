@@ -311,8 +311,13 @@ button.collapsed:disabled {
         color: #ffffff;
         border-color: #f5dbc3;
     }
+
 .statusRemark {
     margin-left: 20%;
     font-size: 15px;
     color: #AA734B;
+}
+
+.Accordion_Flush {
+    margin-top: 1rem;
 }

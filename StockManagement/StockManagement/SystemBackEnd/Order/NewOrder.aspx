@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="NewOrder.aspx.cs" Inherits="StockManagement.SystemBackEnd.Order.NewOrder" %>
+﻿<%@ Page Title="薛丁格-新增訂單" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="NewOrder.aspx.cs" Inherits="StockManagement.SystemBackEnd.Order.NewOrder" %>
 
 <%@ Register Src="~/UserControls/ucPager.ascx" TagPrefix="uc1" TagName="ucPager" %>
 
@@ -47,7 +47,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
         <div class="dropdown mt-2 mb-1">
-            <a class="btn btn-info" href="NewOrder.aspx" role="button">顯示所有資料</a>
+            <a class="btn btn-info btn_ShowAll" href="NewOrder.aspx" role="button">顯示所有資料</a>
             <asp:TextBox ID="txtSearch" runat="server" CssClass="dropdown-toggle txtSearchClass"></asp:TextBox>
             <ul class="dropdown-menu" id="dropdownSearch">
                 <%-- 搜尋欄的下拉選單 --%>
@@ -97,7 +97,7 @@
 
 
     <div class="row ms-2 mt-1">
-        <div class="col-9 popup-container">
+        <div class="col-9 popup-container Popup_Container">
             <%-- Submit時驗證暫存列表是否為空 --%>
             <input type="hidden" id="TempListValidation" class="myValidation" />
 
@@ -128,7 +128,7 @@
             <a href="NewProduct.aspx" class="btn btn-outline-primary mt-1 mb-1" tabindex="-1" role="button">新建商品</a><br />
             <asp:Button ID="btnSave" runat="server" Text="建立訂單" OnClick="btnSave_Click" CssClass="btn btn-outline-success mt-1 mb-1" /><br />
 
-            <button type="button" class="btn btn-outline-secondary mt-1 mb-1" data-bs-toggle="modal" data-bs-target="#CancelModal">
+            <button type="button" class="btn btn-outline-secondary mt-1 mb-1 btn_Cancle" data-bs-toggle="modal" data-bs-target="#CancelModal">
                 取消
             </button>
             

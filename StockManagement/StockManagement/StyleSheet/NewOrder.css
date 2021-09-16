@@ -1,4 +1,8 @@
-﻿#search_List_Group {
+﻿body {
+    background-color: #ddf5ec;
+}
+
+#search_List_Group {
     /*border: 1px solid #ced4da;*/
     height: 400px;
     overflow-x: visible;
@@ -153,12 +157,41 @@ div.text-div {
     }
 }
 
-#NewOrderItemContainer{
+#NewOrderItemContainer {
     padding-left: 1%;
 }
-.dropdown{
+
+.dropdown {
     margin-left: 2%;
 }
-.pagination{
+
+.pagination {
     margin-bottom: 0;
 }
+
+.btn_ShowAll {
+    color: #FFFF;
+    background-color: #ABC69F;
+    border-color: #ABC69F;
+}
+
+    .btn_ShowAll:hover {
+        color: #FFFF;
+        background-color: #6A9657;
+        border-color: #6A9657;
+    }
+
+.Popup_Container {
+    background-color: #ffff;
+}
+
+.btn_Cancle {
+    border-color: #f58750;
+    color: #f58750;
+}
+
+    .btn_Cancle:hover {
+        border-color: #f58750;
+        color: #ffff;
+        background-color: #f58750;
+    }

@@ -58,3 +58,31 @@ input.myValidation.myValid {
     margin-bottom: 3%;
     cursor: default;
 }
+
+.page-item.active .page-link {
+    z-index: 3 !important;
+    border-radius: 5rem !important;
+    color: #ffffff !important;
+    background-color: #edbe87 !important;
+    border-color: #edbe87 !important;
+}
+
+.page-link {
+    position: relative !important;
+    display: block !important;
+    color: #edbe87 !important;
+    text-decoration: none !important;
+    background-color: #ddf5ec !important;
+    border: 1px solid #ddf5ec !important;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+}
+
+    .page-link:hover {
+        z-index: 2 !important;
+        color: #689876 !important;
+        text-decoration: none !important;
+        background-color: #EFDEC9 !important;
+        border-color: none !important;
+        border-radius: 12rem !important;
+    }
+

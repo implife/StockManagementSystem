@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="UserEditor.aspx.cs" Inherits="StockManagement.SystemBackEnd.UserInfo.WebForm1" %>
+﻿<%@ Page Title="使用者編輯" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="UserEditor.aspx.cs" Inherits="StockManagement.SystemBackEnd.UserInfo.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../../Scripts/customize/jquery-3.6.0.min.js"></script>

@@ -129,11 +129,12 @@ tr:nth-child(odd) {
     border: 1px solid #ddf5ec;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
     .page-link:hover {
         z-index: 2;
         color: #689876;
         text-decoration: none;
         background-color: #EFDEC9;
         border-color: none;
-        border-radius:12rem;
+        border-radius: 12rem;
     }

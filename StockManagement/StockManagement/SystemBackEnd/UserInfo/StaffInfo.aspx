@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="StaffInfo.aspx.cs" Inherits="StockManagement.SystemBackEnd.UserInfo.StuffInfo" %>
+﻿<%@ Page Title="薛丁格-員工資訊" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="StaffInfo.aspx.cs" Inherits="StockManagement.SystemBackEnd.UserInfo.StuffInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../../Scripts/bootstrap.js"></script>

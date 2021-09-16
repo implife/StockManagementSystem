@@ -178,7 +178,7 @@ namespace StockManagement.SystemBackEnd.Search
                     $"<div class='accordion accordion-flush' id='accordion{orderItem.OrderID}'>" +
                     $"<div class='accordion-item'>" +
                     $"<h2 class='accordion-header'>" +
-                        $"<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#accItemBody{orderItem.OrderID}'>品項</button>" +
+                        $"<button class='accordion-button collapsed Accordion_button' type='button' data-bs-toggle='collapse' data-bs-target='#accItemBody{orderItem.OrderID}'>品項</button>" +
                     $"</h2>" +
                     $"<div id='accItemBody{orderItem.OrderID}' class='accordion-collapse collapse' data-bs-parent='#accordion{orderItem.OrderID}'>" +
                     $"<div class='accordion-body'>" +
@@ -210,7 +210,7 @@ namespace StockManagement.SystemBackEnd.Search
                 this.ltlSearchTabPane.Text +=
                     $"<div class='accordion-item'>" +
                     $"<h2 class='accordion-header'>" +
-                    $"<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#accArrivalBody{orderItem.OrderID}'>" +
+                    $"<button class='accordion-button collapsed Accordion_button' type='button' data-bs-toggle='collapse' data-bs-target='#accArrivalBody{orderItem.OrderID}'>" +
                     $"到貨狀況</button></h2>" +
                     $"<div id='accArrivalBody{orderItem.OrderID}' class='accordion-collapse collapse' data-bs-parent='#accordion{orderItem.OrderID}'>" +
                     $"<div class='accordion-body'>" +

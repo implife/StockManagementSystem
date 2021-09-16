@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="StockManagement.Login" %>
+﻿<%@ Page Language="C#" Title="薛丁格庫存管理系統登入頁" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="StockManagement.Login" %>
 
 <!DOCTYPE html>
 
