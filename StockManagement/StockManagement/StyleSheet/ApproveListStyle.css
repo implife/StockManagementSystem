@@ -1,4 +1,4 @@
-﻿fbody {
+﻿body {
     background-color: #DDF5EC;
 }
 
@@ -401,7 +401,7 @@ svg {
     background-color: rgba(255, 240, 245, 0.9);
     position: absolute;
     padding-top: 2rem;
-    bottom: -6rem;
+    bottom: -3rem;
     left: 52.5rem;
     opacity: 0;
     /* transform: translate(300%, 0); */
@@ -432,4 +432,7 @@ tr > td:nth-child(2) {
 
 tr > th:nth-child(1) {
     width: 23%;
+}
+.AccordionExample {
+    margin-top: 3rem;
 }
