@@ -20,8 +20,8 @@
 	  const options = {
 		  includeScore: true,
 		  keys: [
-			  { name: "Name", weight:99 },
-			  { name: "Artist", weight: 0.5 },
+			  { name: "Name", weight:100 },
+			  { name: "Artist", weight: 50 },
 			  { name: "Region", weight: 0.05},
 			  { name: "Brand", weight: 0.05 }
 		  ]
@@ -113,11 +113,15 @@
                         <asp:Literal ID="ltlCDStock" runat="server" EnableViewState="false"></asp:Literal>
                         
                       </table>
+                    <div id="norecen">
+                         <asp:Label ID="nore" runat="server" Text=""></asp:Label>
+                    </div>
+                   
                  </div>
-                     
-                
+                    
                      <div id="ucPagermove">
 					<uc1:ucPager runat="server" ID="ucPager" Url="StockSearch.aspx"  />
+                        
                      </div>
                    
             
