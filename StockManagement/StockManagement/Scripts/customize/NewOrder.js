@@ -323,6 +323,9 @@ function TempListBind() {
 
 // After body loaded.
 $(function () {
+    let shouldValidate = true;
+
+
     originalSearchVal = $(".txtSearchClass").val();
     fuzzySearch(originalSearchVal);
 
@@ -333,41 +336,40 @@ $(function () {
         }
     });
 
-    // Seller欄位Submit前要檢查
-    $("form").addClass("needs-validation");
-    $(".txtSellerClass").prop("required", true);
     if ($(".txtSellerClass").val() == " ")
         $(".txtSellerClass").val("");
-    (function () {
-        'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
+    // Submit時檢查Seller必須為1-50
+    $('form').submit(function (event) {
+        $('input[id$=Seller]').on('keyup', function () {
+            //if (!shouldValidate) {
+            //    $('input.myValidation').addClass('myValid');
+            //    return;
+            //}
 
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity() || !submitStatus) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
+            $(this).val($(this).val().trim());
+            let result = validateTxtWidth($(this).val(), 1, max = 50);
 
-                    form.classList.add('was-validated')
-                    submitStatus = true;
-                }, false)
-            })
-    })();
+            if (!result.isValid) {
+                if(result.code == 'minError')
+                    $(this).siblings('.invalid-feedback').html('請輸入賣家');
+                else
+                    $(this).siblings('.invalid-feedback').html(result.msg);
+                ChangeInvalid($(this));
+            } else {
+                ChangeValid($(this));
+            }
+
+        }).trigger('keyup');
+
+    })
 
     // 取消紐事件
     $("input[id$=btnCancel]").click(function () {
-        var result = fuzzySearch(originalSearchVal);
-        $("#ContentPlaceHolder1_HFSearchResult").val(JSON.stringify(result));
-
         // 避免被Form Validate擋掉
-        if ($(".txtSellerClass").val() == "")
-            $(".txtSellerClass").val(" ");
+        $('input.myValidation').addClass('myValid');
     })
+    
 
     // 建立紐事件
     $("input[id$=btnSave]").click(function () {

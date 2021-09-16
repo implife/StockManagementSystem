@@ -32,7 +32,7 @@
 
                     }
 
-                    let result2 = validateTxtContext($(this).val());為
+                    let result2 = validateTxtContext($(this).val());
                     if (result.isValid) {
                         if (!result2.isValid) {
 

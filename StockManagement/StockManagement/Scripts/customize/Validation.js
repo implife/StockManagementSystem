@@ -1,9 +1,9 @@
 ﻿// 檢查字串長度
 function validateTxtWidth(txt, min = 1, max = 999) {
     if (txt.length < min)
-        return { isValid: false, msg: '長度最少要' + min + '個字元!' };
+        return { isValid: false, msg: '長度最少要' + min + '個字元!', code: 'minError' };
     if (txt.length > max)
-        return { isValid: false, msg: '長度最多只能' + max + '個字元!' };
+        return { isValid: false, msg: '長度最多只能' + max + '個字元!', code: 'maxError' };
     return { isValid: true };
 }
 
@@ -26,11 +26,11 @@ function validateTxtContext(txt, alphabet = true, number = true, others = false)
 function validateEmail(txt) {
     let result = txt.match(/\s/);
     if (result != undefined)
-        return { isValid: false, msg: 'Email不可有空格' };
+        return { isValid: false, msg: 'Email不可有空格', code: 'WhiteSpaceError' };
 
     let result2 = txt.match(/^.+@/);
     if (result2 == undefined)
-        return { isValid: false, msg: 'Email格式不正確' };
+        return { isValid: false, msg: 'Email格式不正確', code: 'ContentError' };
     return { isValid: true };
 }
 
@@ -49,7 +49,7 @@ function validateDate(txt) {
 // 檢查是否為空
 function validateNullWhiteSpace(txt) {
     if (txt.length < 1)
-        return { isValid: false, msg: '輸入欄不可為空' };
+        return { isValid: false, msg: '輸入欄不可為空', code: 'NullWhiteSpaceError' };
     return { isValid: true };
 }
 
