@@ -47,12 +47,10 @@ namespace StockManagement
                 var user = HttpContext.Current.User;
                 if (!request.IsAuthenticated || user == null)
                 {
-                    response.StatusCode = 403;
-                    response.End();
-                    return;
+                    this.Response.Redirect("/Login.aspx");
                 }
 
-                // request是否為須檢查Manager權限的頁面
+                // 檢查特定頁面是否有Manager權限
                 foreach (string item in pages)
                 {
                     if (path.StartsWith(item))

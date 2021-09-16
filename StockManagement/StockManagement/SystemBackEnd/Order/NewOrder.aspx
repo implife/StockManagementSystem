@@ -20,6 +20,16 @@
     <%-- 自定義的css和js --%>
     <link href="../../StyleSheet/NewOrder.css" rel="stylesheet" />
     
+    <style>
+        .popup-container.myContainerInvalid{
+            border-color: red;
+        }
+        .popup-container.myContainerValid{
+            border-color: green;
+        }
+        
+    </style>
+
     <script>
         // 在後台執行時取得所有CD的資料
         const txtObj = '<%= this.stringObj %>';
@@ -27,9 +37,8 @@
         var hStatus = 0;
         var originalSearchVal = "";
         var submitStatus = true;
-        $(function () {
-            
-        })
+        var allowNoValidation = false;
+
         
     </script>
     <script src="../../Scripts/customize/Validation.js"></script>
@@ -89,12 +98,21 @@
 
     <div class="row ms-2 mt-1">
         <div class="col-9 popup-container">
+            <%-- Submit時驗證暫存列表是否為空 --%>
+            <input type="hidden" id="TempListValidation" class="myValidation" />
+
             <ul class="list-group col-7" id="TempListContainer">
                 <%-- 暫存列表(由Javascript產生) --%>
 
                 <%-- 暫存列表的HiddenField --%>
                 <asp:HiddenField ID="HFTempList" runat="server" />
             </ul>
+            <div class="invalid-feedback">
+                    暫存列表不可為空
+            </div>
+            <div class="valid-feedback">
+                
+            </div>
         </div>
         <div class="col-3">
             <div class="col-sm-12 col-md-6 form-item form-floating">
@@ -107,10 +125,10 @@
                     Good!
                 </div>
             </div>
-            <a href="NewProduct.aspx" class="btn btn-outline-primary" tabindex="-1" role="button">新建商品</a><br />
-            <asp:Button ID="btnSave" runat="server" Text="建立訂單" OnClick="btnSave_Click" CssClass="btn btn-outline-success" /><br />
+            <a href="NewProduct.aspx" class="btn btn-outline-primary mt-1 mb-1" tabindex="-1" role="button">新建商品</a><br />
+            <asp:Button ID="btnSave" runat="server" Text="建立訂單" OnClick="btnSave_Click" CssClass="btn btn-outline-success mt-1 mb-1" /><br />
 
-            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#CancelModal">
+            <button type="button" class="btn btn-outline-secondary mt-1 mb-1" data-bs-toggle="modal" data-bs-target="#CancelModal">
                 取消
             </button>
             

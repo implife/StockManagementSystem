@@ -13,9 +13,25 @@ body{
     background-color: transparent;
 }
 
-section {
-    
+/* #region Validation */
+input.myValidation.myInvalid {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + .75rem);
+    background-image: url('../img/invalid_mark.svg');
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
 }
+
+input.myValidation.myValid {
+    border-color: #198754;
+    padding-right: calc(1.5em + .75rem);
+    background-image: url('../img/valid_mark.svg');
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
+/* #endregion Validation */
 
 @keyframes change {
     0% {
@@ -48,4 +64,7 @@ a {
 .cardlogin {
     opacity: 0.89;
     box-shadow: 13px 16px 19px rgba(0,0,0,0.40), 0 1px 2px rgba(0,0,0,0.24);
+}
+.loginMsg {
+    color: #ff4d67;
 }

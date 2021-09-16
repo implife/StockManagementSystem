@@ -32,7 +32,6 @@ namespace StockManagement.ORM.DBModels
         public string Tel { get; set; }
 
         [Required]
-        [StringLength(50)]
         public string Title { get; set; }
 
         public int UserLevel { get; set; }
@@ -44,5 +43,7 @@ namespace StockManagement.ORM.DBModels
         [Required]
         [StringLength(50)]
         public string BloodType { get; set; }
+
+        public string UserImg { get; set; }
     }
 }

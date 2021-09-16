@@ -50,7 +50,8 @@
     </div>
     <div class="mt-1 ms-1 btn_Div">
         <asp:Button ID="btnNewOrder" runat="server" Text="新增訂單" CssClass="btn btn-outline-primary btn_AddOrder" OnClick="btnNewOrder_Click" />
-        <asp:Button ID="btnPastOrder" runat="server" Text="歷史訂單" CssClass="btn btn-outline-secondary btn_OrderHistory" />
+        <asp:Button ID="btnPastOrder" runat="server" Text="歷史訂單" CssClass="btn btn-outline-secondary btn_OrderHistory" OnClick="btnPastOrder_Click" />
+        <span class="statusRemark">狀態：未配送、配送中、配送完成、待審核</span>
     </div>
 
 </asp:Content>

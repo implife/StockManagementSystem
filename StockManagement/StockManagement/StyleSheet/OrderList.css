@@ -43,9 +43,6 @@
     margin-right: 80px;
 }
 
-button.collapsed:disabled {
-    color: #ced4da;
-}
 
 .active.myActive {
     background-color: powderblue;
@@ -261,7 +258,7 @@ button.collapsed:disabled {
 }
 
 button.collapsed:disabled {
-    color: black;
+    color: #888;
 }
 
 .accordion-body {
@@ -314,3 +311,8 @@ button.collapsed:disabled {
         color: #ffffff;
         border-color: #f5dbc3;
     }
+.statusRemark {
+    margin-left: 20%;
+    font-size: 15px;
+    color: #AA734B;
+}

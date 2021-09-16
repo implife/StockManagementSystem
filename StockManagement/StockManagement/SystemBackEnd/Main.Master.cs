@@ -13,7 +13,14 @@ namespace StockManagement.SystemBackEnd
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-      
+
+            string id = (HttpContext.Current.User.Identity as FormsIdentity).Ticket.UserData;
+            Guid logInUserGuid = Guid.Parse(id);
+
+            this.ltlLogInUser.Text = UserInfoManager.GetUserInfoByUserID(logInUserGuid).Name;
+
+
+
             string SB = "/SystemBackEnd/";
 
             string[] StockSearch = { "庫存查詢", $"{SB}Search/StockSearch.aspx"};
@@ -39,13 +46,11 @@ namespace StockManagement.SystemBackEnd
                 }
             }
 
-            string id = (HttpContext.Current.User.Identity as FormsIdentity).Ticket.UserData;
-            Guid gid = Guid.Parse(id);
 
             // Render功能列表
             foreach (var ML in AllList)
             {
-                if(ML[0] == "核銷待審" && !UserInfoManager.isManager(gid))
+                if(ML[0] == "核銷待審" && !UserInfoManager.isManager(logInUserGuid))
                     continue;
                 if (ML[0] == Catagory)
                 {

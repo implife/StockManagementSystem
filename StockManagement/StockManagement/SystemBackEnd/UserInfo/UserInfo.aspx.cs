@@ -16,14 +16,12 @@ namespace StockManagement.SystemBackEnd.UserInfo
         #region Get Set使用者資訊傳去aspx檔
         public string tel { get; set; }
         public string address { get; set; }
-
         public string name { get; set; }
         public string title { get; set; }
         public string email { get; set; }
-
         public string status { get; set; }
-
         public string pwd { get; set; }
+        public string userImg { get; set; }
 
         #endregion
 
@@ -72,6 +70,7 @@ namespace StockManagement.SystemBackEnd.UserInfo
             this.status = Status;
             this.email = user.Email;
             this.title = Level;
+            this.userImg = user.UserImg == null ? "/img/NoImage.jpg" : user.UserImg;
         }
 
         protected void Button1_Click(object sender, EventArgs e)
