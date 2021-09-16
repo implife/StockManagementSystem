@@ -72,8 +72,6 @@ function CheckHasValid(item) {
 
 $(function () {
     $('form').submit(function (event) {
-        console.log('sub');
-
         // Email
         $('input.myValidation.validateEmail[type=text]').on('keyup', function () {
             let result = validateEmail($(this).val());
@@ -100,7 +98,7 @@ $(function () {
         }).trigger('change');
 
         // 是否空值
-        $('input.myValidation.validateNullWhiteSpace[type=text]').on('keyup', function () {
+        $('input.myValidation.validateNullWhiteSpace').on('keyup', function () {
             $(this).val($(this).val().trim());
             let result = validateNullWhiteSpace($(this).val());
 
@@ -113,9 +111,9 @@ $(function () {
         }).trigger('keyup');
 
         // Check所有.myValidation是否通過
-        if (!$('input.myValidation').toArray().every(CheckHasValid)) {
-            event.preventDefault()
-            event.stopPropagation()
-        }
+        //if (!$('input.myValidation').toArray().every(CheckHasValid)) {
+        //    event.preventDefault()
+        //    event.stopPropagation()
+        //}
     });
 });

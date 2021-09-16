@@ -15,20 +15,16 @@ namespace StockManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.txtPWD.Attributes.Add("autocomplete", "off");
+            this.lblMsg.Text = "";
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            
+
             string txtAccount = this.txtAccount.Text;
             string txtPWD = this.txtPWD.Text;
-
-            // 檢查使用者輸入的帳號密碼
-            if (string.IsNullOrWhiteSpace(txtAccount) || string.IsNullOrWhiteSpace(txtPWD))
-            {
-                this.ltlMsg.Text = "帳號或密碼不可為空";
-                return;
-            }
 
             UserInfo user = UserInfoManager.GetUserInfoByAccountPWD(txtAccount, txtPWD);
 
@@ -62,7 +58,7 @@ namespace StockManagement
             }
             else
             {
-                this.ltlMsg.Text = "帳號或密碼錯誤";
+                this.lblMsg.Text = "帳號或密碼錯誤";
                 return;
             }
 

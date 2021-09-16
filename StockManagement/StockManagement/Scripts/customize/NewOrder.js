@@ -118,9 +118,7 @@ function btnSearchClick() {
     var result = fuzzySearch($(".txtSearchClass").val());
     $("#ContentPlaceHolder1_HFSearchResult").val(JSON.stringify(result));
 
-    // 避免被Form Validate擋掉
-    if ($(".txtSellerClass").val() == "")
-        $(".txtSellerClass").val(" ");
+    allowNoValidation = true;
 }
 
 // 新增到暫存列表按鈕
@@ -136,7 +134,6 @@ function btnAddTemp(btn) {
                     "data-bs-placement": "bottom",
                     "title": "Tooltip on bottom"
                 });
-            //.tooltip("show");
 
             let url = "/SystemBackEnd/Handler/CDDataHandler.ashx?Action=NewOrderTempList";
             let tempListJSON = JSON.stringify(GetTempList());
@@ -161,6 +158,9 @@ function btnAddTemp(btn) {
 
                     // 新寫入的元素重新綁定事件
                     TempListBind();
+
+                    // 暫存有東西Submit驗證就給過
+                    $('input[id$=TempListValidation]').val('Valid').trigger('change');
                 }
             });
             break;
@@ -226,6 +226,11 @@ function DeleteTempItem(name, quantity) {
 
             // 所有新增按鈕檢查一遍是否要disabled
             CheckAddButton();
+
+            // 暫存如果為空Submit驗證不給過
+            var LIs = $("#TempListContainer").children("li");
+            if (LIs.length == 0)
+                $('input[id$=TempListValidation]').val('').trigger('change');
         }
     });
 }
@@ -323,9 +328,6 @@ function TempListBind() {
 
 // After body loaded.
 $(function () {
-    let shouldValidate = true;
-
-
     originalSearchVal = $(".txtSearchClass").val();
     fuzzySearch(originalSearchVal);
 
@@ -336,16 +338,12 @@ $(function () {
         }
     });
 
-    if ($(".txtSellerClass").val() == " ")
-        $(".txtSellerClass").val("");
-
-    // Submit時檢查Seller必須為1-50
+    
     $('form').submit(function (event) {
+
+        // 驗證Seller
+        $('input[id$=Seller]').off('keyup');
         $('input[id$=Seller]').on('keyup', function () {
-            //if (!shouldValidate) {
-            //    $('input.myValidation').addClass('myValid');
-            //    return;
-            //}
 
             $(this).val($(this).val().trim());
             let result = validateTxtWidth($(this).val(), 1, max = 50);
@@ -362,17 +360,42 @@ $(function () {
 
         }).trigger('keyup');
 
+        // 驗證暫存列表(相對應的input type=hidden)
+        $('input[type=hidden][id=TempListValidation]').off('change');
+        $('input[type=hidden][id=TempListValidation]').on('change', function () {
+
+            $(this).val($(this).val().trim());
+            let result = validateNullWhiteSpace($(this).val());
+
+            if (!result.isValid) {
+                $(this).parent().addClass('myContainerInvalid').removeClass('myContainerValid');
+                ChangeInvalid($(this));
+            } else {
+                $(this).parent().addClass('myContainerValid').removeClass('myContainerInvalid');
+                ChangeValid($(this));
+            }
+
+        }).trigger('change');
+
+        // Check所有.myValidation是否通過
+        if (!$('input.myValidation').toArray().every(CheckHasValid)) {
+            if (!allowNoValidation) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+           
+        }
     })
 
     // 取消紐事件
     $("input[id$=btnCancel]").click(function () {
-        // 避免被Form Validate擋掉
-        $('input.myValidation').addClass('myValid');
+        allowNoValidation = true;
     })
     
 
     // 建立紐事件
     $("input[id$=btnSave]").click(function () {
+        // 暫存列表裡沒東西不能Submit
         var LIs = $("#TempListContainer").children("li");
         if (LIs.length == 0) {
             submitStatus = false;
@@ -402,4 +425,11 @@ $(function () {
     // 檢查結果列表裡的新增鈕是否要disabled，然後暫存列表裡的元素綁定事件
     CheckAddButton();
     TempListBind();
+
+    // 換頁進來時先填入TempListValidation
+    var LIs = $("#TempListContainer").children("li");
+    if (LIs.length == 0)
+        $('input[id$=TempListValidation]').val('');
+    else
+        $('input[id$=TempListValidation]').val('valid');
 });

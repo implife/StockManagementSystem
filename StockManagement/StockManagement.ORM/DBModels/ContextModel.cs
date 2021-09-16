@@ -47,19 +47,11 @@ namespace StockManagement.ORM.DBModels
                 .IsUnicode(false);
 
             modelBuilder.Entity<UserInfo>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserInfo>()
                 .Property(e => e.Email)
                 .IsUnicode(false);
 
             modelBuilder.Entity<UserInfo>()
                 .Property(e => e.Tel)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserInfo>()
-                .Property(e => e.Title)
                 .IsUnicode(false);
 
             modelBuilder.Entity<UserInfo>()

@@ -15,53 +15,6 @@
             padding: 1rem 1.5rem;
         }
     </style>
-    <script>
-
-
-
-        $(function () {
-            //document.getElementsByTagName("FORM").noValidate = true;
-            //$("form").prop("novalidate", true);
-            //$("form").addClass("needs-validation");
-            //$("#CDForm_Container input").prop("required", true);
-
-            //(function () {
-            //    'use strict'
-
-            //    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            //    var forms = document.querySelectorAll('.needs-validation')
-
-            //    // Loop over them and prevent submission
-            //    Array.prototype.slice.call(forms)
-            //        .forEach(function (form) {
-            //            form.addEventListener('submit', function (event) {
-
-            //                let dateStr = $("#PubDate").val();
-            //                let datetime = new Date(dateStr);
-            //                let now = new Date(Date.now());
-            //                let strict = new Date("1940-01-01");
-            //                if (datetime > now) {
-            //                    $("#spanMsg").html("日期不可大於今天");
-            //                    event.preventDefault();
-            //                    event.stopPropagation();
-            //                }
-            //                if (datetime < strict) {
-            //                    $("#spanMsg").html("日期不可小於1900-01-01");
-            //                    event.preventDefault();
-            //                    event.stopPropagation();
-            //                }
-            //                if (!form.checkValidity()) {
-            //                    event.preventDefault()
-            //                    event.stopPropagation()
-            //                }
-            //                $("input[id$=HFPubDate]").val(dateStr);
-
-            //                form.classList.add('was-validated')
-            //            }, false)
-            //        })
-            //})()
-        });
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-sm-10 col-md-6 offset-md-3" id="CDForm_Container">

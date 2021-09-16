@@ -473,5 +473,10 @@ namespace StockManagement.SystemBackEnd.Order
         {
             this.Response.Redirect("/SystemBackEnd/Order/NewOrder.aspx");
         }
+
+        protected void btnPastOrder_Click(object sender, EventArgs e)
+        {
+            this.Response.Redirect("/SystemBackEnd/Search/RecordSearch.aspx");
+        }
     }
 }
