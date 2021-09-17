@@ -107,14 +107,24 @@ namespace StockManagement.SystemBackEnd.Approve
                     }
                 }
             }
+
             var AllOderList = OrderManager.GetOrderList();
-            var OrderList = AllOderList.Where(obj => 
+            List<ORM.DBModels.Order> OrderList = AllOderList.Where(obj => 
             {
                 bool isAllow = false;
                 if (obj.Status == 2)
                     isAllow = this.ReplenishIsAllowedInList(obj);
                 return obj.Status == 3 || obj.Status == 4 || isAllow;
             }).OrderBy(obj => obj.OrderDate).ToList();
+
+            if(OrderList.Count == 0)
+            {
+                this.ltlOrderList.Text = "<h4 class='NoApproveData'>無需要審核項目</h4>";
+                return;
+            }
+
+
+
             List<ORM.DBModels.Order> result = new List<ORM.DBModels.Order>();
             RenewOrderList(result, OrderList);
 

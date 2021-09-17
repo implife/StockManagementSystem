@@ -6,7 +6,16 @@
     <script src="../../Scripts/bootstrap.min.js"></script>
     <link href="../../StyleSheet/ApproveListStyle.css" rel="stylesheet" />
     <script src="../../Scripts/customize/jquery-3.6.0.min.js"></script>
-    <script>/*Animated Arrow Stlye*/
+
+
+    <style>
+        .NoApproveData{
+            color: #ff8282;
+        }
+    </style>
+
+
+    <script>
         $(function () {
             $('.round').click(function (e) {
                 e.preventDefault();

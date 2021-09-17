@@ -62,6 +62,13 @@ namespace StockManagement.SystemBackEnd.Search
                     }
                 }
 
+                // 沒有搜尋結果
+                if(searchResultAry.Length == 0)
+                {
+                    this.ltlResultList.Text = "<h5 class='NoData'>查無搜尋結果!</h5>";
+                    return;
+                }
+
                 result = searchResultAry.Select(re =>
                 {
                     return OrderManager.GetOrderByOrderID(Guid.Parse(re.item.OrderID));

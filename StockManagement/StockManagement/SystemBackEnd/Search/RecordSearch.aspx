@@ -21,8 +21,10 @@
         }
 
         #OrderContainer {
-            /*height: 85vh;*/
             margin-left: 2%;
+        }
+        .NoData{
+            color: #ff8282;
         }
 
         input[id$=txtOrderIdSearch] {

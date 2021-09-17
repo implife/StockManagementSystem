@@ -27,7 +27,10 @@
         .popup-container.myContainerValid{
             border-color: green;
         }
-        
+        .NoData{
+            color: #ff8282;
+            text-align: center;
+        }
     </style>
 
     <script>

@@ -20,8 +20,18 @@ namespace StockManagement.SystemBackEnd.Order
             this.txtSearch.Attributes.Add("data-bs-toggle", "dropdown");
             this.txtSearch.Attributes.Add("autocomplete", "off");
 
-
             this.Seller.Attributes.Add("placeholder", "賣家");
+
+            // 將所有CD資料利用JSON傳至Client端，做為FuzzySearch用
+            var cdList = CDManager.GetCDList();
+            stringObj = Newtonsoft.Json.JsonConvert.SerializeObject(cdList.Select(cd => cd));
+
+            // 若session中暫存列表有值，將他放進HiddenField讓前台處理
+            var sessionTempList = this.Session["TempList"];
+            if (sessionTempList != null)
+            {
+                this.HFTempList.Value = sessionTempList as string;
+            }
 
             List<CompactDisc> CDs = new List<CompactDisc>();
 
@@ -41,12 +51,19 @@ namespace StockManagement.SystemBackEnd.Order
 
                 // 處理搜尋結果列表
                 string strResult = this.HFSearchResult.Value;
-                if(strResult == "" || strResult == "[]")
+                if (strResult == "")
                 {
+                    return;
                     // 搜尋結果列表為乾淨的資料庫前幾筆
-                    this.Session["SearchObject"] = null;
+                    //this.Session["SearchObject"] = null;
 
-                    CDs = NewPageLoad(this.searchListPager);
+                    //CDs = NewPageLoad(this.searchListPager);
+                }
+                // 無搜尋結果
+                else if(strResult == "[]")
+                {
+                    this.ltlCDList.Text = "<h5 class='NoData'>查無搜尋結果!</h5>";
+                    return;
                 }
                 else
                 {
@@ -82,7 +99,6 @@ namespace StockManagement.SystemBackEnd.Order
                     this.searchListPager.CurrentPage = 1;
                     this.searchListPager.Bind();
                 }
-                
             }
             // 不是PostBack，可能是剛進頁面或顯示所有資料的情況下換頁，或是搜尋的情況下換頁
             else
@@ -185,17 +201,6 @@ namespace StockManagement.SystemBackEnd.Order
                     //$"<small>待審核庫存: {cdstock.UnreviewedStock}</small><br />" +
                     $"<button type='button' class='btn btn-outline-success' id='btnID{cd.SerialCode}' onclick='btnAddTemp(this)' {disabled}>新增</button>" +
                     $"</div>";
-            }
-
-            // 將所有CD資料利用JSON傳至Client端，做為FuzzySearch用
-            var cdList = CDManager.GetCDList();
-            stringObj = Newtonsoft.Json.JsonConvert.SerializeObject(cdList.Select(cd => cd));
-
-            // 若session中暫存列表有值，將他放進HiddenField讓前台處理
-            var sessionTempList = this.Session["TempList"];
-            if(sessionTempList != null)
-            {
-                this.HFTempList.Value = sessionTempList as string;
             }
         }
 

@@ -171,14 +171,14 @@ div.text-div {
 
 .btn_ShowAll {
     color: #FFFF;
-    background-color: #ABC69F;
-    border-color: #ABC69F;
+    background-color: #78c979;
+    border-color: #78c979;
 }
 
     .btn_ShowAll:hover {
         color: #FFFF;
-        background-color: #6A9657;
-        border-color: #6A9657;
+        background-color: #edbe87;
+        border-color: #edbe87;
     }
 
 .Popup_Container {
