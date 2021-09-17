@@ -268,8 +268,8 @@ namespace StockManagement.SystemBackEnd.Approve
                 else if (orders.Status == 4)
                 {
                     BottonShow =
-                      $"<input type = 'submit' value='核可' class='btn btn-outline-primary btn_Approve' style='width:3rem; height:2rem;' />" +
-                      $"<input type = 'submit' value='修改' class='btn btn-outline-primary btn_Modify' style='width:3rem; height:2rem;' />";
+                      $"<input type = 'submit' value='核可' class='btn btn-outline-primary btn_Approve' style='width:3rem; height:2rem;' />";
+                      //$"<input type = 'submit' value='修改' class='btn btn-outline-primary btn_Modify' style='width:3rem; height:2rem;' />";
                 }
 
 

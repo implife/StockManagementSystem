@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="ChangePWD.aspx.cs" Inherits="StockManagement.SystemBackEnd.UserInfo.ChangePWD" %>
+﻿<%@ Page Title="薛丁格-更改密碼" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="ChangePWD.aspx.cs" Inherits="StockManagement.SystemBackEnd.UserInfo.ChangePWD" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../StyleSheet/UserEditorStyle.css" rel="stylesheet" />
@@ -77,21 +77,21 @@
         <div class="row" id="DIO">
 
             <div class="col-sm-12 col-md-12 form__group form-floating">
-                <asp:TextBox ID="txtInputOldPWD" CssClass="form-control form-control1 form__input myValidation validateNullWhiteSpace" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtInputOldPWD" CssClass="form-control form-control1 form__input myValidation validateNullWhiteSpace" runat="server" TextMode="Password"></asp:TextBox>
                 <asp:Label ID="lblOldPWD" AssociatedControlID="txtInputOldPWD" runat="server">請輸入舊密碼</asp:Label>
                 <div class="invalid-feedback feedback"></div>
                 <div class="valid-feedback feedback"></div>
             </div>
 
             <div class="col-sm-12 col-md-12 form__group form-floating">
-                <asp:TextBox ID="txtInputNewPWD" CssClass="form-control form-control1 form__input myValidation validateNullWhiteSpace" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtInputNewPWD" CssClass="form-control form-control1 form__input myValidation validateNullWhiteSpace" runat="server" TextMode="Password"></asp:TextBox>
                 <asp:Label ID="lblNewWD" AssociatedControlID="txtInputNewPWD" runat="server">請輸入密碼</asp:Label>
                 <div class="invalid-feedback feedback"></div>
                 <div class="valid-feedback feedback"></div>
             </div>
 
             <div class="col-sm-12 col-md-12 form__group form-floating">
-                <asp:TextBox ID="txtCheckPWD" runat="server" CssClass="form-control form__input myValidation"></asp:TextBox>
+                <asp:TextBox ID="txtCheckPWD" runat="server" CssClass="form-control form__input myValidation" TextMode="Password"></asp:TextBox>
                 <asp:Label ID="lblCheckPWD" AssociatedControlID="txtCheckPWD" runat="server">請再次輸入密碼</asp:Label>
                 <div class="invalid-feedback feedback"></div>
                 <div class="valid-feedback feedback"></div>

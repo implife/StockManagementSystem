@@ -152,18 +152,22 @@ namespace StockManagement.DBSource
             }
         }
 
-        public static bool UpdateUserPWD(UserInfo userInfo)
+        public static bool UpdateUserPWD(Guid guid, string PWD)
         {
             try
             {
                 using (ContextModel context = new ContextModel())
                 {
 
-                    var DBObject = context.UserInfoes.Where(obj => obj.UserID == userInfo.UserID).FirstOrDefault();
+                    var DBObject = context.UserInfoes.Where(obj => obj.UserID == guid).FirstOrDefault();
 
                     if (DBObject != null)
                     {
-                        DBObject.PWD = userInfo.PWD;
+                        DBObject.PWD = PWD;
+                    }
+                    else
+                    {
+                        throw new Exception("Find No guid");
                     }
                     context.SaveChanges();
                     return true;

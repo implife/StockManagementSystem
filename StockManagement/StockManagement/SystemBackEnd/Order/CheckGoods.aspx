@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="CheckGoods.aspx.cs" Inherits="StockManagement.SystemBackEnd.Order.CheckGoods" %>
+﻿<%@ Page Title="薛丁格-點貨" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="CheckGoods.aspx.cs" Inherits="StockManagement.SystemBackEnd.Order.CheckGoods" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"

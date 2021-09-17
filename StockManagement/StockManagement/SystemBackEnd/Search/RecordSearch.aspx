@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="RecordSearch.aspx.cs" Inherits="StockManagement.SystemBackEnd.Search.RecordSearch" %>
+﻿<%@ Page Title="薛丁格-單據查詢" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="RecordSearch.aspx.cs" Inherits="StockManagement.SystemBackEnd.Search.RecordSearch" %>
 
 <%@ Register Src="~/UserControls/ucPager.ascx" TagPrefix="uc1" TagName="ucPager" %>
 
@@ -404,6 +404,13 @@
             width: 100%;
         }
 
+        .Accordion_button{
+            background-color:#FBD9C5;
+        }
+
+        .accordion-body{
+                background-color: #ddf5ec;
+        }
         /* #endregion Nav RadioBtn */
 
     </style>

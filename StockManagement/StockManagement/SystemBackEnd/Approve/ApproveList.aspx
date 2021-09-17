@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="ApproveList.aspx.cs" Inherits="StockManagement.SystemBackEnd.Approve.ApproveList" %>
+﻿<%@ Page Title="薛丁格-核銷待審" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="ApproveList.aspx.cs" Inherits="StockManagement.SystemBackEnd.Approve.ApproveList"  %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>ApproveList</title>
@@ -37,8 +37,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:HiddenField ID="HD_Btn" runat="server" />
-    <div style="width: 53rem;margin-top:5%">
-        <div class="accordion" id="accordionExample">
+    <div style="width: 53rem;">
+        <div class="accordion AccordionExample" id="accordionExample">
             <asp:Literal ID="ltlOrderList" runat="server" EnableViewState="false"></asp:Literal>
         </div>
     </div>

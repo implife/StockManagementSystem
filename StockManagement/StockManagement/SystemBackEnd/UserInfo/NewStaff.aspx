@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="NewStaff.aspx.cs" Inherits="StockManagement.SystemBackEnd.UserInfo.NewStaff" %>
+﻿<%@ Page Title="薛丁格-新增員工" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="NewStaff.aspx.cs" Inherits="StockManagement.SystemBackEnd.UserInfo.NewStaff" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../../Scripts/customize/jquery-3.6.0.min.js"></script>

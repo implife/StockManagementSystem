@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="UserInfo.aspx.cs" Inherits="StockManagement.SystemBackEnd.UserInfo.UserInfo" %>
+﻿<%@ Page Title="薛丁格-使用者資訊" Language="C#" MasterPageFile="~/SystemBackEnd/Main.Master" AutoEventWireup="true" CodeBehind="UserInfo.aspx.cs" Inherits="StockManagement.SystemBackEnd.UserInfo.UserInfo" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

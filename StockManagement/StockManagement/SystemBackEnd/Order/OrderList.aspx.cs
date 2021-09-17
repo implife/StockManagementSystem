@@ -109,7 +109,7 @@ namespace StockManagement.SystemBackEnd.Order
                     $"<p class='mb-1'>負責主管：{responsibleName}</p>" +
                     this.RenderMainOrder(orderItem) +
                     checkGoodsBtn +
-                    $"<div class='accordion accordion-flush' id='accordion{orderItem.OrderID}'>" +
+                    $"<div class='accordion accordion-flush Accordion_Flush' id='accordion{orderItem.OrderID}'>" +
                     $"<div class='accordion-item'>" +
                     $"<h2 class='accordion-header AccordionHeader'>" +
                     $"<button class='accordion-button collapsed Accordion_Botton' type='button' data-bs-toggle='collapse' data-bs-target='#accItemBody{orderItem.OrderID}'>品項</button>" +

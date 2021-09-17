@@ -22,15 +22,15 @@ namespace StockManagement.SystemBackEnd.UserInfo
             string id = (HttpContext.Current.User.Identity as FormsIdentity).Ticket.UserData;
             Guid guid = Guid.Parse(id);
             ORM.DBModels.UserInfo OldUserinfo = UserInfoManager.GetUserInfoByUserID(guid);
-           
+
             var NewPWD = txtInputNewPWD.Text;
 
             if (txtInputOldPWD.Text != OldUserinfo.PWD)
             {
                 this.ltlModal.Text = "<script>var myModal2 = new bootstrap.Modal(document.getElementById('resultModal2'), {keyboard: false});myModal.show()</script>";
             }
-
-                bool result = UserInfoManager.UpdateUserPWD(userInfo);
+            userInfo.PWD = NewPWD;
+            bool result = UserInfoManager.UpdateUserPWD(guid,NewPWD);
             if (result == true)
             {
 
