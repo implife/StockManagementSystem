@@ -1,9 +1,13 @@
 ﻿// 檢查字串長度
 function validateTxtWidth(txt, min = 1, max = 999) {
+    if (min == max && txt.length != min)
+        return { isValid: false, msg: '輸入欄必須是' + min + '個字元', code: 'NotEqualError' };
+    if (txt.length < min && min == 1)
+        return { isValid: false, msg: '輸入欄不可為空', code: 'EmptyError' };
     if (txt.length < min)
-        return { isValid: false, msg: '長度最少要' + min + '個字元!', code: 'minError' };
+        return { isValid: false, msg: '長度最少要' + min + '個字元', code: 'minError' };
     if (txt.length > max)
-        return { isValid: false, msg: '長度最多只能' + max + '個字元!', code: 'maxError' };
+        return { isValid: false, msg: '長度最多只能' + max + '個字元', code: 'maxError' };
     return { isValid: true };
 }
 
@@ -72,14 +76,66 @@ function CheckHasValid(item) {
 
 $(function () {
     $('form').submit(function (event) {
-        // Email
-        $('input.myValidation.validateEmail[type=text]').on('keyup', function () {
-            let result = validateEmail($(this).val());
+        $('input.myValidation').attr('data-validate', '100');
+
+        // 是否空值
+        $('input.myValidation.validateNullWhiteSpace').on('keyup', function () {
+            if (Number($(this).attr('data-validate')) < 1)
+                return;
+
+            $(this).val($(this).val().trim());
+            let result = validateNullWhiteSpace($(this).val());
 
             if (!result.isValid) {
+                $(this).attr('data-validate', '1');
+
                 $(this).siblings('.invalid-feedback').html(result.msg);
                 ChangeInvalid($(this));
             } else {
+                $(this).attr('data-validate', '100');
+
+                ChangeValid($(this));
+            }
+        }).trigger('keyup');
+
+        // 長度
+        $('input.myValidation.validateTextLength').on('keyup', function () {
+            if (Number($(this).attr('data-validate')) < 2)
+                return;
+
+            $(this).val($(this).val().trim());
+            let min = $(this).attr("min") == undefined ? 1 : Number($(this).attr("min"));
+            let max = $(this).attr("max") == undefined ? 999 : Number($(this).attr("max"));
+
+            let result = validateTxtWidth($(this).val(), min, max);
+
+            if (!result.isValid) {
+                $(this).attr('data-validate', '2');
+
+                $(this).siblings('.invalid-feedback').html(result.msg);
+                ChangeInvalid($(this));
+            } else {
+                $(this).attr('data-validate', '100');
+
+                ChangeValid($(this));
+            }
+        }).trigger('keyup');
+
+        // Email
+        $('input.myValidation.validateEmail[type=text]').on('keyup', function () {
+            if (Number($(this).attr('data-validate')) < 3)
+                return;
+
+            let result = validateEmail($(this).val());
+
+            if (!result.isValid) {
+                $(this).attr('data-validate', '3');
+
+                $(this).siblings('.invalid-feedback').html(result.msg);
+                ChangeInvalid($(this));
+            } else {
+                $(this).attr('data-validate', '100');
+
                 ChangeValid($(this));
             }
 
@@ -87,33 +143,60 @@ $(function () {
 
         // 日期
         $('input.myValidation.validateDate[type=date]').on('change', function () {
+            if (Number($(this).attr('data-validate')) < 4)
+                return;
+
             let result = validateDate($(this).val());
 
             if (!result.isValid) {
+                $(this).attr('data-validate', '4');
+
                 $(this).siblings('.invalid-feedback').html(result.msg);
                 ChangeInvalid($(this));
             } else {
+                $(this).attr('data-validate', '100');
+
                 ChangeValid($(this));
             }
         }).trigger('change');
 
-        // 是否空值
-        $('input.myValidation.validateNullWhiteSpace').on('keyup', function () {
-            $(this).val($(this).val().trim());
-            let result = validateNullWhiteSpace($(this).val());
+        // Number Only
+        $('input.myValidation.validateNumOnly').on('keyup', function () {
+            if (Number($(this).attr('data-validate')) < 5)
+                return;
+
+            let result = validateTxtContext($(this).val(), alphabet = false);
 
             if (!result.isValid) {
+                $(this).attr('data-validate', '5');
+
                 $(this).siblings('.invalid-feedback').html(result.msg);
                 ChangeInvalid($(this));
             } else {
+                $(this).attr('data-validate', '100');
+
                 ChangeValid($(this));
             }
         }).trigger('keyup');
 
-        // Check所有.myValidation是否通過
-        //if (!$('input.myValidation').toArray().every(CheckHasValid)) {
-        //    event.preventDefault()
-        //    event.stopPropagation()
-        //}
+        // Alphabet Number Only
+        $('input.myValidation.validateAlphNumOnly').on('keyup', function () {
+            if (Number($(this).attr('data-validate')) < 6)
+                return;
+
+            let result = validateTxtContext($(this).val());
+
+            if (!result.isValid) {
+                $(this).attr('data-validate', '6');
+
+                $(this).siblings('.invalid-feedback').html(result.msg);
+                ChangeInvalid($(this));
+            } else {
+                $(this).attr('data-validate', '100');
+
+                ChangeValid($(this));
+            }
+        }).trigger('keyup');
+
     });
 });

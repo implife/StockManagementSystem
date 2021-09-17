@@ -36,12 +36,11 @@ namespace StockManagement.SystemBackEnd.UserInfo
             string title = "";
             if(Convert.ToInt32(HD_LVAndBlood.Value.Split(',')[0]) == 0)
             {
-                title = "StockManager";
-
+                title = "倉儲主管";
             }
             else
             {
-                title = "StockKeeper";
+                title = "倉儲人員";
             }
 
             ORM.DBModels.UserInfo userInfo = new ORM.DBModels.UserInfo();
