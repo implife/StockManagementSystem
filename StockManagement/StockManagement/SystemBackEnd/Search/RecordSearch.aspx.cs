@@ -57,7 +57,8 @@ namespace StockManagement.SystemBackEnd.Search
                     }
                     else
                     {
-                        this.Response.Redirect(this.Request.Path);
+                        return;
+                        //this.Response.Redirect(this.Request.Path);
                     }
                 }
 

@@ -37,7 +37,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:HiddenField ID="HD_Btn" runat="server" />
-    <div style="width: 53rem;">
+    <div style="width: 53rem;margin-top:5%">
         <div class="accordion" id="accordionExample">
             <asp:Literal ID="ltlOrderList" runat="server" EnableViewState="false"></asp:Literal>
         </div>

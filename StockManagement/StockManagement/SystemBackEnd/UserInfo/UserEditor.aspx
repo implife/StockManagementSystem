@@ -56,7 +56,7 @@
 
                     if (!result.isValid) {
 
-                        $(this).siblings('.invalid-feedback').html(result.msg);
+                        $(this).siblings('.invalid-feedback').html("請輸入十位數號碼!");
 
                         ChangeInvalid($(this));
 

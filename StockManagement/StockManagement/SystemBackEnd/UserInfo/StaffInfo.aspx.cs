@@ -72,7 +72,7 @@ namespace StockManagement.SystemBackEnd.UserInfo
                     $"<td>{user.Title}</td>" +
                     $"<td>{Status}</td>" +
                     $"<td>{user.Email}</td>" +
-                    $"<td>{user.EmploymentDate}</td>" +
+                    $"<td>{user.EmploymentDate.ToString("yyyy-MM-dd")}</td>" +
                     $"<td>{Editor}</td>" +
                     $"</tr>";
             }

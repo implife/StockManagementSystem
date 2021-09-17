@@ -14,6 +14,11 @@
         div.row label {
             padding: 1rem 1.5rem;
         }
+        #CDForm_Container > h4{
+            text-align:center;
+            margin: 30px 0;
+            
+        }
     </style>
     <script>
         $(function () {
@@ -32,8 +37,9 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-sm-10 col-md-6 offset-md-3" id="CDForm_Container">
 
+    <div class="col-sm-10 col-md-6 offset-md-3 mt-3" id="CDForm_Container">
+        <h4>新增CD資料</h4>
         <div class="row">
             <div class="col-sm-12 col-md-6 form-item form-floating">
                 <asp:TextBox ID="EpisodeName" runat="server" CssClass="form-control myValidation validateNullWhiteSpace"></asp:TextBox>

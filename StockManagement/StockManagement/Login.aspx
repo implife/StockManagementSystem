@@ -68,7 +68,7 @@
                                             --
                                         </div>
                                         <div class="valid-feedback">
-                                            Good!
+                                           
                                         </div>
                                     </div>
 
@@ -78,7 +78,7 @@
                                             --
                                         </div>
                                         <div class="valid-feedback">
-                                            Good!
+                                            
                                         </div>
                                     </div>
 
