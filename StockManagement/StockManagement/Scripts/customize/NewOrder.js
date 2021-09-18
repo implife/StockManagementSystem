@@ -343,23 +343,23 @@ $(function () {
     $('form').submit(function (event) {
 
         // 驗證Seller
-        $('input[id$=Seller]').off('keyup');
-        $('input[id$=Seller]').on('keyup', function () {
+        //$('input[id$=Seller]').off('keyup');
+        //$('input[id$=Seller]').on('keyup', function () {
 
-            $(this).val($(this).val().trim());
-            let result = validateTxtWidth($(this).val(), 1, max = 50);
+        //    $(this).val($(this).val().trim());
+        //    let result = validateTxtWidth($(this).val(), 1, max = 50);
 
-            if (!result.isValid) {
-                if(result.code == 'minError')
-                    $(this).siblings('.invalid-feedback').html('請輸入賣家');
-                else
-                    $(this).siblings('.invalid-feedback').html(result.msg);
-                ChangeInvalid($(this));
-            } else {
-                ChangeValid($(this));
-            }
+        //    if (!result.isValid) {
+        //        if(result.code == 'minError')
+        //            $(this).siblings('.invalid-feedback').html('請輸入賣家');
+        //        else
+        //            $(this).siblings('.invalid-feedback').html(result.msg);
+        //        ChangeInvalid($(this));
+        //    } else {
+        //        ChangeValid($(this));
+        //    }
 
-        }).trigger('keyup');
+        //}).trigger('keyup');
 
         // 驗證暫存列表(相對應的input type=hidden)
         $('input[type=hidden][id=TempListValidation]').off('change');

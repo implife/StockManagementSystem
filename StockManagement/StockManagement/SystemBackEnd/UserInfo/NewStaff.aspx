@@ -21,7 +21,7 @@
         $(function () {
             $('form').submit(function (event) {
 
-                $('#btnLevel').siblings('ul').click(function () {
+                $('#btnLevel + ul').click(function () {
                     if ($('#btnLevel').text() == '職位') {
                         $('#btnLevel').siblings('.valid-feedback').css('display', 'none')
                             .siblings('.invalid-feedback').css('display', 'block');
@@ -70,46 +70,6 @@
 
                 $("input[id$=HD_LVAndBlood]").val(lv + "," + Blood);
             })
-
-            //let dateStr = $("#startDate").val();
-            //let startDate = new Date(dateStr);
-            //let now = new Date(Date.now());
-            //let strict = new Date("1960-01-01");
-            //let LV = $("#btnLevel").text();
-            //let Blood = $("#btnBlood").text();
-
-
-            //if (startDate > now) {
-            //    $("#ltlMsg").html("入職日期不可大於今天");
-            //    event.preventDefault();
-            //    event.stopPropagation();
-            //}
-            //if (startDate < strict) {
-            //    $("#spanMsg").html("日期不可小於1960-01-01");
-            //    event.preventDefault();
-            //    event.stopPropagation();
-            //}
-            //if (!form.checkValidity()) {
-            //    event.preventDefault()
-            //    event.stopPropagation()
-            //}
-            //var lv = "";
-            //if (LV == "主管") {
-            //    lv = 0;
-            //} else if (LV == "兼職員工") {
-            //    lv = 1;
-            //} else {
-            //    lv = 2;
-            //}
-
-
-
-            //$("input[id$=HD_StartDate]").val(dateStr);
-
-            //$("input[id$=HD_LVAndBlood]").val(lv + "," + Blood);
-
-
-
 
             $('li').click(function () {
                 $(this).parent().siblings("button").text($(this).text());

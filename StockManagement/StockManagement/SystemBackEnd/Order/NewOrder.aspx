@@ -119,7 +119,7 @@
         </div>
         <div class="col-3">
             <div class="col-sm-12 col-md-6 form-item form-floating">
-                <asp:TextBox ID="Seller" runat="server" CssClass="form-control txtSellerClass myValidation"></asp:TextBox>
+                <asp:TextBox ID="Seller" runat="server" CssClass="form-control txtSellerClass myValidation validateTextLength" min="1" max="50"></asp:TextBox>
                 <asp:Label ID="Label1" runat="server" Text="賣家" AssociatedControlID="Seller"></asp:Label>
                 <div class="invalid-feedback">
                     請輸入賣家

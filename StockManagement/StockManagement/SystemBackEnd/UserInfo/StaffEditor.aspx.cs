@@ -54,8 +54,8 @@ namespace StockManagement.SystemBackEnd.UserInfo
                  $"<div class='btn-group'>" +
                  $" <button id='btnLevel' type='button' class='btn btn-danger dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false' > {Level}</button>" +
                  $" <ul class='dropdown-menu Choice' >" +
-                 $" <li><a class='dropdown-item' href='#' Data-type='0' >主管</a></li>" +
-                 $"<li><a class='dropdown-item' href='#' Data-type='1'> 全職</a></li>" +
+                 $" <li><a class='dropdown-item' href='#' Data-type='0'>主管</a></li>" +
+                 $"<li><a class='dropdown-item' href='#' Data-type='1'>全職</a></li>" +
                  $" <li><a class='dropdown-item' href='#' Data-type='2'>兼職</a></li>" +
                  $"</ul>" +
                  $"</div>";
